@@ -1,4 +1,5 @@
 import Hero from "@/components/Home/Hero";
+import MarketInsight from "@/components/Home/MarketInsight";
 import Testimonial from "@/components/Home/Testimonial";
 import WhyChoose from "@/components/Home/WhyChoose";
 
@@ -14,6 +15,7 @@ export default function Home() {
         <WhyChoose/>
 
         <Testimonial/>
+        <MarketInsight/>
 
     
     </div>

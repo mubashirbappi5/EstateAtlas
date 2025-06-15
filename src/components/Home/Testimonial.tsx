@@ -1,9 +1,16 @@
 import React from 'react';
+import { Reviews } from '../Reviews';
 
 const Testimonial = () => {
     return (
-        <div className='bg-blue-300'>
-            <h1>client say</h1>
+        <div className=' container mx-auto '>
+            <div>
+                <h1 className='text-5xl font-semibold text-center text-[#0A1532]'>See What<span className='text-[#3BA1DF]'> Clients</span> Are Saying </h1>
+            </div>
+            <div className='mt-10'>
+                <Reviews/>
+            </div>
+          
             
         </div>
     );
