@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-
+import { ArrowUp } from 'lucide-react';
 const Footer = () => {
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -12,7 +12,7 @@ const Footer = () => {
         {/* Logo and Company Info */}
         <div className="min-w-[200px]">
           <h2 className="text-2xl font-bold text-gray-900">Estate Atlas</h2>
-          <p className="text-gray-500 mt-2">Your trusted real estate partner.</p>
+          <p className="text-[#4D5461] font-semibold mt-2">Your trusted real estate partner.</p>
         </div>
 
         {/* Quick Links */}
@@ -48,9 +48,9 @@ const Footer = () => {
         <div className="min-w-[150px] flex items-start md:items-end justify-start md:justify-end">
           <button
             onClick={handleScrollToTop}
-            className="px-6 py-2 bg-blue-600 text-white rounded font-semibold shadow hover:bg-blue-700 transition"
+            className="px-2 py-2 bg-[#0A1532] text-white rounded-full font-semibold shadow  transition"
           >
-            Back to Top
+              <ArrowUp />
           </button>
         </div>
       </div>
@@ -58,10 +58,10 @@ const Footer = () => {
       {/* Divider */}
       <hr className="my-8 mx-auto border-[#3BA1DF] container" />
 
-      {/* Bottom Section: Social Icons + Copyright */}
+      {/*  Social Icons + Copyright */}
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-        <div className="text-gray-400 text-sm text-center md:text-left">
-          &copy; {new Date().getFullYear()} Estate Atlas. All rights reserved.
+        <div className=" text-sm text-center text-[#0A1532] md:text-left"> Copyrighted
+          &copy; {new Date().getFullYear()} ESTATEATLAS. All Rights Reserved
         </div>
         <div className="flex space-x-4">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">

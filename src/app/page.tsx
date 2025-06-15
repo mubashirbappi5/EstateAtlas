@@ -1,9 +1,16 @@
+import Hero from "@/components/Home/Hero";
 
 
 export default function Home() {
   return (
     <div>
-      <h1>this is home  page</h1>
+     
+     <div className="">
+       <Hero/>
+     </div>
+      <div className="mt-48">
+
+      </div>
     </div>
   );
 }
