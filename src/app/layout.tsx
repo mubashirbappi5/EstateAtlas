@@ -29,7 +29,9 @@ export default function RootLayout({
         className={poppins.variable}
       >
         <Navbar/>
-        {children}
+        <main className="min-h-screen">
+          {children}
+        </main>
         <Footer/>
       </body>
     </html>

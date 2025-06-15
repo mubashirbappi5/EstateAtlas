@@ -1,12 +1,82 @@
-import React from 'react';
+"use client";
+import React from "react";
 
 const Footer = () => {
-    return (
-        <div>
-            <h1>this is footer </h1>
-            
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  return (
+    <footer className="bg-gray-50 pt-10 pb-6 mt-8">
+      <div className="container mx-auto px-4 flex flex-wrap justify-between gap-8">
+        {/* Logo and Company Info */}
+        <div className="min-w-[200px]">
+          <h2 className="text-2xl font-bold text-gray-900">Estate Atlas</h2>
+          <p className="text-gray-500 mt-2">Your trusted real estate partner.</p>
         </div>
-    );
+
+        {/* Quick Links */}
+        <div className="min-w-[150px]">
+          <h4 className="text-lg font-semibold mb-2">Quick Links</h4>
+          <ul className="space-y-1">
+            <li>
+              <a href="/about" className="text-gray-600 hover:text-blue-600 transition">About Us</a>
+            </li>
+            <li>
+              <a href="/properties" className="text-gray-600 hover:text-blue-600 transition">Properties</a>
+            </li>
+            <li>
+              <a href="/contact" className="text-gray-600 hover:text-blue-600 transition">Contact</a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Legal Links */}
+        <div className="min-w-[150px]">
+          <h4 className="text-lg font-semibold mb-2">Legal</h4>
+          <ul className="space-y-1">
+            <li>
+              <a href="/privacy" className="text-gray-600 hover:text-blue-600 transition">Privacy Policy</a>
+            </li>
+            <li>
+              <a href="/terms" className="text-gray-600 hover:text-blue-600 transition">Terms of Service</a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Scroll to Top Button */}
+        <div className="min-w-[150px] flex items-start md:items-end justify-start md:justify-end">
+          <button
+            onClick={handleScrollToTop}
+            className="px-6 py-2 bg-blue-600 text-white rounded font-semibold shadow hover:bg-blue-700 transition"
+          >
+            Back to Top
+          </button>
+        </div>
+      </div>
+
+      {/* Divider */}
+      <hr className="my-8 mx-auto border-[#3BA1DF] container" />
+
+      {/* Bottom Section: Social Icons + Copyright */}
+      <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="text-gray-400 text-sm text-center md:text-left">
+          &copy; {new Date().getFullYear()} Estate Atlas. All rights reserved.
+        </div>
+        <div className="flex space-x-4">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" className="w-6 h-6" />
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter" className="w-6 h-6" />
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" className="w-6 h-6" />
+          </a>
+        </div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;
