@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import deshbord from '../../../public/image.png'
+import deshbord from '../../../public/image1.png'
 const Hero = () => {
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-[#0A1532]">
@@ -45,7 +45,7 @@ const Hero = () => {
         }}
       ></div>
 
-      {/* 🧠 Hero Content */}
+      {/*  Hero Content */}
       <div className="relative container mx-auto z-20 p-8 text-white text-center">
         <h1 className="text-6xl mt-20 font-semibold">
           Unlock global real estate opportunities with data-driven insights

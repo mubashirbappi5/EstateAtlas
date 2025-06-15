@@ -1,16 +1,21 @@
 import Hero from "@/components/Home/Hero";
+import Testimonial from "@/components/Home/Testimonial";
+import WhyChoose from "@/components/Home/WhyChoose";
 
 
 export default function Home() {
   return (
     <div>
      
-     <div className="">
+    
        <Hero/>
-     </div>
-      <div className="mt-48">
+     
+      
+        <WhyChoose/>
 
-      </div>
+        <Testimonial/>
+
+    
     </div>
   );
 }
