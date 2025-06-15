@@ -7,16 +7,18 @@ const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
-        <nav className="bg-white shadow px-4 py-3">
+        <nav className="bg-white shadow  py-7 px-4">
             <div className=" container mx-auto flex items-center justify-between">
                 {/* Left: Logo */}
                 <div className="flex items-center">
+                    <Link href={'/'}>
                     <Image src={logo} width={195} height={32} alt='EstateAtlas Logo'></Image>
+                    </Link>
                     
                 </div>
 
                 {/* Mobile menu button */}
-                <div className="md:hidden">
+                <div className="lg:hidden">
                     <button
                         onClick={() => setMenuOpen(!menuOpen)}
                         className="text-gray-700 focus:outline-none"
@@ -33,31 +35,34 @@ const Navbar = () => {
                 </div>
 
                 {/* Middle: Nav Links */}
-                <div className="hidden md:flex space-x-6">
-                    <Link href="/" className="block text-[#000929] hover:text-blue-600 font-medium ">Home</Link>
-                    <Link href="about" className="block text-[#000929] hover:text-blue-600 font-medium">About</Link>
-                    <Link href="pricing" className="block text-[#000929] hover:text-blue-600 font-medium">Pricing</Link>
-                    <Link href="articles" className="block text-[#000929] hover:text-blue-600 font-medium">Articles</Link>
-                    <Link href="affiliateContact" className="block text-[#000929]  hover:text-blue-600 font-medium">Affiliate Contact</Link>
+                <div className="hidden lg:flex space-x-12">
+                    <Link href="/" className="block text-[#000929] hover:text-[#3BA1DF] font-semibold ">Home</Link>
+                    <Link href="about" className="block text-[#000929] hover:text-[#3BA1DF] font-semibold">About</Link>
+                    <Link href="pricing" className="block text-[#000929] hover:text-[#3BA1DF] font-semibold">Pricing</Link>
+                    <Link href="articles" className="block text-[#000929] hover:text-[#3BA1DF] font-semibold">Articles</Link>
+                    <Link href="affiliateContact" className="block text-[#000929]  hover:text-[#3BA1DF] font-semibold">Affiliate Contact</Link>
                 </div>
 
                 {/* Right: Buttons */}
-                <div className="hidden md:flex space-x-4">
-                    <button className="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600">Login</button>
-                    <button className="px-4 py-2 rounded border border-blue-500 text-blue-500 hover:bg-blue-50">Sign Up</button>
+                <div className="hidden lg:flex space-x-4">
+                       <button className="px-6 py-4 rounded-lg border-2 border-blue-[#0A1532] border-[#E0DEF7] text-blue-[#0A1532] font-semibold cursor-pointer">Login</button>
+                    <button className="px-6 py-4 rounded-lg bg-[#0A1532] text-white cursor-pointer ">Sign Up</button>
+                 
                 </div>
             </div>
 
             {/* Mobile Menu */}
             {menuOpen && (
-                <div className="md:hidden mt-2 space-y-2">
-                    <Link href="/" className="block text-gray-700 hover:text-blue-600 font-medium">Home</Link>
-                    <Link href="/about" className="block text-gray-700 hover:text-blue-600 font-medium">Listings</Link>
-                    <Link href="#" className="block text-gray-700 hover:text-blue-600 font-medium">About</Link>
-                    <Link href="#" className="block text-gray-700 hover:text-blue-600 font-medium">Contact</Link>
+                <div className="lg:hidden mt-4 space-y-2 ">
+                    <Link href="/" className="block text-[#000929] hover:text-[#3BA1DF] font-semibold ">Home</Link>
+                    <Link href="about" className="block text-[#000929] hover:text-[#3BA1DF] font-semibold">About</Link>
+                    <Link href="pricing" className="block text-[#000929] hover:text-[#3BA1DF] font-semibold">Pricing</Link>
+                    <Link href="articles" className="block text-[#000929] hover:text-[#3BA1DF] font-semibold">Articles</Link>
+                    <Link href="affiliateContact" className="block text-[#000929]  hover:text-[#3BA1DF] font-semibold">Affiliate Contact</Link>
                     <div className="flex space-x-2 mt-2">
-                        <button className="flex-1 px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600">Login</button>
-                        <button className="flex-1 px-4 py-2 rounded border border-blue-500 text-blue-500 hover:bg-blue-50">Sign Up</button>
+                          <button className="flex-1 px-6 py-4 rounded-lg border-2 border-blue-[#0A1532] border-[#E0DEF7] text-blue-[#0A1532] font-semibold cursor-pointer">Login</button>
+                    <button className="flex-1  px-4 py-3 rounded-lg bg-[#0A1532] text-white cursor-pointer ">Sign Up</button>
+                 
                     </div>
                 </div>
             )}
