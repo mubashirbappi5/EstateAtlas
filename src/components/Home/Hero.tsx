@@ -2,6 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import deshbord from '../../../public/image1.png'
 const Hero = () => {
+  
   return (
     <div className="relative  md:min-h-screen md:pb-1 pb-10 w-full overflow-hidden bg-[#0A1532]">
     
