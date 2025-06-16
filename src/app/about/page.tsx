@@ -1,12 +1,13 @@
 import Image from "next/image";
 import React from "react";
 import story from "../../../public/OurStory.png";
+import actionbg from "../../../public/actionbg.png";
 const About = () => {
   return (
     <div className=" mx-auto">
       {/* about hero */}
-      <div className="md:container mx-auto  mb-40 md:p-8 p-2 text-[#0A1532] text-center">
-        <h1 className="md:text-6xl text-4xl mt-20  font-semibold">
+      <div className="md:container mx-auto  md:mb-40 mb-7 md:p-8 p-2 text-[#0A1532] text-center">
+        <h1 className="md:text-6xl text-4xl mt-20 text-center  font-semibold">
           Driven By data, <br /> Guided by Integrity
         </h1>
         <p className="mt-6 text-xl md:text-xl text-center text-[#80838A]">
@@ -18,36 +19,88 @@ const About = () => {
           Explore Global Data
         </button>
       </div>
-   <div  style={{
-    background: 'radial-gradient(42.72% 42.72% at 20% 50%, rgba(10, 21, 50, 0.7), rgba(255, 255, 255, 0) 90%)',
-  }} className="absolute top-56 left-[-100px] w-[400px] h-[400px] rounded-full z-0">
 
-   </div>
+      {/* drop shadow in hero  */}
+      <div
+        style={{
+          background:
+            "radial-gradient(42.72% 42.72% at 20% 50%, rgba(10, 21, 50, 0.7), rgba(255, 255, 255, 0) 90%)",
+        }}
+        className="absolute top-[400px] left-[-100px] w-[400px] h-[400px] rounded-full z-0"
+      ></div>
+      <div
+  style={{
+    background:
+      "radial-gradient(60% 60% at 20% 50%, rgba(10, 21, 50, 0.3), rgba(255, 255, 255, 0) 100%)",
+  }}
+  className="absolute lg:flex hidden top-[1400px] left-[-150px] w-[600px] h-[600px] rounded-full z-0"
+></div>
+
+      
+
       {/* about our story */}
 
       <section className="border-y-2  border-dashed  py-5">
         <div>
-          <h1 className=" md:text-5xl text-3xl font-semibold text-center text-[#0A1532]">
+          <h1 className=" md:text-5xl text-4xl font-semibold text-center text-[#0A1532]">
             Our Story
           </h1>
         </div>
 
-
-        <section className="grid md:grid-cols-2  mt-20 mb-10 container px-20 mx-auto">
-          <div>
-          <Image src={story} width={516} height={452} alt="our story"></Image>
-
+        <section className="grid lg:grid-cols-2 grid-cols-1 gap-4 lg:gap-0 mt-20 mb-10 md:container lg:px-20 px-5 mx-auto">
+          <div className=" flex justify-center items-center">
+            <Image src={story} width={516} height={452} alt="our story"></Image>
           </div>
-          <div className="space-y-5">
-            <h3 className="text-2xl text-[#000929] font-semibold">Pioneering Transparency in Global Real Estate</h3>
-            <p className="text-[#80838A] text-2xl ">Founded in 2025 by a team of frustrated investors and data  scientists, EstateAtlas began as a mission to solve one problem: the  lack of reliable, centralized property data. What started as a 10-market prototype for European commercial real estate quickly evolved into a  global platform, fueled by demand from analysts tired of outdated  reports and opaque metrics. Today, we cover 100+ countries, empower  500K+ professionals, and process 15K+ hourly data updates—all while  staying true to our founding principle: democratizing access to insights that level the playing field for investors, big or small.</p>
-
-
+          <div className="space-y-5 text-center lg:text-left">
+            <h3 className="text-2xl text-[#000929] font-semibold">
+              Pioneering Transparency in Global Real Estate
+            </h3>
+            <p className="text-[#80838A] text-2xl ">
+              Founded in 2025 by a team of frustrated investors and data
+              scientists, EstateAtlas began as a mission to solve one problem:
+              the lack of reliable, centralized property data. What started as a
+              10-market prototype for European commercial real estate quickly
+              evolved into a global platform, fueled by demand from analysts
+              tired of outdated reports and opaque metrics. Today, we cover 100+
+              countries, empower 500K+ professionals, and process 15K+ hourly
+              data updates—all while staying true to our founding principle:
+              democratizing access to insights that level the playing field for
+              investors, big or small.
+            </p>
           </div>
-
-
-
         </section>
+      </section>
+
+      {/* Action bannner */}
+
+      <section className="container mx-auto my-20 px-4">
+        <div
+          className="relative rounded-2xl text-white text-center py-20 px-6 overflow-hidden"
+          style={{
+            background: "linear-gradient(90deg, #0A1532 0%, #121C3C 100%)",
+          }}
+        >
+          <div className="absolute inset-0 z-0 opacity-10">
+            <Image
+              src={actionbg}
+              alt="Action Background"
+              fill
+              style={{ objectFit: "cover" }}
+              priority
+            />
+          </div>
+
+          <div className="relative z-10">
+            <h2 className="text-3xl md:text-5xl font-semibold leading-snug">
+              Join 10,000+ Global Users Leveraging <br />
+              Data-Driven Real Estate Insights
+            </h2>
+
+            <button className="mt-8 px-6 py-3 bg-white text-[#0A1532] font-semibold text-base md:text-lg rounded-xl shadow hover:bg-gray-100 transition duration-300">
+              Get Started ✨
+            </button>
+          </div>
+        </div>
       </section>
     </div>
   );
