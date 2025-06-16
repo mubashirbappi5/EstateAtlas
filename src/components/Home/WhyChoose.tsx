@@ -10,7 +10,7 @@ const WhyChoose = () => {
             </div>
 
 
-            <section className='grid grid-cols-12 gap-15 my-15'>
+            <section className=' md:grid md:grid-cols-12  gap-15 my-15 md:space-y-0 space-y-5'>
                 <section className='border rounded-2xl bg-[#F7F7FD] border-[#E8F9F7] col-span-4  '>
                     <div className='p-10 space-y-3'>
                         <h3 className='text-3xl font-bold text-[#100A55]'>
@@ -29,8 +29,18 @@ const WhyChoose = () => {
                     
                 </section>
 
-                <section className='col-span-8 grid grid-cols-2 gap-5  '>
-                    <div className=' space-y-6 p-4'>
+                <section className='col-span-8 md:grid md:grid-cols-2 gap-5  '>
+                    <div className=' space-y-6 p-4 md:border-none border'>
+                       <div className=' '>
+
+                           <Image src={global} alt='global' width={70} height={70}></Image>
+                       </div>
+                       <div className='space-y-4'>
+                        <h1 className='text-2xl font-bold text-[#000929]'>Global Market Coverage</h1>
+                        <p className='text-[#4D5461]'>Access verified data from 100+ global  markets, updated hourly. Compare  trends, yields, and risks across regions  with a single click.</p>
+                       </div>
+                    </div>
+                    <div className=' space-y-6 p-4 md:border-none border'>
                        <div>
 
                            <Image src={global} alt='global' width={70} height={70}></Image>
@@ -40,27 +50,17 @@ const WhyChoose = () => {
                         <p className='text-[#4D5461]'>Access verified data from 100+ global  markets, updated hourly. Compare  trends, yields, and risks across regions  with a single click.</p>
                        </div>
                     </div>
-                    <div className=' space-y-6 p-4'>
+                    <div className=' md:border-none border space-y-6 p-4'>
                        <div>
 
                            <Image src={global} alt='global' width={70} height={70}></Image>
                        </div>
-                       <div className='space-y-4'>
+                       <div className='space-y-4 '>
                         <h1 className='text-2xl font-bold text-[#000929]'>Global Market Coverage</h1>
                         <p className='text-[#4D5461]'>Access verified data from 100+ global  markets, updated hourly. Compare  trends, yields, and risks across regions  with a single click.</p>
                        </div>
                     </div>
-                    <div className=' space-y-6 p-4'>
-                       <div>
-
-                           <Image src={global} alt='global' width={70} height={70}></Image>
-                       </div>
-                       <div className='space-y-4'>
-                        <h1 className='text-2xl font-bold text-[#000929]'>Global Market Coverage</h1>
-                        <p className='text-[#4D5461]'>Access verified data from 100+ global  markets, updated hourly. Compare  trends, yields, and risks across regions  with a single click.</p>
-                       </div>
-                    </div>
-                    <div className=' space-y-6 p-4'>
+                    <div className=' space-y-6 p-4 md:border-none border'>
                        <div>
 
                            <Image src={global} alt='global' width={70} height={70}></Image>

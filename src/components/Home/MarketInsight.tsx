@@ -20,7 +20,7 @@ const MarketInsight = () => {
         <h1 className='font-semibold text-5xl text-center text-white'>Latest Market Insights</h1>
 
   {/* cards */}
-        <section className='grid grid-cols-3 gap-15 my-14'>
+        <section className='md:grid grid-cols-3 gap-15 my-14 md:space-y-0 space-y-5'>
            {cards.map((_, index) => (
         <InsightCard key={index} />
       ))}
