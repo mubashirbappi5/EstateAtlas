@@ -23,7 +23,7 @@ const Pricing = () => {
    <div className="flex items-end">
      {/* Basic Plan */}
     <div className="relative bg-white p-8 rounded-lg border border-[#0A1532] w-full mx-auto">
-      <div className="absolute top-4 right-4 bg-[#0A1532] text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide shadow-lg">
+      <div className="absolute top-4 right-4 bg-[#3BA1DF] text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide shadow-lg">
         Best Plan
       </div>
 
@@ -66,26 +66,24 @@ const Pricing = () => {
    </div>
     {/* Pro Plan */}
    <div>
-     <div className="relative bg-white p-8 rounded-lg border border-[#0A1532] w-full mx-auto min-h-[520px]">
-      <div className="absolute top-4 right-4 bg-[#0A1532] text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide shadow-lg">
-        Best Plan
-      </div>
+     <div className="relative bg-[#0A1532] p-8 rounded-lg border border-[#0A1532] w-full mx-auto min-h-[520px]">
+      
 
       <div className="flex flex-col items-start mb-6">
-        <h2 className="text-2xl font-bold text-[#0A1532] mb-1">Pro Tier</h2>
-        <h4 className="text-gray-600">For Teams & Startups</h4>
+        <h2 className="text-2xl font-bold text-white mb-1">Premium Tier</h2>
+        <h4 className="text-white">Most Popular – For Teams & Professionals</h4>
       </div>
 
       <div className="mb-6">
-        <p className="text-3xl font-bold text-[#0A1532] mb-2">$199/month</p>
-        <p className="text-gray-500 text-sm">Save 20% annually ($1,912/year)</p>
+        <p className="text-3xl font-bold text-white mb-2">$99/month</p>
+        <p className="text-white text-sm">Save 15% annually ($999/year)</p>
       </div>
 
-      <button className="bg-[#0A1532] text-white w-full py-3 rounded-lg text-center font-medium transition hover:bg-[#0d1d45]">
+      <button className="bg-white text-[#0A1532] w-full py-3 rounded-lg text-center font-medium transition ">
         Get Started
       </button>
 
-      <ul className="text-left space-y-3 mt-6 text-gray-700">
+      <ul className="text-left space-y-3 mt-6 text-white">
         <li className="flex items-start">
           <span className="mr-2">
             <CircleCheck />
