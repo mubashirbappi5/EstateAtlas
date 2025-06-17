@@ -21,6 +21,13 @@ const Pricing = () => {
         <div className="flex justify-center mt-10">
           <ToggleButton />
         </div>
+
+        <div
+  className="absolute top-40 -left-40 w-[500px] h-[500px] rounded-full z-0 pointer-events-none blur-xl opacity-40"
+  style={{
+    background: "radial-gradient(circle at center, rgba(10, 21, 50, 0.5) 0%, rgba(10, 21, 50, 0.2) 60%, rgba(255, 255, 255, 0) 100%)",
+  }}
+></div>
         <section>
           <div className="grid md:grid-cols-2 grid-cols-1 gap-8 mt-20 mb-10 mx-auto">
             <div className="flex items-end">

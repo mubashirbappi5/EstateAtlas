@@ -21,19 +21,17 @@ const About = () => {
       </div>
 
       {/* drop shadow in hero  */}
-      <div
-        style={{
-          background:
-            "radial-gradient(42.72% 42.72% at 20% 50%, rgba(10, 21, 50, 0.7), rgba(255, 255, 255, 0) 90%)",
-        }}
-        className="absolute top-[400px] left-[-100px] w-[400px] h-[400px] rounded-full z-0"
-      ></div>
-      <div
+       <div
+  className="absolute lg:flex hidden top-40 -left-40 w-[500px] h-[500px] rounded-full z-0 pointer-events-none blur-xl opacity-40"
   style={{
-    background:
-      "radial-gradient(60% 60% at 20% 50%, rgba(10, 21, 50, 0.3), rgba(255, 255, 255, 0) 100%)",
+    background: "radial-gradient(circle at center, rgba(10, 21, 50, 0.5) 0%, rgba(10, 21, 50, 0.2) 60%, rgba(255, 255, 255, 0) 100%)",
   }}
-  className="absolute lg:flex hidden top-[1400px] left-[-150px] w-[600px] h-[600px] rounded-full z-0"
+></div>
+      <div
+ style={{
+    background: "radial-gradient(circle at center, rgba(10, 21, 50, 0.5) 0%, rgba(10, 21, 50, 0.2) 60%, rgba(255, 255, 255, 0) 100%)",
+  }}
+  className="absolute lg:flex hidden top-[1400px] left-[-150px]  w-[500px] h-[500px] rounded-full z-0 pointer-events-none blur-xl opacity-70"
 ></div>
 
       

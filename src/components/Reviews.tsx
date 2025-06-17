@@ -5,7 +5,7 @@ const reviews = [
   {
     name: "Jack",
     username: "@jack",
-    body: "I've never seen anything like this before. It's amazing. I love it.",
+    body: "EstateAtlas revolutionized how we analyze international markets. The side-by-side country comparison tool saved us 40+ hours monthly. We now identify high-yield markets twice as fast.",
     img: "https://avatar.vercel.sh/jack",
   },
   {
@@ -57,13 +57,15 @@ const ReviewCard = ({
   return (
     <figure
       className={cn(
-        "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
+        "relative h-full w-80 cursor-pointer overflow-hidden rounded-xl border px-4 py-10 space-y-4",
         // light styles
         "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
         // dark styles
         "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
       )}
     >
+      
+      <blockquote className="mt-2 text-sm">{body}</blockquote>
       <div className="flex flex-row items-center gap-2">
         <img className="rounded-full" width="32" height="32" alt="" src={img} />
         <div className="flex flex-col">
@@ -73,7 +75,6 @@ const ReviewCard = ({
           <p className="text-xs font-medium dark:text-white/40">{username}</p>
         </div>
       </div>
-      <blockquote className="mt-2 text-sm">{body}</blockquote>
     </figure>
   );
 };

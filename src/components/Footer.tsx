@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp, Facebook, Instagram, Twitter } from 'lucide-react';
+import logo from "../../public/logo.png"
+import Image from "next/image";
 const Footer = () => {
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -11,8 +13,8 @@ const Footer = () => {
       <div className="container mx-auto px-4 flex flex-wrap justify-between gap-8">
         {/* Logo and Company Info */}
         <div className="min-w-[200px]">
-          <h2 className="text-2xl font-bold text-gray-900">Estate Atlas</h2>
-          <p className="text-[#4D5461] font-semibold mt-2">Your trusted real estate partner.</p>
+          <Image src={logo} alt="EstateAtlas Logo" width={150} height={50} className="mb-4" />
+          <p className="text-[#4D5461] font-semibold mt-2">Empower your investment <br /> decisions using our tools.</p>
         </div>
 
         {/* Quick Links */}
@@ -48,7 +50,7 @@ const Footer = () => {
         <div className="min-w-[150px] flex items-start md:items-end justify-start md:justify-end">
           <button
             onClick={handleScrollToTop}
-            className="px-2 py-2 bg-[#0A1532] text-white rounded-full font-semibold shadow  transition"
+            className="px-2 py-2 bg-[#0A1532] text-white rounded-full font-semibold shadow  cursor-pointer transition"
           >
               <ArrowUp />
           </button>
@@ -65,13 +67,13 @@ const Footer = () => {
         </div>
         <div className="flex space-x-4">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
-            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" className="w-6 h-6" />
+              <Facebook />
           </a>
           <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
-            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter" className="w-6 h-6" />
+               <Twitter />
           </a>
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
-            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" className="w-6 h-6" />
+              <Instagram/>
           </a>
         </div>
       </div>
