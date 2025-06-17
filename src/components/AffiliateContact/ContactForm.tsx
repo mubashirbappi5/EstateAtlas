@@ -38,7 +38,7 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-xl border border-gray-200 shadow-sm">
+    <div className="max-w-5xl mx-auto  p-14 bg-white rounded-xl border border-gray-200 shadow-sm">
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Name */}
         <div className="relative mt-4">
@@ -141,7 +141,7 @@ const ContactForm: React.FC = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-[#0A1532] hover:bg-[#0d1d45] text-white font-semibold py-3 rounded-md transition"
+          className=" md:w-20 w-full bg-[#0A1532] hover:bg-[#0d1d45] text-white font-semibold py-3 rounded-md transition"
         >
           Send
         </button>
