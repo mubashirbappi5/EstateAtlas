@@ -47,21 +47,21 @@ export default function FAQ() {
   };
 
   return (
-    <section className="container mx-auto my-20 px-4">
+    <section className="container mx-auto mt-10 px-4">
       <div className="  ">
         <div className="grid md:grid-cols-2 gap-10">
           {/* Left Side */}
-          <div>
+          <div className="flex flex-col gap-4 text-left">
             <div className="flex items-center gap-3 mb-4">
               <div className="bg-[#E8F1FB] text-[#3BA1DF] font-semibold px-4 py-1 rounded-full text-sm">
                 ⭐ FAQ
               </div>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0A1532] mb-4">
-              Frequently Asked Questions
+              Frequently Asked <br /> Questions
             </h2>
             <p className="text-gray-500">
-              Find quick answers to some of the most common questions about ESTATEATLAS.
+              Find quick answers to some of the most common <br /> questions about ESTATEATLAS.
             </p>
           </div>
 

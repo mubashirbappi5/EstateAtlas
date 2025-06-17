@@ -8,7 +8,7 @@ const Pricing = () => {
   return (
     <div>
       {/* Pricing hero section */}
-      <div className="md:container mx-auto md:mb-40 mb-7 md:p-8 p-2 text-[#0A1532] text-center">
+      <div className="md:container mx-auto md:mb-20 mb-7 md:p-8 p-2 text-[#0A1532] text-center">
         <h1 className="md:text-6xl text-4xl mt-20 text-center font-semibold leading-relaxed md:leading-[5rem]">
           Simple, Transparent Pricing To <br /> Unlock Global Real Estate
           Insights
@@ -136,7 +136,7 @@ const Pricing = () => {
 
         {/* action btn */}
 
-        <section className=" my-20 ">
+        <section className=" my-30 ">
           <div
             className="relative rounded-2xl text-white py-14 px-8 md:px-16 overflow-hidden"
             style={{
@@ -200,7 +200,9 @@ const Pricing = () => {
 
         {/* faq section */}
 
-       <FAQ/>
+    <section className="mt-20">
+         <FAQ/>
+    </section>
 
       </div>
     </div>
