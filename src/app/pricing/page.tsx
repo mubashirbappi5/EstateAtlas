@@ -1,10 +1,9 @@
 import ToggleButton from "@/components/Pricing/ToggleButton";
 import React from "react";
-import { CircleCheck } from "lucide-react";
+import { CircleCheck, CreditCard ,  Globe, Headset, Sparkles  } from "lucide-react";
 import Image from "next/image";
 import actionbg from "../../../public/actionbg.png";
 import FAQ from "@/components/Pricing/FAQ";
-import { Sparkles } from 'lucide-react';
 const Pricing = () => {
   return (
     <div>
@@ -29,7 +28,7 @@ const Pricing = () => {
     background: "radial-gradient(circle at center, rgba(10, 21, 50, 0.5) 0%, rgba(10, 21, 50, 0.2) 60%, rgba(255, 255, 255, 0) 100%)",
   }}
 ></div>
-        <section>
+     
           <div className="grid md:grid-cols-2 grid-cols-1 gap-8 mt-20 mb-10 mx-auto">
             <div className="flex items-end">
               {/* Basic Plan */}
@@ -63,19 +62,31 @@ const Pricing = () => {
                     <span className="mr-2">
                       <CircleCheck />
                     </span>
-                    Access to 100+ global markets
+                   5 Country Comparisons
                   </li>
                   <li className="flex items-start">
                     <span className="mr-2">
                       <CircleCheck />
                     </span>
-                    Basic analytics tools
+                  Standard Reports (PDF)
                   </li>
                   <li className="flex items-start">
                     <span className="mr-2">
                       <CircleCheck />
                     </span>
-                    Email support
+                  100 API Calls/Month
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2">
+                      <CircleCheck />
+                    </span>
+                 Basic Market Alerts
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2">
+                      <CircleCheck />
+                    </span>
+                 Email Support
                   </li>
                 </ul>
               </div>
@@ -110,37 +121,49 @@ const Pricing = () => {
                     <span className="mr-2">
                       <CircleCheck />
                     </span>
-                    Access to 100+ global markets
+                   Unlimited Country Comparisons
                   </li>
                   <li className="flex items-start">
                     <span className="mr-2">
                       <CircleCheck />
                     </span>
-                    Advanced analytics & forecasting tools
+                   Advanced Reports (PDF/CSV)
                   </li>
                   <li className="flex items-start">
                     <span className="mr-2">
                       <CircleCheck />
                     </span>
-                    Dedicated account manager
+                    5,000 API Calls/Month
                   </li>
                   <li className="flex items-start">
                     <span className="mr-2">
                       <CircleCheck />
                     </span>
-                    Priority email and chat support
+                  Historical Data (10+ Years)
                   </li>
                   <li className="flex items-start">
                     <span className="mr-2">
                       <CircleCheck />
                     </span>
-                    API access
+                   Historical Data (10+ Years)
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2">
+                      <CircleCheck />
+                    </span>
+                  Custom Alerts & Automation
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2">
+                      <CircleCheck />
+                    </span>
+                  Priority 24/7 Support
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-        </section>
+       
 
         {/* action btn */}
 
@@ -164,7 +187,7 @@ const Pricing = () => {
             {/* Main Content */}
             <div className="relative z-10 flex flex-col md:flex-row items-start justify-between gap-8">
               <div className="">
-                <h2 className="text-3xl md:text-4xl text-left font-bold mb-4">
+                <h2 className="text-3xl leading-relaxed md:leading-[4rem] md:text-5xl text-left font-bold mb-4">
                   Still Unsure? Try <br /> EstateAtlas Risk-Free
                 </h2>
                 <button className="mt-4 bg-white text-[#0A1532] font-semibold px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-gray-200 transition">
@@ -175,7 +198,11 @@ const Pricing = () => {
               {/* Features */}
               <div className="grid gap-4">
                 <div className="bg-[#1B274B] rounded-lg p-4 flex items-start gap-3">
-                  <div>
+                  <div className="bg-[#FFFFFF1A] rounded-xl p-3 ">
+                        <CreditCard />
+                  </div>
+
+                  <div className="text-left">
                     <h4 className="font-bold">Data Driven Accuracy</h4>
                     <p className="text-sm text-gray-300">
                       Audited data by trusted sources.
@@ -183,7 +210,10 @@ const Pricing = () => {
                   </div>
                 </div>
                 <div className="bg-[#1B274B] rounded-lg p-4 flex items-start gap-3">
-                  <div>
+                   <div className="bg-[#FFFFFF1A] rounded-xl p-3 ">
+                            <Globe />
+                  </div>
+                  <div className="text-left">
                     <h4 className="font-bold">Global Coverage</h4>
                     <p className="text-sm text-gray-300">
                       Access real-time insights across 100+ countries, from
@@ -192,7 +222,10 @@ const Pricing = () => {
                   </div>
                 </div>
                 <div className="bg-[#1B274B] rounded-lg p-4 flex items-start gap-3">
-                  <div>
+                   <div className="bg-[#FFFFFF1A] rounded-xl p-3 ">
+                          <Headset />
+                  </div>
+                  <div className="text-left">
                     <h4 className="font-bold">Dedicated Support</h4>
                     <p className="text-sm text-gray-300">
                       Our team is here to assist you every step of the way
