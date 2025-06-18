@@ -1,8 +1,9 @@
-import React from 'react';
-import InsightCard from './InsightCard';
+import React from "react";
+import InsightCard from "./InsightCard";
+import Link from "next/link";
 
 const MarketInsight = () => {
-     const cards = Array.from({ length: 6 });
+  const cards = Array.from({ length: 6 });
   return (
     <div className="min-h-screen bg-[#050d2e] relative overflow-hidden my-10">
       {/* Glowing Radial Backgrounds */}
@@ -15,26 +16,22 @@ const MarketInsight = () => {
 
       {/* Content Area */}
       <div className="relative z-10 py-10 container mx-auto">
-      
+        <h1 className="font-semibold text-5xl text-center text-white">
+          Latest Market Insights
+        </h1>
 
-        <h1 className='font-semibold text-5xl text-center text-white'>Latest Market Insights</h1>
-
-  {/* cards */}
-        <section className='md:grid grid-cols-3 gap-15 my-14 md:space-y-0 space-y-5'>
-           {cards.map((_, index) => (
-        <InsightCard key={index} />
-      ))}
-
-
-
-
-
+        {/* cards */}
+        <section className=" w-11/12 mx-auto md:grid grid-cols-3 gap-15 my-14 md:space-y-0 space-y-5">
+          {cards.map((_, index) => (
+            <InsightCard key={index} variant="black" />
+          ))}
         </section>
 
-<div className='flex justify-center items-center'>
-    
-           <button className='py-3 px-4 bg-white rounded-lg text-[#0A1532]'>All Articles</button>
-</div>
+        <div className="flex justify-center items-center">
+          <Link href={'/articles'} className="py-3 px-4 bg-white rounded-lg text-[#0A1532]">
+            All Articles
+          </Link>
+        </div>
       </div>
     </div>
   );
