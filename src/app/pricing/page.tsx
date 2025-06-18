@@ -4,6 +4,7 @@ import { CircleCheck } from "lucide-react";
 import Image from "next/image";
 import actionbg from "../../../public/actionbg.png";
 import FAQ from "@/components/Pricing/FAQ";
+import { Sparkles } from 'lucide-react';
 const Pricing = () => {
   return (
     <div>
@@ -167,7 +168,7 @@ const Pricing = () => {
                   Still Unsure? Try <br /> EstateAtlas Risk-Free
                 </h2>
                 <button className="mt-4 bg-white text-[#0A1532] font-semibold px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-gray-200 transition">
-                  Button Text
+                  Button Text <span><Sparkles className="w-5 h-5 text-[#0A1532]" /></span>
                 </button>
               </div>
 
