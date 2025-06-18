@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import story from "../../../public/OurStory.png";
 import actionbg from "../../../public/actionbg.png";
+import { Sparkles } from 'lucide-react';
 const About = () => {
   return (
     <div className=" mx-auto">
@@ -94,9 +95,11 @@ const About = () => {
               Data-Driven Real Estate Insights
             </h2>
 
-            <button className="mt-8 px-6 py-3 bg-white text-[#0A1532] font-semibold text-base md:text-lg rounded-xl shadow hover:bg-gray-100 transition duration-300">
-              Get Started ✨
+          <div className="flex flex-col items-center mt-6">
+              <button className="mt-8 px-6 py-3 flex justify-center items-center gap-2 bg-white text-[#0A1532] font-semibold text-base md:text-lg rounded-xl shadow hover:bg-gray-100 transition duration-300">
+              Get Started <Sparkles className="w-5 h-5 text-[#0A1532]" />
             </button>
+          </div>
           </div>
         </div>
       </section>
