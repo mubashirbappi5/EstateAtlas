@@ -56,6 +56,11 @@ const Articles = () => {
             <InsightCard key={index} variant="white"  />
           ))}
         </section>
+        <div className="flex justify-center items-center">
+          <button className="py-3 px-4 bg-[#0A1532] rounded-lg text-white">
+           Load More 
+          </button>
+        </div>
         
 
 
