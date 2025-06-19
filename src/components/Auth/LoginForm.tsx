@@ -1,7 +1,8 @@
 'use client';
-
+import logo from '../../../public/logo.png'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function LoginForm() {
   const router = useRouter();
@@ -53,14 +54,14 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
-      <div className="px-6 py-4">
+    <div className="w-full max-w-2xl mx-auto border overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+      <div className="px-12 py-10">
         <div className="flex justify-center mx-auto">
-          <img className="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt="Logo" />
+          <Image className="w-auto h-7 sm:h-8" src={logo} alt="Logo" />
         </div>
 
         <h3 className="mt-3 text-xl font-medium text-center text-gray-600 dark:text-gray-200">Welcome Back</h3>
-        <p className="mt-1 text-center text-gray-500 dark:text-gray-400">Login or create account</p>
+        <p className="mt-1 text-center text-gray-500 dark:text-gray-400">Login Here</p>
 
         {error && <p className="mt-2 text-sm text-red-500 text-center">{error}</p>}
 
@@ -89,16 +90,17 @@ export default function LoginForm() {
             />
           </div>
 
-          <div className="flex items-center justify-between mt-4">
+          <div className="flex items-center justify-end mt-4">
             <a href="#" className="text-sm text-gray-600 dark:text-gray-200 hover:text-gray-500">Forget Password?</a>
-            <button
+            
+          </div>
+          <button
               type="submit"
               disabled={loading}
-              className="px-6 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300"
+              className="px-6 py-2 w-full mt-4 cursor-pointer text-sm font-medium text-white bg-[#0A1532] rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
             >
               {loading ? 'Signing In...' : 'Sign In'}
             </button>
-          </div>
         </form>
       </div>
 

@@ -1,7 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
-
+import logo from '../../../public/logo.png';
 export default function RegisterForm() {
   const [formData, setFormData] = useState({
     first_name: '',
@@ -32,7 +33,7 @@ export default function RegisterForm() {
     setLoading(true);
 
     try {
-      const res = await fetch('https://your-laravel-api.com/api/register', {
+      const res = await fetch('http://real-state-business-management-system-api/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -57,8 +58,11 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="w-full max-w-lg mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
-      <div className="px-6 py-8">
+    <div className="w-full max-w-2xl mx-auto border overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+      <div className="px-12 py-10">
+        <div className="flex my-4 justify-center mx-auto">
+          <Image className="w-auto h-7 sm:h-8" src={logo} alt="Logo" />
+        </div>
         <h2 className="text-2xl font-bold text-center text-gray-700 dark:text-white">Create an Account</h2>
         <p className="mt-2 text-center text-gray-600 dark:text-gray-300">Fill in the form below to get started</p>
 
@@ -126,7 +130,7 @@ export default function RegisterForm() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full mt-6 px-4 py-2 text-white font-semibold bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
+            className="w-full mt-6 px-4 py-2 text-white font-semibold bg-[#0A1532] rounded-lg cursor-pointer focus:outline-none focus:ring focus:ring-blue-300"
           >
             {loading ? 'Registering...' : 'Register'}
           </button>
