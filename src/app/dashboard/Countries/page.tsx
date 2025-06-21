@@ -66,22 +66,22 @@ const Countries = () => {
 
     {/* 📈 Market Analysis - 🇦🇩 Andorra */}
     <div className="w-full mt-10 max-w-4xl mx-auto p-6 bg-white border rounded-lg shadow-md flex justify-between items-center">
-        <div className=" border-t-3 border-blue-200 shadow-lg p-6 rounded-2xl">
+        <div className=" border-t-3 border-blue-400 shadow-lg p-6 rounded-2xl">
             <h4>ANNUAL GROWTH</h4>
             <h1>5.2 %</h1>
 
         </div>
-        <div className=" border-t-3 border-blue-200 shadow-lg p-6 rounded-2xl">
+        <div className=" border-t-3 border-blue-400 shadow-lg p-6 rounded-2xl">
             <h4>ANNUAL GROWTH</h4>
             <h1>5.2 %</h1>
 
         </div>
-        <div className=" border-t-3 border-blue-200 shadow-lg p-6 rounded-2xl">
+        <div className=" border-t-3 border-blue-400 shadow-lg p-6 rounded-2xl">
             <h4>ANNUAL GROWTH</h4>
             <h1>5.2 %</h1>
 
         </div>
-        <div className=" border-t-3 border-blue-200 shadow-lg p-6 rounded-2xl">
+        <div className=" border-t-3 border-blue-400 shadow-lg p-6 rounded-2xl">
             <h4>ANNUAL GROWTH</h4>
             <h1>5.2 %</h1>
 
@@ -209,7 +209,7 @@ const Countries = () => {
           </Select>
         </div>
 
-        <div className="bg-[#F4FAFD] p-6 rounded-lg mt-4  shadow-md">
+        <div className="bg-[#F4FAFD] p-6 border border-blue-400 rounded-lg mt-4 ">
         <p className="text-gray-600 mt-4">
           The expert market summary provides a comprehensive overview of the
           current market conditions, including key indicators, trends, and

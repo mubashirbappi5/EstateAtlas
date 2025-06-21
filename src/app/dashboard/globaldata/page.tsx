@@ -3,8 +3,8 @@ import React from 'react';
 const GlobalData = () => {
     return (
         <div>
-            <h1>this is global data</h1>
-            
+            {/* Banner Section */}
+          
         </div>
     );
 };
