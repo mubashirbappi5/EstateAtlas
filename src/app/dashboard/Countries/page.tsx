@@ -94,6 +94,69 @@ const Countries = () => {
 
 
 
+
+    {/*  Expert Market Summary */}
+
+    <div className="w-full mt-10 max-w-4xl mx-auto p-6  border rounded-lg  bg-white shadow-lg border-t-4 border-t-blue-500">
+
+      <h1 className="text-2xl font-semibold">👨‍💼  Expert Market Summary</h1>
+
+
+
+      <div className="bg-[#F4FAFD] p-6 rounded-lg mt-4 border-l-4 border-l-blue-500 shadow-md">
+        <p className="text-gray-600 mt-4">
+          The expert market summary provides a comprehensive overview of the
+          current market conditions, including key indicators, trends, and
+          forecasts. It is designed to help investors and analysts make informed
+          decisions based on the latest data and expert insights.
+        </p>
+      </div>
+
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white p-4 rounded-lg shadow-md">
+          <h2 className="text-lg font-semibold">Market Overview</h2>
+          <p className="text-gray-600 mt-2">
+            The market is currently experiencing a bullish trend with significant
+            growth in key sectors.
+          </p>
+        </div>
+
+        <div className="bg-white p-4 rounded-lg shadow-md">
+          <h2 className="text-lg font-semibold">Key Indicators</h2>
+          <ul className="list-disc list-inside text-gray-600 mt-2">
+            <li>GDP Growth: 3.5%</li>
+            <li>Inflation Rate: 2.1%</li>
+            <li>Unemployment Rate: 4.0%</li>
+          </ul>
+        </div>
+
+        <div className="bg-white p-4 rounded-lg shadow-md">
+          <h2 className="text-lg font-semibold">Market Trends</h2>
+          <p className="text-gray-600 mt-2">
+            Emerging technologies and sustainable practices are driving market
+            innovation and growth.
+          </p>
+        </div>
+
+        <div className="bg-white p-4 rounded-lg shadow-md">
+          <h2 className="text-lg font-semibold">Forecast</h2>
+          <p className="text-gray-600 mt-2">
+            Analysts predict continued growth in the next quarter, with potential
+            challenges in supply chain disruptions.
+          </p>
+        </div>
+
+      </div>
+
+
+
+
+
+
+    </div>
+
+
+
     </div>
   );
 };
