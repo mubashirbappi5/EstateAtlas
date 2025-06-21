@@ -156,6 +156,73 @@ const Countries = () => {
     </div>
 
 
+    {/* Interactive Price History Chart */}
+
+    <div className="w-full mt-10 max-w-4xl mx-auto p-6  border rounded-lg  bg-white shadow-lg border-t-4 border-t-blue-500">
+        <h1 className="text-2xl font-semibold">📈 Interactive Price History Chart</h1>
+    
+        <div className="mt-4">
+            <p className="text-gray-600">
+            The interactive price history chart allows users to explore historical
+            price data for various assets, providing insights into market trends
+            and performance over time.
+            </p>
+        </div>
+    
+        <div className="mt-6">
+            {/* Placeholder for the chart component */}
+            <div className="bg-gray-200 h-64 rounded-lg flex items-center justify-center">
+            <span className="text-gray-500">Chart will be displayed here</span>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    {/* 📊 Country Statistics & Insights */}
+    <div className="w-full mt-10 max-w-4xl mx-auto p-6  border rounded-lg  bg-white shadow-lg border-t-4 border-t-blue-500">
+      <h1 className="text-2xl font-semibold">📊 Country Statistics & Insights</h1>
+
+      <div className="mt-4">
+        <p className="text-gray-600">
+          This section provides detailed statistics and insights about the
+          selected country, including economic indicators, demographic data, and
+          market trends.
+        </p>
+      </div>
+        <div className="  space-y-4 mt-4">
+          <Label className="text-sm font-semibold text-gray-900 flex items-center gap-2">
+            Select Analysis Type
+        
+          </Label>
+          <Select defaultValue="last-12-months">
+            <SelectTrigger className="h-20 pl-10 py-6 px-10 bg-white border-gray-200">
+              <SelectValue placeholder="Select time period" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="last-12-months">Last 12 Months</SelectItem>
+              <SelectItem value="last-6-months">Last 6 Months</SelectItem>
+              <SelectItem value="last-3-months">Last 3 Months</SelectItem>
+              <SelectItem value="last-month">Last Month</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="bg-[#F4FAFD] p-6 rounded-lg mt-4  shadow-md">
+        <p className="text-gray-600 mt-4">
+          The expert market summary provides a comprehensive overview of the
+          current market conditions, including key indicators, trends, and
+          forecasts. It is designed to help investors and analysts make informed
+          decisions based on the latest data and expert insights.
+        </p>
+      </div>
+
+
+   
+      </div>
+
+
 
     </div>
   );
