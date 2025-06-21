@@ -16,7 +16,7 @@ const Countries = () => {
 
 {/* save country section */}
 
-     <div className="w-full mt-10 max-w-4xl mx-auto p-6 bg-gray-50 border rounded-lg">
+     <div className="w-full mt-10 max-w-5xl mx-auto p-6 bg-gray-50 border rounded-lg">
       <div className="flex flex-col md:flex-row gap-6 items-end">
         
         {/* Country Search */}
@@ -65,25 +65,25 @@ const Countries = () => {
 
 
     {/* 📈 Market Analysis - 🇦🇩 Andorra */}
-    <div className="w-full mt-10 max-w-4xl mx-auto p-6 bg-white border rounded-lg shadow-md flex justify-between items-center">
-        <div className=" border-t-3 border-blue-400 shadow-lg p-6 rounded-2xl">
-            <h4>ANNUAL GROWTH</h4>
-            <h1>5.2 %</h1>
+    <div className="w-full mt-10 max-w-5xl mx-auto p-6 bg-white border rounded-lg shadow-md flex-col md:flex-row  flex justify-between items-center gap-6  ">
+        <div className=" w-full border-t-3 border-blue-400 shadow-lg p-6 rounded-2xl">
+            <h4 className="text-[#4F4F58EB] text-center">ANNUAL GROWTH</h4>
+            <h1 className="text-4xl font-bold text-center text-[#3BA1DF] ">5.2 %</h1>
 
         </div>
-        <div className=" border-t-3 border-blue-400 shadow-lg p-6 rounded-2xl">
-            <h4>ANNUAL GROWTH</h4>
-            <h1>5.2 %</h1>
+        <div className=" w-full border-t-3 border-blue-400 shadow-lg p-6 rounded-2xl">
+            <h4 className="text-[#4F4F58EB] text-center">Avg Property Price</h4>
+            <h1 className="text-4xl font-bold text-center text-[#3BA1DF] ">€450K</h1>
 
         </div>
-        <div className=" border-t-3 border-blue-400 shadow-lg p-6 rounded-2xl">
-            <h4>ANNUAL GROWTH</h4>
-            <h1>5.2 %</h1>
+       <div className=" w-full border-t-3 border-blue-400 shadow-lg p-6 rounded-2xl">
+            <h4 className="text-[#4F4F58EB] text-center">Rental Yield</h4>
+            <h1 className="text-4xl font-bold text-center text-[#3BA1DF] ">3.8%</h1>
 
         </div>
-        <div className=" border-t-3 border-blue-400 shadow-lg p-6 rounded-2xl">
-            <h4>ANNUAL GROWTH</h4>
-            <h1>5.2 %</h1>
+       <div className=" w-full border-t-3 border-blue-400 shadow-lg p-6 rounded-2xl">
+            <h4 className="text-[#4F4F58EB] text-center">Market Score</h4>
+            <h1 className="text-4xl font-bold text-center text-[#3BA1DF] ">85</h1>
 
         </div>
 
@@ -97,7 +97,7 @@ const Countries = () => {
 
     {/*  Expert Market Summary */}
 
-    <div className="w-full mt-10 max-w-4xl mx-auto p-6  border rounded-lg  bg-white shadow-lg border-t-4 border-t-blue-500">
+    <div className="w-full mt-10 max-w-5xl mx-auto p-6  border rounded-lg  bg-white shadow-lg border-t-4 border-t-blue-500">
 
       <h1 className="text-2xl font-semibold">👨‍💼  Expert Market Summary</h1>
 
@@ -114,35 +114,28 @@ const Countries = () => {
 
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-white p-4 rounded-lg shadow-md">
-          <h2 className="text-lg font-semibold">Market Overview</h2>
+          <h2 className="text-lg font-semibold">🏛️  Political Stability</h2>
           <p className="text-gray-600 mt-2">
-            The market is currently experiencing a bullish trend with significant
-            growth in key sectors.
+            Constitutional parliamentary democracy with stable governance
           </p>
         </div>
 
         <div className="bg-white p-4 rounded-lg shadow-md">
-          <h2 className="text-lg font-semibold">Key Indicators</h2>
-          <ul className="list-disc list-inside text-gray-600 mt-2">
-            <li>GDP Growth: 3.5%</li>
-            <li>Inflation Rate: 2.1%</li>
-            <li>Unemployment Rate: 4.0%</li>
-          </ul>
+          <h2 className="text-lg font-semibold">💰  Tax Benefits</h2>
+          <p>Maximum personal income tax of 10%, no inheritance tax</p>
         </div>
 
         <div className="bg-white p-4 rounded-lg shadow-md">
-          <h2 className="text-lg font-semibold">Market Trends</h2>
+          <h2 className="text-lg font-semibold">🏠  Market Focus</h2>
           <p className="text-gray-600 mt-2">
-            Emerging technologies and sustainable practices are driving market
-            innovation and growth.
+           Luxury properties and ski resorts dominate the market
           </p>
         </div>
 
         <div className="bg-white p-4 rounded-lg shadow-md">
-          <h2 className="text-lg font-semibold">Forecast</h2>
+          <h2 className="text-lg font-semibold">🌍  Investment Climate:</h2>
           <p className="text-gray-600 mt-2">
-            Analysts predict continued growth in the next quarter, with potential
-            challenges in supply chain disruptions.
+          Foreign ownership allowed with residency requirements
           </p>
         </div>
 
@@ -158,7 +151,7 @@ const Countries = () => {
 
     {/* Interactive Price History Chart */}
 
-    <div className="w-full mt-10 max-w-4xl mx-auto p-6  border rounded-lg  bg-white shadow-lg border-t-4 border-t-blue-500">
+    <div className="w-full mt-10 max-w-5xl mx-auto p-6  border rounded-lg  bg-white shadow-lg border-t-4 border-t-blue-500">
         <h1 className="text-2xl font-semibold">📈 Interactive Price History Chart</h1>
     
         <div className="mt-4">
@@ -181,7 +174,7 @@ const Countries = () => {
 
 
     {/* 📊 Country Statistics & Insights */}
-    <div className="w-full mt-10 max-w-4xl mx-auto p-6  border rounded-lg  bg-white shadow-lg border-t-4 border-t-blue-500">
+    <div className="w-full mt-10 max-w-5xl mx-auto p-6  border rounded-lg  bg-white shadow-lg border-t-4 border-t-blue-500">
       <h1 className="text-2xl font-semibold">📊 Country Statistics & Insights</h1>
 
       <div className="mt-4">
