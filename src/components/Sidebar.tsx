@@ -26,11 +26,11 @@ const Sidebar: FC = () => {
               Main Menu
             </label>
 
-            <NavItem href="#" label="All Countries" icon=  {<Globe />} active />
-            <NavItem href="#" label="Global Data" icon={    <ChartNoAxesCombined />} />
-            <NavItem href="#" label="Regional/City Data" icon={  <FileChartColumn/>} />
-            <NavItem href="#" label="Quarterly Reports" icon={    <ChartPie/>} />
-            <NavItem href="#" label="Saved Countries" icon={    <Save/>}/>
+            <NavItem href="Countries" label="All Countries" icon=  {<Globe />} />
+            <NavItem href="globaldata" label="Global Data" icon={    <ChartNoAxesCombined />} />
+            <NavItem href="Regional" label="Regional/City Data" icon={  <FileChartColumn/>} />
+            <NavItem href="Reports" label="Quarterly Reports" icon={    <ChartPie/>} />
+            <NavItem href="SavedCountries" label="Saved Countries" icon={    <Save/>}/>
           </div>
 
           {/* Investments */}
@@ -39,8 +39,8 @@ const Sidebar: FC = () => {
               Investments
             </label>
 
-            <NavItem href="#" label="Investment Calculator" icon={    <Calculator/>} />
-            <NavItem href="#" label="Comparison Tool" icon={    <ChartBarStacked/>} />
+            <NavItem href="InvestCalculator" label="Investment Calculator" icon={    <Calculator/>} />
+            <NavItem href="comparison" label="Comparison Tool" icon={    <ChartBarStacked/>} />
           </div>
 
           {/* Settings */}
@@ -49,10 +49,10 @@ const Sidebar: FC = () => {
               Settings
             </label>
 
-            <NavItem href="#" label="Affiliate Dashboard" icon={    <Users />} />
-            <NavItem href="#" label="Account Settings" icon={    <UserCog/>} />
-            <NavItem href="#" label="Billing" icon={    <CreditCard />} />
-            <NavItem href="#" label="Support" icon=  {<Headset />} />
+            <NavItem href="affiliate " label="Affiliate Dashboard" icon={    <Users />} />
+            <NavItem href="accountSettings" label="Account Settings" icon={    <UserCog/>} />
+            <NavItem href="billing" label="Billing" icon={    <CreditCard />} />
+            <NavItem href="support" label="Support" icon=  {<Headset />} />
             <NavItem href="#" label="Log Out" icon={    <LogOut />} />
           </div>
         </nav>
