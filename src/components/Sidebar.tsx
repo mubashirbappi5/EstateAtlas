@@ -3,20 +3,19 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FC } from "react";
-
+import logo from "../../public/logo.png"
+import { Calculator, ChartBarStacked, ChartNoAxesCombined, ChartPie, CreditCard, FileChartColumn, Globe, Headset, LogOut, Save, UserCog, Users } from 'lucide-react';
 const Sidebar: FC = () => {
   return (
     <aside className="flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto bg-white border-r dark:bg-gray-900 dark:border-gray-700">
       <Link href="/" className="flex items-center space-x-2">
         <Image
-          src="https://merakiui.com/images/logo.svg"
+          src={logo}
           alt="EstateAtlas Logo"
-          width={28}
+          width={220}
           height={28}
         />
-        <span className="text-lg font-semibold text-gray-800 dark:text-white">
-          EstateAtlas
-        </span>
+        
       </Link>
 
       <div className="flex flex-col justify-between flex-1 mt-6">
@@ -27,11 +26,11 @@ const Sidebar: FC = () => {
               Main Menu
             </label>
 
-            <NavItem href="#" label="All Countries" icon="🌍" active />
-            <NavItem href="#" label="Global Data" icon="📊" />
-            <NavItem href="#" label="Regional/City Data" icon="🏙️" />
-            <NavItem href="#" label="Quarterly Reports" icon="📈" />
-            <NavItem href="#" label="Saved Countries" icon="💾" />
+            <NavItem href="#" label="All Countries" icon=  {<Globe />} active />
+            <NavItem href="#" label="Global Data" icon={    <ChartNoAxesCombined />} />
+            <NavItem href="#" label="Regional/City Data" icon={  <FileChartColumn/>} />
+            <NavItem href="#" label="Quarterly Reports" icon={    <ChartPie/>} />
+            <NavItem href="#" label="Saved Countries" icon={    <Save/>}/>
           </div>
 
           {/* Investments */}
@@ -40,8 +39,8 @@ const Sidebar: FC = () => {
               Investments
             </label>
 
-            <NavItem href="#" label="Investment Calculator" icon="🧮" />
-            <NavItem href="#" label="Comparison Tool" icon="⚖️" />
+            <NavItem href="#" label="Investment Calculator" icon={    <Calculator/>} />
+            <NavItem href="#" label="Comparison Tool" icon={    <ChartBarStacked/>} />
           </div>
 
           {/* Settings */}
@@ -50,11 +49,11 @@ const Sidebar: FC = () => {
               Settings
             </label>
 
-            <NavItem href="#" label="Affiliate Dashboard" icon="👥" />
-            <NavItem href="#" label="Account Settings" icon="⚙️" />
-            <NavItem href="#" label="Billing" icon="💳" />
-            <NavItem href="#" label="Support" icon="🛠️" />
-            <NavItem href="#" label="Log Out" icon="🚪" />
+            <NavItem href="#" label="Affiliate Dashboard" icon={    <Users />} />
+            <NavItem href="#" label="Account Settings" icon={    <UserCog/>} />
+            <NavItem href="#" label="Billing" icon={    <CreditCard />} />
+            <NavItem href="#" label="Support" icon=  {<Headset />} />
+            <NavItem href="#" label="Log Out" icon={    <LogOut />} />
           </div>
         </nav>
       </div>
@@ -62,10 +61,12 @@ const Sidebar: FC = () => {
   );
 };
 
+import { ReactNode } from "react";
+
 interface NavItemProps {
   href: string;
   label: string;
-  icon: string;
+  icon: ReactNode;
   active?: boolean;
 }
 
@@ -78,7 +79,7 @@ const NavItem: FC<NavItemProps> = ({ href, label, icon, active }) => (
         : "text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-white"
     }`}
   >
-    <span className="text-lg">{icon}</span>
+    <span className="text-sm ">{icon}</span>
     <span className="mx-2">{label}</span>
   </Link>
 );
