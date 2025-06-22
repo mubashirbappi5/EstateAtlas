@@ -53,7 +53,7 @@ export default function GlobalData() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="max-w-5xl mx-auto space-y-6">
         {/* Filter Section */}
         <Card>
           <CardContent className="p-6">
@@ -63,8 +63,8 @@ export default function GlobalData() {
                   <MapPin className="w-4 h-4" />
                   Region
                 </label>
-                <Select value={region} onValueChange={setRegion}>
-                  <SelectTrigger>
+                <Select value={region}  onValueChange={setRegion}>
+                  <SelectTrigger className="py-5 pr-10">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -81,7 +81,7 @@ export default function GlobalData() {
                   Metric
                 </label>
                 <Select value={metric} onValueChange={setMetric}>
-                  <SelectTrigger>
+                  <SelectTrigger className="py-5 pr-10">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -98,7 +98,7 @@ export default function GlobalData() {
                   Time Period
                 </label>
                 <Select value={timePeriod} onValueChange={setTimePeriod}>
-                  <SelectTrigger>
+                  <SelectTrigger className="py-5 pr-10">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -109,21 +109,22 @@ export default function GlobalData() {
                 </Select>
               </div>
 
-              <div className="flex gap-2">
-                <Button className="bg-slate-900 hover:bg-slate-800">Apply Filters</Button>
-                <Button variant="outline" className="bg-sky-500 text-white border-sky-500 hover:bg-sky-600">
+             
+            </div>
+             <div className="flex mt-4 gap-2">
+                <Button className="bg-slate-900 hover:bg-slate-800 py-5">Apply Filters</Button>
+                <Button variant="outline" className="bg-sky-500 text-white py-5 border-sky-500  hover:bg-sky-600">
                   Reset
                 </Button>
               </div>
-            </div>
           </CardContent>
         </Card>
 
         {/* Key Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <Card>
+          <Card className=" border-0 border-t-4 border-sky-500 ">
             <CardContent className="p-6">
-              <div className="space-y-2">
+              <div className="space-y-2 text-center ">
                 <p className="text-sm font-medium text-gray-600">GLOBAL MARKET SIZE</p>
                 <p className="text-3xl font-bold text-sky-500">$2.4T</p>
               </div>
@@ -132,7 +133,7 @@ export default function GlobalData() {
 
           <Card>
             <CardContent className="p-6">
-              <div className="space-y-2">
+              <div className="space-y-2 text-center">
                 <p className="text-sm font-medium text-gray-600">AVERAGE GROWTH</p>
                 <p className="text-3xl font-bold text-sky-500">+6.8%</p>
               </div>
@@ -141,7 +142,7 @@ export default function GlobalData() {
 
           <Card>
             <CardContent className="p-6">
-              <div className="space-y-2">
+              <div className="space-y-2 text-center">
                 <p className="text-sm font-medium text-gray-600">GLOBAL YIELD AVERAGE</p>
                 <p className="text-3xl font-bold text-sky-500">4.2%</p>
               </div>
@@ -150,7 +151,7 @@ export default function GlobalData() {
 
           <Card>
             <CardContent className="p-6">
-              <div className="space-y-2">
+              <div className="space-y-2 text-center">
                 <p className="text-sm font-medium text-gray-600">MARKETS TRACKED</p>
                 <p className="text-3xl font-bold text-sky-500">195</p>
               </div>
@@ -159,7 +160,7 @@ export default function GlobalData() {
         </div>
 
         {/* Top Performing Markets */}
-        <Card>
+        <Card className="border-0 border-t-4 border-sky-500">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg font-semibold">🏆 Top Performing Markets</CardTitle>
           </CardHeader>
@@ -168,11 +169,11 @@ export default function GlobalData() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b">
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">COUNTRY</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">GROWTH RATE</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">AVG PRICE</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">RENTAL YIELD</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-600">MARKET SCORE</th>
+                    <th className="text-left py-3 px-4 font-semibold text-gray-600">COUNTRY</th>
+                    <th className="text-left py-3 px-4 font-semibold text-gray-600">GROWTH RATE</th>
+                    <th className="text-left py-3 px-4 font-semibold text-gray-600">AVG PRICE</th>
+                    <th className="text-left py-3 px-4 font-semibold text-gray-600">RENTAL YIELD</th>
+                    <th className="text-left py-3 px-4 font-semibold text-gray-600">MARKET SCORE</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -203,7 +204,7 @@ export default function GlobalData() {
         </Card>
 
         {/* Interactive Chart Section */}
-        <Card>
+        <Card className="border-0 border-t-4 border-sky-500">
           <CardContent className="p-12">
             <div className="text-center space-y-4">
               <div className="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center">
