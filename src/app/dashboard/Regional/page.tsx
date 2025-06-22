@@ -11,63 +11,62 @@ export default function RegionalData() {
         {/* Header with filters */}
         <div className="bg-white rounded-lg p-6 shadow-sm">
     
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
-              <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                <Flag className="w-4 h-4 text-blue-600" />
-                Country
-              </div>
-              <Select>
-                <SelectTrigger className="py-5 pr-10">
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl">🇺🇸</span>
-                    <SelectValue placeholder="Select Country" />
-                  </div>
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="us">🇺🇸 United States</SelectItem>
-                  <SelectItem value="ca">🇨🇦 Canada</SelectItem>
-                  <SelectItem value="uk">🇬🇧 United Kingdom</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+       <div className="grid grid-cols-1 md:grid-cols-4 gap-20 items-center">
+  <div className="space-y-2">
+    <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
+      <Flag className="w-4 h-4 text-blue-600" />
+      Country
+    </div>
+    <Select>
+      <SelectTrigger className="w-full py-5 pr-10"> 
+        <div className="flex items-center gap-2">
+          <span className="text-2xl">🇺🇸</span>
+          <SelectValue placeholder="Select Country" />
+        </div>
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="us">🇺🇸 United States</SelectItem>
+        <SelectItem value="ca">🇨🇦 Canada</SelectItem>
+        <SelectItem value="uk">🇬🇧 United Kingdom</SelectItem>
+      </SelectContent>
+    </Select>
+  </div>
 
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                <MapPin className="w-4 h-4 text-blue-600" />
-                Region/City
-              </div>
-              <Select>
-                <SelectTrigger className="py-5 pr-10">
-                  <SelectValue placeholder="Select City" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="nyc">New York City</SelectItem>
-                  <SelectItem value="la">Los Angeles</SelectItem>
-                  <SelectItem value="chicago">Chicago</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+  <div className="space-y-2">
+    <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
+      <MapPin className="w-4 h-4 text-blue-600" />
+      Region/City
+    </div>
+    <Select>
+      <SelectTrigger className="w-full py-5 pr-10"> 
+        <SelectValue placeholder="Select City" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="nyc">New York City</SelectItem>
+        <SelectItem value="la">Los Angeles</SelectItem>
+        <SelectItem value="chicago">Chicago</SelectItem>
+      </SelectContent>
+    </Select>
+  </div>
 
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                <Home className="w-4 h-4 text-blue-600" />
-                Property Type
-              </div>
-              <Select>
-                <SelectTrigger className="py-5 pr-10">
-                  <SelectValue placeholder="All Types" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Types</SelectItem>
-                  <SelectItem value="apartment">Apartment</SelectItem>
-                  <SelectItem value="house">House</SelectItem>
-                  <SelectItem value="condo">Condo</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-             
-            </div>
+  <div className="space-y-2">
+    <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
+      <Home className="w-4 h-4 text-blue-600" />
+      Property Type
+    </div>
+    <Select>
+      <SelectTrigger className="w-full py-5 pr-10"> 
+        <SelectValue placeholder="All Types" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="all">All Types</SelectItem>
+        <SelectItem value="apartment">Apartment</SelectItem>
+        <SelectItem value="house">House</SelectItem>
+        <SelectItem value="condo">Condo</SelectItem>
+      </SelectContent>
+    </Select>
+  </div>
+</div>
 
           <div className="flex gap-3 mt-5">
             <Button className="bg-slate-800 hover:bg-slate-700 py-6">Load City Data</Button>
@@ -80,30 +79,30 @@ export default function RegionalData() {
         {/* Metrics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <Card className="bg-white border-0 border-t-4 border-sky-500 ">
-            <CardContent className="p-6">
+            <CardContent className="p-6 text-center">
               <div className="text-sm font-medium text-gray-600 mb-2">MEDIAN PRICE</div>
-              <div className="text-3xl font-bold text-sky-600">$720K</div>
+              <div className="text-4xl font-bold text-sky-600">$720K</div>
             </CardContent>
           </Card>
 
           <Card className="bg-white border-0 border-t-4 border-sky-500 ">
-            <CardContent className="p-6">
+            <CardContent className="p-6 text-center">
               <div className="text-sm font-medium text-gray-600 mb-2">YOY GROWTH</div>
-              <div className="text-3xl font-bold text-green-500">+8.4%</div>
+              <div className="text-4xl font-bold text-green-500">+8.4%</div>
             </CardContent>
           </Card>
 
           <Card className="bg-white border-0 border-t-4 border-sky-500 ">
-            <CardContent className="p-6">
+            <CardContent className="p-6 text-center">
               <div className="text-sm font-medium text-gray-600 mb-2">RENTAL YIELD</div>
-              <div className="text-3xl font-bold text-sky-600">4.1%</div>
+              <div className="text-4xl font-bold text-sky-600">4.1%</div>
             </CardContent>
           </Card>
 
           <Card className="bg-white border-0 border-t-4 border-sky-500 ">
-            <CardContent className="p-6">
+            <CardContent className="p-6 text-center">
               <div className="text-sm font-medium text-gray-600 mb-2">AVG DAYS ON MARKET</div>
-              <div className="text-3xl font-bold text-sky-600">45 Days</div>
+              <div className="text-4xl font-bold text-sky-600">45 Days</div>
             </CardContent>
           </Card>
         </div>
@@ -122,7 +121,7 @@ export default function RegionalData() {
         </Card>
 
         {/* Neighborhood Analysis */}
-        <Card className="bg-white">
+        <Card className="bg-white border-0 border-t-4 border-sky-500">
           <CardHeader>
             <CardTitle className="text-lg font-semibold text-gray-800 border-l-4 border-blue-500 pl-4">
               Neighborhood Analysis
