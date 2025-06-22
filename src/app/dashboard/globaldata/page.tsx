@@ -52,8 +52,8 @@ export default function GlobalData() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-5xl mx-auto space-y-6">
+    <div className="min-h-screen  md:p-6 bg-gray-50 ">
+      <div className="md:max-w-5xl   mx-auto space-y-6">
         {/* Filter Section */}
         <Card>
           <CardContent className="p-6">
@@ -131,7 +131,7 @@ export default function GlobalData() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border-0 border-t-4 border-sky-500">
             <CardContent className="p-6">
               <div className="space-y-2 text-center">
                 <p className="text-sm font-medium text-gray-600">AVERAGE GROWTH</p>
@@ -140,7 +140,7 @@ export default function GlobalData() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border-0 border-t-4 border-sky-500">
             <CardContent className="p-6">
               <div className="space-y-2 text-center">
                 <p className="text-sm font-medium text-gray-600">GLOBAL YIELD AVERAGE</p>
@@ -149,7 +149,7 @@ export default function GlobalData() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border-0 border-t-4 border-sky-500">
             <CardContent className="p-6">
               <div className="space-y-2 text-center">
                 <p className="text-sm font-medium text-gray-600">MARKETS TRACKED</p>
