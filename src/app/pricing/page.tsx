@@ -49,7 +49,7 @@ const Pricing = () => {
 
               <div className="flex flex-col items-start mb-6">
                 <h2 className="text-2xl font-bold text-[#0A1532] mb-1">
-                  Basic Tier
+                  Professional  Tier
                 </h2>
                 <h4 className="text-gray-600">For Individual Analysts</h4>
               </div>
@@ -106,7 +106,7 @@ const Pricing = () => {
             <div className="relative bg-[#0A1532] p-8 rounded-lg border border-[#0A1532] w-full mx-auto min-h-[520px]">
               <div className="flex flex-col items-start mb-6">
                 <h2 className="text-2xl font-bold text-white mb-1">
-                  Premium Tier
+                 Enterprise Tier
                 </h2>
                 <h4 className="text-white">
                   Most Popular – For Teams & Professionals
@@ -176,25 +176,27 @@ const Pricing = () => {
 
         <section className=" my-30 ">
           <div
-            className="relative rounded-2xl text-white py-14 px-8 md:px-16 overflow-hidden"
+            className="relative  rounded-4xl text-white py-14 px-8 md:px-16 overflow-hidden"
             style={{
               background: "linear-gradient(90deg, #0A1532 0%, #121C3C 100%)",
             }}
           >
-            <div className="absolute inset-0 z-0 opacity-10">
-              <Image
-                src={actionbg}
-                alt="Action Background"
-                fill
-                style={{ objectFit: "cover" }}
-                priority
-              />
-            </div>
+           <div className="absolute inset-0 z-0 opacity-40">
+  <Image
+  src={actionbg}
+  alt="Action Background"
+  fill
+  className="object-cover object-[35%_center]"
+  priority
+/>
+
+</div>
+
 
             {/* Main Content */}
-            <div className="relative z-10 flex flex-col md:flex-row items-start justify-between gap-8">
+            <div className="relative z-10 flex flex-col md:flex-row items-start justify-between gap-10">
               <div className="">
-                <h2 className="text-3xl leading-relaxed md:leading-[4rem] md:text-5xl text-left font-bold mb-4">
+                <h2 className="text-5xl leading-relaxed md:leading-[4rem] md:text-5xl text-left font-bold mb-4">
                   Still Unsure? Try <br /> EstateAtlas Risk-Free
                 </h2>
                 <button className="mt-4 bg-white text-[#0A1532] font-semibold px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-gray-200 transition">
@@ -208,7 +210,7 @@ const Pricing = () => {
               {/* Features */}
               <div className="grid gap-4">
                 <div
-                  className="rounded-lg p-4 flex items-start gap-3"
+                  className="rounded-lg p-4 flex items-start gap-3 max-w-sm"
                   style={{
                     background:
                       "linear-gradient(139.97deg, rgba(255, 255, 255, 0.08) 5.916%, rgba(255, 255, 255, 0.18) 90.97%)",
@@ -233,7 +235,7 @@ const Pricing = () => {
                     background:
                       "linear-gradient(139.97deg, rgba(255, 255, 255, 0.08) 5.916%, rgba(255, 255, 255, 0.18) 90.97%)",
                   }}
-                  className="rounded-lg p-4 flex items-start gap-3"
+                  className="rounded-lg p-4 flex items-start gap-3  max-w-sm"
                 >
                   <div className="bg-[#FFFFFF1A] rounded-xl p-3 ">
                     <Globe />
@@ -251,7 +253,7 @@ const Pricing = () => {
                     background:
                       "linear-gradient(139.97deg, rgba(255, 255, 255, 0.08) 5.916%, rgba(255, 255, 255, 0.18) 90.97%)",
                   }}
-                  className="rounded-lg p-4 flex items-start gap-3"
+                  className="rounded-lg p-4 flex items-start  max-w-sm gap-3"
                 >
                   <div className="bg-[#FFFFFF1A] rounded-xl p-3 ">
                     <Headset />
