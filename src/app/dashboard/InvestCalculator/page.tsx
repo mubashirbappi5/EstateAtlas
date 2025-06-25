@@ -1,9 +1,11 @@
+import Investcal from '@/components/dashboard/InvestCalculator/real-estate-calculator';
 import React from 'react';
 
 const InvestCalculator = () => {
     return (
         <div>
-            <h1> this is Invest Calculator page</h1>
+     
+        <Investcal/>
             
         </div>
     );
