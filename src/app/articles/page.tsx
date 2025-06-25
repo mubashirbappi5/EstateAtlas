@@ -4,10 +4,14 @@ import React from "react";
 import abanner from "../../../public/ArticleBanner.jpg";
 import Image from "next/image";
 import InsightCard from "@/components/Home/InsightCard";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 const Articles = () => {
    const cards = Array.from({ length: 6 });
   return (
-    <div className="min-h-screen  ">
+    <section>
+          <Navbar/>
+      <div className="min-h-screen mb-5  ">
       <div className="mx-auto container">
         <h1 className="md:text-6xl text-4xl mt-20 text-center font-semibold leading-relaxed md:leading-[5rem]">
           Insights & Trends for Global Real <br /> Estate Professionals
@@ -67,6 +71,8 @@ const Articles = () => {
 
       </div>
     </div>
+            <Footer/>
+    </section>
   );
 };
 

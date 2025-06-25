@@ -10,9 +10,12 @@ import {
 import Image from "next/image";
 import actionbg from "../../../public/actionbg.png";
 import FAQ from "@/components/Pricing/FAQ";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 const Pricing = () => {
   return (
     <div>
+          <Navbar/>
       {/* Pricing hero section */}
       <div className="md:container mx-auto md:mb-20 mb-7 md:p-8 p-2 text-[#0A1532] text-center">
         <h1 className="md:text-6xl text-4xl mt-20 text-center font-semibold leading-relaxed md:leading-[5rem]">
@@ -272,6 +275,7 @@ const Pricing = () => {
           <FAQ />
         </section>
       </div>
+              <Footer/>
     </div>
   );
 };

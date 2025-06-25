@@ -5,7 +5,7 @@ import Link from "next/link";
 const MarketInsight = () => {
   const cards = Array.from({ length: 6 });
   return (
-    <div className="min-h-screen bg-[#050d2e] relative overflow-hidden my-10">
+    <div className="min-h-screen bg-[#050d2e] relative overflow-hidden mt-10">
       {/* Glowing Radial Backgrounds */}
       <div className="absolute inset-0">
         <div className="w-full h-full bg-[radial-gradient(circle_at_15%_40%,_rgba(22,61,123,0.4)_0%,_transparent_60%)]" />

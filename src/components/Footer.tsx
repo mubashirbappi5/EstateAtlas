@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 const Footer = () => {
   return (
-    <footer className=" pt-10 pb-10 mt-8">
+    <footer className=" pt-10 pb-10  border-t border-gray-200 bg-white">
       <div className="max-w-7xl px-4 mx-auto grid grid-cols-1 items-start md:grid-cols-2 gap-8">
         {/* Left: Logo and Tagline */}
         <div>

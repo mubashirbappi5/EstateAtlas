@@ -1,9 +1,14 @@
 import ContactForm from "@/components/AffiliateContact/ContactForm";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import React from "react";
 
-const AffiliateContact = () => {
+const Contact = () => {
   return (
-    <div className="min-h-screen  relative overflow-hidden">
+   <section>
+
+        <Navbar/>
+     <div className="min-h-screen  relative overflow-hidden mb-10">
       <div className="md:container mx-auto  md:mb-20 mb-7 md:p-8 p-2 text-[#0A1532] text-center">
         <h1 className="md:text-6xl text-4xl mt-20 text-center  font-semibold">
           Reach Out <span className="text-[#3BA1DF]">–</span> To Our <br /> real estate experts
@@ -33,7 +38,10 @@ const AffiliateContact = () => {
    <ContactForm/>
 
     </div>
+
+            <Footer/>
+   </section>
   );
 };
 
-export default AffiliateContact;
+export default Contact;

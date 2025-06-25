@@ -3,9 +3,12 @@ import React from "react";
 import story from "../../../public/OurStory.png";
 import actionbg from "../../../public/actionbg.png";
 import { Sparkles } from 'lucide-react';
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 const About = () => {
   return (
     <div className=" mx-auto">
+          <Navbar/>
       {/* about hero */}
       <div className="md:container mx-auto  md:mb-40 mb-7 md:p-8 p-2 text-[#0A1532] text-center">
         <h1 className="md:text-6xl text-4xl mt-20 text-center  font-semibold">
@@ -103,6 +106,7 @@ const About = () => {
           </div>
         </div>
       </section>
+              <Footer/>
     </div>
   );
 };

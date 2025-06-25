@@ -40,7 +40,7 @@ const Navbar = () => {
                     <Link href="/about" className="block text-[#000929] hover:text-[#3BA1DF] font-semibold">About</Link>
                     <Link href="/pricing" className="block text-[#000929] hover:text-[#3BA1DF] font-semibold">Pricing</Link>
                     <Link href="/articles" className="block text-[#000929] hover:text-[#3BA1DF] font-semibold">Articles</Link>
-                    <Link href="/affiliateContact" className="block text-[#000929]  hover:text-[#3BA1DF] font-semibold">Affiliate Contact</Link>
+                    <Link href="/Contact" className="block text-[#000929]  hover:text-[#3BA1DF] font-semibold">Contact</Link>
                 </div>
 
                 {/* Right: Buttons */}
@@ -58,7 +58,7 @@ const Navbar = () => {
                     <Link href="/about" className="block text-[#000929] hover:text-[#3BA1DF] font-semibold">About</Link>
                     <Link href="/pricing" className="block text-[#000929] hover:text-[#3BA1DF] font-semibold">Pricing</Link>
                     <Link href="/articles" className="block text-[#000929] hover:text-[#3BA1DF] font-semibold">Articles</Link>
-                    <Link href="/affiliateContact" className="block text-[#000929]  hover:text-[#3BA1DF] font-semibold">Affiliate Contact</Link>
+                    <Link href="/Contact" className="block text-[#000929]  hover:text-[#3BA1DF] font-semibold">Contact</Link>
                     <div className="flex space-x-2 mt-2">
                           <Link href={'/auth/login'} className="flex-1 px-6 py-4 rounded-lg border-2 border-blue-[#0A1532] border-[#E0DEF7] text-blue-[#0A1532] font-semibold cursor-pointer">Login</Link>
                     <Link href={'/auth/register'} className="flex-1  px-4 py-3 rounded-lg bg-[#0A1532] text-white cursor-pointer ">Sign Up</Link>
