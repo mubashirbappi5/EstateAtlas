@@ -13,19 +13,18 @@ export const BillingToggle = ({ isYearly, onToggle }: BillingToggleProps) => {
       </span>
       <button
         onClick={() => onToggle(!isYearly)}
-        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
-          isYearly ? 'bg-primary' : 'bg-slate-300'
+        className={`relative inline-flex h-8 w-14 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#3BA1DF] focus:ring-offset-2 border border-[#3BA1DF]
         }`}
       >
         <span
-          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+          className={`inline-block h-6 w-6 transform rounded-full bg-[#0A1532] transition-transform ${
             isYearly ? 'translate-x-6' : 'translate-x-1'
           }`}
         />
       </button>
       <span className={`font-poppins font-medium flex items-center gap-2 ${isYearly ? 'text-slate-900' : 'text-slate-500'}`}>
         Yearly
-        <span className="bg-primary text-white text-xs px-2 py-1 rounded-full font-medium">
+        <span className="border border-[#3BA1DF] text-[#3BA1DF] text-xs px-2 py-1 rounded-full font-semibold">
           Save 20%
         </span>
       </span>

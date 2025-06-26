@@ -1,4 +1,5 @@
 "use client";
+import { FAQSection } from '@/components/Auth/Signup/FAQSection';
 import { FeatureComparison } from '@/components/Auth/Signup/FeatureComparison';
 import { HeroSection } from '@/components/Auth/Signup/HeroSection';
 import { PricingSection } from '@/components/Auth/Signup/PricingSection';
@@ -17,6 +18,7 @@ const Page = () => {
       <HeroSection isYearly={isYearly} onBillingChange={setIsYearly} />
       <PricingSection isYearly={isYearly} />
       <FeatureComparison />
+      <FAQSection/>
      
     </div>
     <Footer/>

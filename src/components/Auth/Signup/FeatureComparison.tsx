@@ -37,7 +37,7 @@ export const FeatureComparison = () => {
     <section className="py-20 px-4 bg-slate-50">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="font-poppins font-bold text-3xl text-slate-900 mb-4">
+          <h2 className="font-poppins font-bold text-4xl text-[#0A1532] mb-4">
             Comprehensive Feature Comparison
           </h2>
           <p className="font-poppins text-lg text-slate-600">
@@ -59,19 +59,19 @@ export const FeatureComparison = () => {
               </div>
               {category.items.map((item, itemIndex) => (
                 <div key={itemIndex} className="grid grid-cols-3 p-6 border-t border-slate-100 hover:bg-slate-50 transition-colors">
-                  <div className="font-poppins text-slate-700">{item.name}</div>
+                  <div className="font-poppins text-slate-700 text-lg">{item.name}</div>
                   <div className="flex justify-center">
                     {item.professional ? (
-                      <Check className="w-5 h-5 text-primary" />
+                      <Check className="w-5 h-5 text-[#3BA1DF]" />
                     ) : (
-                      <X className="w-5 h-5 text-slate-300" />
+                      <X className="w-5 h-5 text-red-700" />
                     )}
                   </div>
                   <div className="flex justify-center">
                     {item.enterprise ? (
-                      <Check className="w-5 h-5 text-primary" />
+                      <Check className="w-5 h-5 text-[#3BA1DF]" />
                     ) : (
-                      <X className="w-5 h-5 text-slate-300" />
+                      <X className="w-5 h-5 text-red-700" />
                     )}
                   </div>
                 </div>
