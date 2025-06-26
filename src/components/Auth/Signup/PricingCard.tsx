@@ -1,6 +1,10 @@
+"use client";
 import React from 'react';
 import { Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
+import { useRouter } from 'next/navigation';
+
 
 interface PricingCardProps {
   title: string;
@@ -25,6 +29,11 @@ export const PricingCard = ({
 }: PricingCardProps) => {
   const currentPrice = isYearly ? yearlyPrice : monthlyPrice;
   const billedAmount = isYearly ? yearlyPrice * 12 : monthlyPrice;
+
+ const router = useRouter();
+const handleClick = () => {
+    router.push(`/pricing-form?priceId=${currentPrice}&isYearly=${isYearly}`);
+  };
 
   return (
     <div className={`relative bg-white rounded-2xl border-2 p-8 transition-all duration-300 hover:shadow-xl ${
@@ -64,6 +73,7 @@ export const PricingCard = ({
       </ul>
 
       <Button 
+      onClick={handleClick}
         className={`w-full font-poppins font-medium py-3 rounded-lg transition-all duration-200 ${
           isPopular 
             ? 'bg-primary hover:bg-primary/90 text-white' 
