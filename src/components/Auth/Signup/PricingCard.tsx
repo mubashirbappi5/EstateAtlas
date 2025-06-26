@@ -32,7 +32,7 @@ export const PricingCard = ({
 
  const router = useRouter();
 const handleClick = () => {
-    router.push(`/pricing-form?priceId=${currentPrice}&isYearly=${isYearly}`);
+    router.push(`subscribe?priceId=${currentPrice}&isYearly=${isYearly}`);
   };
 
   return (

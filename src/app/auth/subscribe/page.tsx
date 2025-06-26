@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import logo from '../../../public/logo.png';
+import logo from '../../../../public/logo.png';
 export default function RegisterForm() {
   const [formData, setFormData] = useState({
     first_name: '',
@@ -58,7 +58,8 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto border overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div className="w-full max-w-2xl  mx-auto border overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
       <div className="px-12 py-10">
         <div className="flex my-4 justify-center mx-auto">
           <Image className="w-auto h-7 sm:h-8" src={logo} alt="Logo" />
@@ -141,6 +142,7 @@ export default function RegisterForm() {
         <span className="text-sm text-gray-600 dark:text-gray-200">Already have an account? </span>
         <a href="login" className="text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline">Login</a>
       </div>
+    </div>
     </div>
   );
 }

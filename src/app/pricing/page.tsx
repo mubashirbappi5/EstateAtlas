@@ -15,7 +15,7 @@ import Footer from "@/components/Footer";
 const Pricing = () => {
   return (
     <div>
-          <Navbar/>
+      <Navbar />
       {/* Pricing hero section */}
       <div className="md:container mx-auto md:mb-20 mb-7 md:p-8 p-2 text-[#0A1532] text-center">
         <h1 className="md:text-6xl text-4xl mt-20 text-center font-semibold leading-relaxed md:leading-[5rem]">
@@ -49,7 +49,7 @@ const Pricing = () => {
 
               <div className="flex flex-col items-start mb-6">
                 <h2 className="text-2xl font-bold text-[#0A1532] mb-1">
-                  Professional  Tier
+                  Professional Tier
                 </h2>
                 <h4 className="text-gray-600">For Individual Analysts</h4>
               </div>
@@ -72,31 +72,37 @@ const Pricing = () => {
                   <span className="mr-2">
                     <CircleCheck />
                   </span>
-                  5 Country Comparisons
+                  Global Market Analysis
                 </li>
                 <li className="flex items-start">
                   <span className="mr-2">
                     <CircleCheck />
                   </span>
-                  Standard Reports (PDF)
+                  Rental Yield Data
                 </li>
                 <li className="flex items-start">
                   <span className="mr-2">
                     <CircleCheck />
                   </span>
-                  100 API Calls/Month
+                  Average Price per Square Meter
                 </li>
                 <li className="flex items-start">
                   <span className="mr-2">
                     <CircleCheck />
                   </span>
-                  Basic Market Alerts
+                  Property Tax Information
                 </li>
                 <li className="flex items-start">
                   <span className="mr-2">
                     <CircleCheck />
                   </span>
-                  Email Support
+                  Downloadable Country-Level Datasets
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2">
+                    <CircleCheck />
+                  </span>
+                  Quarterly Market Updates
                 </li>
               </ul>
             </div>
@@ -106,7 +112,7 @@ const Pricing = () => {
             <div className="relative bg-[#0A1532] p-8 rounded-lg border border-[#0A1532] w-full mx-auto min-h-[520px]">
               <div className="flex flex-col items-start mb-6">
                 <h2 className="text-2xl font-bold text-white mb-1">
-                 Enterprise Tier
+                  Enterprise Tier
                 </h2>
                 <h4 className="text-white">
                   Most Popular – For Teams & Professionals
@@ -129,44 +135,39 @@ const Pricing = () => {
                   <span className="mr-2">
                     <CircleCheck />
                   </span>
-                  Unlimited Country Comparisons
+                  Everything in Professional, plus:
                 </li>
                 <li className="flex items-start">
                   <span className="mr-2">
                     <CircleCheck />
                   </span>
-                  Advanced Reports (PDF/CSV)
+              Advanced API Access
                 </li>
                 <li className="flex items-start">
                   <span className="mr-2">
                     <CircleCheck />
                   </span>
-                  5,000 API Calls/Month
+             Full Historical Data Downloads
                 </li>
                 <li className="flex items-start">
                   <span className="mr-2">
                     <CircleCheck />
                   </span>
-                  Historical Data (10+ Years)
+               Market Trend Heat Maps
                 </li>
                 <li className="flex items-start">
                   <span className="mr-2">
                     <CircleCheck />
                   </span>
-                  Historical Data (10+ Years)
+              Priority Support
                 </li>
                 <li className="flex items-start">
                   <span className="mr-2">
                     <CircleCheck />
                   </span>
-                  Custom Alerts & Automation
+                  Team Access (Up to 5 seats)
                 </li>
-                <li className="flex items-start">
-                  <span className="mr-2">
-                    <CircleCheck />
-                  </span>
-                  Priority 24/7 Support
-                </li>
+                
               </ul>
             </div>
           </div>
@@ -181,17 +182,15 @@ const Pricing = () => {
               background: "linear-gradient(90deg, #0A1532 0%, #121C3C 100%)",
             }}
           >
-           <div className="absolute inset-0 z-0 opacity-40">
-  <Image
-  src={actionbg}
-  alt="Action Background"
-  fill
-  className="object-cover object-[35%_center]"
-  priority
-/>
-
-</div>
-
+            <div className="absolute inset-0 z-0 opacity-40">
+              <Image
+                src={actionbg}
+                alt="Action Background"
+                fill
+                className="object-cover object-[35%_center]"
+                priority
+              />
+            </div>
 
             {/* Main Content */}
             <div className="relative z-10 flex flex-col md:flex-row items-start justify-between gap-10">
@@ -277,7 +276,7 @@ const Pricing = () => {
           <FAQ />
         </section>
       </div>
-              <Footer/>
+      <Footer />
     </div>
   );
 };
