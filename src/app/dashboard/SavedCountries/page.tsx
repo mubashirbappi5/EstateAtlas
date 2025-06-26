@@ -86,7 +86,7 @@ const SavedCountries = () => {
               <h2 className="text-lg font-semibold text-gray-800">Your Investment Watchlist</h2>
             </div>
             <Button
-              className="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-sm font-medium"
+              className="bg-slate-800 hover:bg-slate-700 text-white px-4 py-6 rounded-lg text-sm font-medium"
               size="sm"
             >
               <Plus className="w-4 h-4 mr-1" />

@@ -75,10 +75,10 @@ export default function Investcal() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-      <div className="max-w-6xl mx-auto">
-        <Card className="shadow-xl border-0 bg-white/95 backdrop-blur">
-          <CardHeader className="border-b border-blue-100 bg-gradient-to-r from-blue-50 to-indigo-50">
+    <div className="  p-4">
+      <div className="max-w-6xl  mx-auto">
+        <Card className="shadow-xl bg-white border-0 border-t-4 border-sky-400  backdrop-blur">
+          <CardHeader className="border-b border-blue-100">
             <CardTitle className="flex items-center gap-2 text-xl font-semibold text-gray-800">
               <Calculator className="h-5 w-5 text-blue-600" />
               Real Estate Investment Calculator
@@ -94,7 +94,7 @@ export default function Investcal() {
                     Property Value
                   </Label>
                   <Select value={propertyValue} onValueChange={setPropertyValue}>
-                    <SelectTrigger className="h-12 bg-gray-50 border-gray-200">
+                    <SelectTrigger className="h-12 w-full  bg-gray-50 border-gray-200">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -115,7 +115,7 @@ export default function Investcal() {
                     Down Payment (%)
                   </Label>
                   <Select value={downPaymentPercent} onValueChange={setDownPaymentPercent}>
-                    <SelectTrigger className="h-12 bg-gray-50 border-gray-200">
+                    <SelectTrigger className="h-12 w-full bg-gray-50 border-gray-200">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -134,7 +134,7 @@ export default function Investcal() {
                     Interest Rate (%)
                   </Label>
                   <Select value={interestRate} onValueChange={setInterestRate}>
-                    <SelectTrigger className="h-12 bg-gray-50 border-gray-200">
+                    <SelectTrigger className="h-12 w-full bg-gray-50 border-gray-200">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -155,7 +155,7 @@ export default function Investcal() {
                     Loan Term (Years)
                   </Label>
                   <Select value={loanTerm} onValueChange={setLoanTerm}>
-                    <SelectTrigger className="h-12 bg-gray-50 border-gray-200">
+                    <SelectTrigger className="h-12 w-full bg-gray-50 border-gray-200">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -173,7 +173,7 @@ export default function Investcal() {
                     Monthly Rental Income
                   </Label>
                   <Select value={monthlyRentalIncome} onValueChange={setMonthlyRentalIncome}>
-                    <SelectTrigger className="h-12 bg-gray-50 border-gray-200">
+                    <SelectTrigger className="h-12 w-full bg-gray-50 border-gray-200">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -194,7 +194,7 @@ export default function Investcal() {
                     Monthly Expenses
                   </Label>
                   <Select value={monthlyExpenses} onValueChange={setMonthlyExpenses}>
-                    <SelectTrigger className="h-12 bg-gray-50 border-gray-200">
+                    <SelectTrigger className="h-12 w-full bg-gray-50 border-gray-200">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
