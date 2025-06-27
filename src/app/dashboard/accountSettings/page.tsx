@@ -1,9 +1,10 @@
+import ProfileSettings from '@/components/dashboard/Account/ProfileSettings';
 import React from 'react';
 
 const accountSettings = () => {
     return (
         <div>
-            <h1>this is account page </h1>
+            <ProfileSettings/>
             
         </div>
     );
