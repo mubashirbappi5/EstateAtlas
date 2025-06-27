@@ -11,7 +11,7 @@ export default function GlobalData() {
   const [region, setRegion] = useState("north-america")
   const [metric, setMetric] = useState("property-prices")
   const [timePeriod, setTimePeriod] = useState("last-12-months")
-
+  
   const marketData = [
     {
       country: "United States",

@@ -4,10 +4,14 @@ import { useState } from "react";
 import Header from "@/components/dashboard/header";
 import Sidebar from "@/components/Sidebar";
 import { Menu } from "lucide-react";
+import { useUser } from "../context/UserContext";
 
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+    const { user } = useUser();
+  console.log('User in globaldata:', user);
 
   return (
     <div className="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">
