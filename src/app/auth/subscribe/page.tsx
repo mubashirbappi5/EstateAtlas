@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import logo from '../../../../public/logo.png';
 

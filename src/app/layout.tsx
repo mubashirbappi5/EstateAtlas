@@ -3,6 +3,7 @@ import {  Poppins } from "next/font/google";
 import "./globals.css";
 
 import { Providers } from "./providers";
+import Script from "next/script";
 // import Navbar from "@/components/Navbar";
 // import Footer from "@/components/Footer";
 
@@ -30,13 +31,16 @@ export default function RootLayout({
       <body
         className={poppins.variable}
       >
-         <Providers>
+        <Script 
+        strategy="beforeInteractive"
+        src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}`}
+        />
       
-        <main className="min-h-screen">
-          {children}
-        </main>
-            </Providers>
-       
+        <Providers>
+          <main className="min-h-screen">
+            {children}
+          </main>
+        </Providers>
       </body>
     </html>
   );
