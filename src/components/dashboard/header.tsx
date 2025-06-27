@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Bell, ChevronDown } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 import {
   DropdownMenu,
@@ -18,8 +19,36 @@ import { useUser } from "@/app/context/UserContext";
 
 export default function Header() {
   const [notificationCount] = useState(6);
-  const { user, loading } = useUser(); 
-  
+  const { user, loading, setUser } = useUser();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await fetch("http://204.197.173.249:8014/api/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) {
+        console.error("Logout failed");
+        // Optionally show an error message to user
+      }
+    } catch (err) {
+      console.error("Logout error:", err);
+    } finally {
+      // Clear user data and token
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      setUser(null);
+
+      // Redirect to login page
+      router.push("/auth/login");
+    }
+  };
 
   return (
     <header className="border-b bg-white px-4 py-3">
@@ -45,18 +74,10 @@ export default function Header() {
             <Button variant="ghost" className="flex items-center gap-2 px-2 py-1 h-auto">
               <div className="flex items-center gap-2">
                 <div className="relative h-8 w-8 rounded-full overflow-hidden">
-                  <Image
-                    src={man}
-                    alt="User Avatar"
-                    width={32}
-                    height={32}
-                    className="object-cover"
-                  />
+                  <Image src={man} alt="User Avatar" width={32} height={32} className="object-cover" />
                 </div>
                 <span className="text-sm font-medium text-gray-700">
-                  {loading
-                    ? "Loading..."
-                    : user?.first_name || "Guest"}
+                  {loading ? "Loading..." : user?.first_name || "Guest"}
                 </span>
               </div>
               <ChevronDown className="h-4 w-4 text-gray-500" />
@@ -69,7 +90,9 @@ export default function Header() {
             <DropdownMenuItem>Settings</DropdownMenuItem>
             <DropdownMenuItem>Notifications</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Sign out</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
+              Sign out
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
