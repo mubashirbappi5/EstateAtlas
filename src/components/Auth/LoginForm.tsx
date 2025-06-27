@@ -39,11 +39,13 @@ export default function LoginForm() {
       if (!res.ok) {
         setError(data.message || 'Login failed');
       } else {
+        console.log('Login successful:', data);
  
-          localStorage.setItem('token', data.token);
+          localStorage.setItem('token', data.data.token);
     console.log('Stored token:', localStorage.getItem('token'));
 
-
+        localStorage.setItem('user', JSON.stringify(data.data.user));
+        console.log('Stored user:', localStorage.getItem('user'));
         
         router.push('/dashboard/globaldata');
       }
