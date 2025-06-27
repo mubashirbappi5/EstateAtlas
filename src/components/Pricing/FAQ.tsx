@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";import { ChevronDown, ChevronUp } from "lucide-react";
 import { Sparkles } from 'lucide-react';
+
 type FAQItem = {
   question: string;
   answer: string;
@@ -41,6 +42,7 @@ const faqs: FAQItem[] = [
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  
 
   const toggleIndex = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);

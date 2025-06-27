@@ -3,9 +3,11 @@ import logo from '../../../public/logo.png'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useUser } from '@/app/context/UserContext';
 
 export default function LoginForm() {
   const router = useRouter();
+  const { setUser } = useUser();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -44,8 +46,8 @@ export default function LoginForm() {
           localStorage.setItem('token', data.data.token);
     console.log('Stored token:', localStorage.getItem('token'));
 
-        localStorage.setItem('user', JSON.stringify(data.data.user));
-        console.log('Stored user:', localStorage.getItem('user'));
+        setUser(data.data.user); 
+        console.log('User data:', data.data.user.first_name);
         
         router.push('/dashboard/globaldata');
       }
