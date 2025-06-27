@@ -8,7 +8,7 @@ import logo from '../../../../public/logo.png';
 export default function RegisterForm() {
   const searchParams = useSearchParams();
 
-  const priceIdFromUrl = searchParams.get('priceId');
+  // const priceIdFromUrl = searchParams.get('priceId');
   const isYearly = searchParams.get('isYearly') === 'true';
 
   const [formData, setFormData] = useState({
@@ -17,9 +17,10 @@ export default function RegisterForm() {
     email: '',
     password: '',
     confirm_password: '',
-    price_id: priceIdFromUrl || '',
-    payment_method: 'pm_test_visa', // Replace with real/test payment method from Stripe
-    affiliate_code: '',
+    // price_id: priceIdFromUrl || '',
+    price_id: 'price_1RdSWIDgYV6zJ17vncazxwVJ',
+    payment_method: 'pm_card_visa', // Replace with real/test payment method from Stripe
+    affiliate_code: 'AFF685A30E951679',
   });
 
   const [loading, setLoading] = useState(false);
@@ -27,12 +28,12 @@ export default function RegisterForm() {
   const [success, setSuccess] = useState('');
 
   // Auto-generate affiliate code if missing
-  useEffect(() => {
-    setFormData((prev) => ({
-      ...prev,
-      affiliate_code: `AFF${Math.random().toString(36).substring(2, 10).toUpperCase()}`,
-    }));
-  }, []);
+  // useEffect(() => {
+  //   setFormData((prev) => ({
+  //     ...prev,
+  //     affiliate_code: `AFF${Math.random().toString(36).substring(2, 10).toUpperCase()}`,
+  //   }));
+  // }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

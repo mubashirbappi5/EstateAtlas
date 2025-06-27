@@ -25,7 +25,7 @@ export default function LoginForm() {
     setError('');
 
     try {
-      const res = await fetch('https://your-laravel-api.com/api/login', {
+      const res = await fetch('http://204.197.173.249:8014/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -39,11 +39,13 @@ export default function LoginForm() {
       if (!res.ok) {
         setError(data.message || 'Login failed');
       } else {
-        // ✅ Token store করো (LocalStorage / Cookies etc)
-        localStorage.setItem('token', data.token);
+ 
+          localStorage.setItem('token', data.token);
+    console.log('Stored token:', localStorage.getItem('token'));
 
-        // ✅ Redirect user
-        router.push('/dashboard');
+
+        
+        router.push('/dashboard/globaldata');
       }
     } catch (err) {
       setError('Something went wrong. Please try again.');
