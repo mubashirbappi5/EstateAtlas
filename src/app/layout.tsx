@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import {  Poppins } from "next/font/google";
 import "./globals.css";
 
+
 import { Providers } from "./providers";
 import Script from "next/script";
-// import Navbar from "@/components/Navbar";
-// import Footer from "@/components/Footer";
+import StripeProvider from "./StripeProvider";
 
 
 
@@ -37,9 +37,12 @@ export default function RootLayout({
         />
       
         <Providers>
+           <StripeProvider>
           <main className="min-h-screen">
             {children}
           </main>
+          </StripeProvider>
+        
         </Providers>
       </body>
     </html>
