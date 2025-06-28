@@ -112,8 +112,8 @@ export default function GlobalData() {
              
             </div>
              <div className="flex mt-4 gap-2">
-                <Button className="bg-slate-900 hover:bg-slate-800 py-5">Apply Filters</Button>
-                <Button variant="outline" className="bg-sky-500 text-white py-5 border-sky-500  hover:bg-sky-600">
+                <Button className="bg-slate-900 hover:bg-slate-800 py-6">Apply Filters</Button>
+                <Button variant="outline" className="bg-sky-500 text-white py-6 border-sky-500  hover:bg-sky-600">
                   Reset
                 </Button>
               </div>

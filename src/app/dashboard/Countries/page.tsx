@@ -55,7 +55,7 @@ const Countries = () => {
 
         {/* Save Button */}
         <div className="flex-shrink-0">
-          <Button className="h-12 px-6 bg-slate-800 hover:bg-slate-700 text-white font-medium">
+          <Button className="h-12 px-6 bg-slate-800 hover:bg-slate-700 py-6 text-white font-medium">
             <Plus className="w-4 h-4 mr-2" />
             Save Country
           </Button>

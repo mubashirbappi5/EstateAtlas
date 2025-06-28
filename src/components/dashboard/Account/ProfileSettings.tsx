@@ -6,12 +6,14 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { useUser } from "@/app/context/UserContext"
 
 export default function ProfileSettings() {
+  const {user} = useUser()
   const [formData, setFormData] = useState({
-    firstName: "John",
-    lastName: "Smith",
-    email: "john.smith@example.com",
+    firstName: user?.first_name || "John",
+    lastName:user?.last_name || "Smith",
+    email: user?.email||"john.smith@example.com",
     phoneNumber: "+1 (555) 123-4567",
   })
 
@@ -26,12 +28,34 @@ export default function ProfileSettings() {
   }
 
   const handleSaveChanges = async () => {
-    setIsSaving(true)
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    setIsSaving(false)
-    alert("Changes saved successfully!")
+  setIsSaving(true)
+
+  try {
+    const res = await fetch("http://204.197.173.249:8014/api/user/update", {
+      method: "PUT", 
+      headers: {
+        "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`
+      
+         
+      },
+      body: JSON.stringify(formData),
+    })
+
+    if (!res.ok) {
+      const errorData = await res.json()
+      console.error("Error:", errorData)
+      alert("Failed to save changes. Please try again.")
+    } else {
+      alert("Changes saved successfully!")
+    }
+  } catch (error) {
+    console.error("Network or server error:", error)
+    alert("Something went wrong while saving changes.")
   }
+
+  setIsSaving(false)
+}
 
   const handleCancel = () => {
     setFormData(originalData)
@@ -121,7 +145,7 @@ export default function ProfileSettings() {
               onClick={handleCancel}
               variant="outline"
               disabled={!hasChanges}
-              className="bg-sky-500 hover:bg-sky-600 text-white border-sky-500 hover:border-sky-600 px-6 py-2.5 h-auto font-medium"
+              className="bg-sky-500 hover:bg-sky-500 text-white border-sky-500 hover:border-sky-500 px-6 py-2.5 h-auto font-medium"
             >
               Cancel
             </Button>

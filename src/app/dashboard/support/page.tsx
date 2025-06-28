@@ -59,12 +59,12 @@ export default function Component() {
   ]
 
   return (
-    <div className="max-w-2xl mx-auto p-6 space-y-6 bg-gray-50 min-h-screen">
+    <div className="max-w-5xl mx-auto p-6 space-y-6 bg-gray-50 min-h-screen">
       <div className="space-y-6">
         <h1 className="text-2xl font-semibold text-gray-900">Help & Support</h1>
 
         {/* Contact Support Section */}
-        <Card className="border-l-4 border-l-blue-400">
+        <Card className="border-t-4 border-t-blue-400">
           <CardHeader className="pb-4">
             <CardTitle className="flex items-center gap-2 text-lg font-medium text-gray-700">
               <Mail className="w-5 h-5" />
@@ -145,7 +145,7 @@ export default function Component() {
 
               <Button
                 type="submit"
-                className="bg-gray-800 hover:bg-gray-900 text-white px-6 py-2"
+                className="bg-gray-800 hover:bg-gray-900 text-white px-6 py-3"
                 disabled={!formData.subject || !formData.priority || !formData.message}
               >
                 Get started
@@ -155,14 +155,14 @@ export default function Component() {
         </Card>
 
         {/* FAQ Section */}
-        <Card className="border-l-4 border-l-blue-400">
+        <Card className="border-t-4 border-t-blue-400">
           <CardHeader className="pb-4">
             <CardTitle className="flex items-center gap-2 text-lg font-medium text-gray-700">
               <HelpCircle className="w-5 h-5" />
               Frequently Asked Questions
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2">
+          <CardContent className="grid grid-cols-2 gap-4">
             {faqs.map((faq, index) => (
               <Collapsible key={index} open={expandedFAQ === index} onOpenChange={() => toggleFAQ(index)}>
                 <CollapsibleTrigger className="flex items-center justify-between w-full p-3 text-left hover:bg-gray-50 rounded-lg transition-colors">
@@ -182,7 +182,7 @@ export default function Component() {
         </Card>
 
         {/* Need More Help Section */}
-        <Card className="border-l-4 border-l-blue-400">
+        <Card className="border-t-4 border-t-blue-400">
           <CardHeader className="pb-4">
             <CardTitle className="flex items-center gap-2 text-lg font-medium text-gray-700">
               <Heart className="w-5 h-5" />
