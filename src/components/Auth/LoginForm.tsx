@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useUser } from '@/app/context/UserContext';
+import Link from 'next/link';
 
 export default function LoginForm() {
   const router = useRouter();
@@ -97,7 +98,7 @@ export default function LoginForm() {
           </div>
 
           <div className="flex items-center justify-end mt-4">
-            <a href="#" className="text-sm text-gray-600 dark:text-gray-200 hover:text-gray-500">Forget Password?</a>
+            <Link href="forgot-password" className="text-sm text-gray-600 dark:text-gray-200 hover:text-gray-500">Forget Password?</Link>
             
           </div>
           <button

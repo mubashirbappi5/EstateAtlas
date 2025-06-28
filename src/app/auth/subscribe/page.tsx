@@ -139,7 +139,7 @@ export default function RegisterForm() {
 
         <div className="py-4 text-center bg-gray-100 dark:bg-gray-700">
           <span className="text-sm text-gray-600 dark:text-gray-200">Already have an account? </span>
-          <a href="/login" className="text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline">Login</a>
+          <a href="login" className="text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline">Login</a>
         </div>
       </div>
     </div>
