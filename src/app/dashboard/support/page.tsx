@@ -59,7 +59,7 @@ export default function Component() {
   ]
 
   return (
-    <div className="max-w-5xl mx-auto p-6 space-y-6 bg-gray-50 min-h-screen">
+    <div className="md:max-w-5xl mx-auto md:p-6 space-y-6 bg-gray-50 min-h-screen">
       <div className="space-y-6">
         <h1 className="text-2xl font-semibold text-gray-900">Help & Support</h1>
 
@@ -162,7 +162,7 @@ export default function Component() {
               Frequently Asked Questions
             </CardTitle>
           </CardHeader>
-          <CardContent className="grid grid-cols-2 gap-4">
+          <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {faqs.map((faq, index) => (
               <Collapsible key={index} open={expandedFAQ === index} onOpenChange={() => toggleFAQ(index)}>
                 <CollapsibleTrigger className="flex items-center justify-between w-full p-3 text-left hover:bg-gray-50 rounded-lg transition-colors">
