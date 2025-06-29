@@ -74,7 +74,6 @@ export default function Billing() {
 //billing details state
 
    const [billingDetails, setBillingDetails] = useState<BillingDetails | null>(null)
-  const [loading, setLoading] = useState(true)
 
    useEffect(() => {
     async function fetchBilling() {
@@ -109,10 +108,10 @@ export default function Billing() {
       } catch (error) {
         console.error(error)
       } finally {
-        setLoading(false)
+      
+        // setLoading(false) removed because loading is unused
       }
     }
-
     fetchBilling()
   }, [])
 
