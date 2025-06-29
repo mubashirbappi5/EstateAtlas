@@ -120,8 +120,8 @@ export default function SecurityForm() {
   }
 
   return (
-    <div className="bg-gray-50 flex items-center justify-center p-4">
-      <Card className="w-full max-w-5xl px-10 bg-white shadow-lg border-0 border-t-4 border-blue-400">
+    <div className="bg-gray-50 flex items-center justify-center md:p-4 ">
+      <Card className="w-full md:max-w-5xl md:px-10 bg-white shadow-lg border-0 border-t-4 border-blue-400">
         <CardHeader className="text-center">
           <CardTitle className="flex gap-2 text-lg font-medium text-gray-700">
             <Lock className="w-5 h-5" />

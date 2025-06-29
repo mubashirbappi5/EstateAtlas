@@ -64,8 +64,8 @@ export default function ProfileSettings() {
   const hasChanges = JSON.stringify(formData) !== JSON.stringify(originalData)
 
   return (
-    <div className=" bg-gray-50 p-4 flex items-center justify-center ">
-      <Card className="w-full max-w-5xl px-10 bg-white shadow-lg border-0 border-t-4 border-blue-400">
+    <div className=" bg-gray-50 md:p-4 flex items-center justify-center ">
+      <Card className="w-full md:max-w-5xl md:px-10 bg-white shadow-lg border-0 border-t-4 border-blue-400">
         <CardHeader className="pb-4">
           <div className="space-y-2">
             <h1 className="text-2xl font-semibold text-gray-900">Account Settings</h1>

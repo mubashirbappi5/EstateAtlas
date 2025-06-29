@@ -5,7 +5,7 @@ import React from 'react';
 
 const accountSettings = () => {
     return (
-        <div>
+        <div className='space-y-4 md:space-y-0'>
             <ProfileSettings/>
             <SecurityForm/>
             <Notification/>
