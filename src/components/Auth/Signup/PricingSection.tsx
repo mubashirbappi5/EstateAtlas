@@ -38,6 +38,7 @@ export const PricingSection = ({ isYearly }: PricingSectionProps) => {
             features={professionalFeatures}
             ctaText="Choose Professional"
             isPopular={true}
+            plan={'basic'}
           />
           <PricingCard
             title="Enterprise"
@@ -48,6 +49,7 @@ export const PricingSection = ({ isYearly }: PricingSectionProps) => {
             features={enterpriseFeatures}
             ctaText="Choose Enterprise"
             isPopular={false}
+            plan={'premium'}
           />
         </div>
       </div>

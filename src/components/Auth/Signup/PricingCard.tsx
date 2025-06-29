@@ -15,6 +15,7 @@ interface PricingCardProps {
   features: string[];
   ctaText: string;
   isPopular: boolean;
+  plan: 'basic' | 'premium';
 }
 
 export const PricingCard = ({
@@ -25,14 +26,15 @@ export const PricingCard = ({
   isYearly,
   features,
   ctaText,
-  isPopular
+  isPopular,
+  plan
 }: PricingCardProps) => {
   const currentPrice = isYearly ? yearlyPrice : monthlyPrice;
   const billedAmount = isYearly ? yearlyPrice * 12 : monthlyPrice;
 
  const router = useRouter();
 const handleClick = () => {
-    router.push(`subscribe?priceId=${currentPrice}&isYearly=${isYearly}`);
+    router.push(`subscribe?plan=${plan}&isYearly=${isYearly}`);
   };
 
   return (

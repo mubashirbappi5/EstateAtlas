@@ -11,7 +11,26 @@ export default function RegisterForm() {
   const elements = useElements();
   const searchParams = useSearchParams();
 
+  const plan = searchParams.get('plan') || 'premium';
   const isYearly = searchParams.get('isYearly') === 'true';
+
+  const PRICES: Record<string, { monthly: string; yearly: string }> = {
+    low_basic: {
+      monthly: 'price_1RdSQsDgYV6zJ17v5Qn2763Z',
+      yearly: 'price_1RdSUGDgYV6zJ17v0tWmIYU2',
+    },
+    basic: {
+      monthly: 'price_1RdSRcDgYV6zJ17vntUXtF7T',
+      yearly: 'price_1RdSVGDgYV6zJ17v1jvsQHq7',
+    },
+    premium: {
+      monthly: 'price_1RdSSzDgYV6zJ17v3Vcyyrxa',
+      yearly: 'price_1RdSWIDgYV6zJ17vncazxwVJ',
+    },
+  };
+
+  const selectedPriceId =
+    PRICES[plan as keyof typeof PRICES]?.[isYearly ? 'yearly' : 'monthly'] || '';
 
   const [formData, setFormData] = useState({
     first_name: '',
@@ -19,7 +38,7 @@ export default function RegisterForm() {
     email: '',
     password: '',
     confirm_password: '',
-    price_id: 'price_1RdSWIDgYV6zJ17vncazxwVJ',
+    price_id: selectedPriceId,
     affiliate_code: 'AFF685A30E951679',
   });
 
