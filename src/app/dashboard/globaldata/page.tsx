@@ -57,71 +57,74 @@ export default function GlobalData() {
         {/* Filter Section */}
         <Card>
           <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  Region
-                </label>
-                <Select value={region}  onValueChange={setRegion}>
-                  <SelectTrigger className="py-5 pr-10">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="north-america">🇺🇸 North America</SelectItem>
-                    <SelectItem value="europe">🇪🇺 Europe</SelectItem>
-                    <SelectItem value="asia">🌏 Asia</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+    {/* Region */}
+    <div className="w-full space-y-2">
+      <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+        <MapPin className="w-4 h-4" />
+        Region
+      </label>
+      <Select value={region} onValueChange={setRegion}>
+        <SelectTrigger className="w-full py-5 pr-10">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="north-america">🇺🇸 North America</SelectItem>
+          <SelectItem value="europe">🇪🇺 Europe</SelectItem>
+          <SelectItem value="asia">🌏 Asia</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
 
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4" />
-                  Metric
-                </label>
-                <Select value={metric} onValueChange={setMetric}>
-                  <SelectTrigger className="py-5 pr-10">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="property-prices">💰 Property Prices</SelectItem>
-                    <SelectItem value="rental-yields">📈 Rental Yields</SelectItem>
-                    <SelectItem value="market-growth">📊 Market Growth</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+    {/* Metric */}
+    <div className="w-full space-y-2">
+      <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+        <TrendingUp className="w-4 h-4" />
+        Metric
+      </label>
+      <Select value={metric} onValueChange={setMetric}>
+        <SelectTrigger className="w-full py-5 pr-10">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="property-prices">💰 Property Prices</SelectItem>
+          <SelectItem value="rental-yields">📈 Rental Yields</SelectItem>
+          <SelectItem value="market-growth">📊 Market Growth</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
 
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
-                  <Target className="w-4 h-4" />
-                  Time Period
-                </label>
-                <Select value={timePeriod} onValueChange={setTimePeriod}>
-                  <SelectTrigger className="py-5 pr-10">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="last-12-months">Last 12 Months</SelectItem>
-                    <SelectItem value="last-6-months">Last 6 Months</SelectItem>
-                    <SelectItem value="last-3-months">Last 3 Months</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+    {/* Time Period */}
+    <div className="w-full space-y-2">
+      <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+        <Target className="w-4 h-4" />
+        Time Period
+      </label>
+      <Select value={timePeriod} onValueChange={setTimePeriod}>
+        <SelectTrigger className="w-full py-5 pr-10">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="last-12-months">Last 12 Months</SelectItem>
+          <SelectItem value="last-6-months">Last 6 Months</SelectItem>
+          <SelectItem value="last-3-months">Last 3 Months</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  </div>
 
-             
-            </div>
-             <div className="flex mt-4 gap-2">
-                <Button className="bg-slate-900 hover:bg-slate-800 py-6">Apply Filters</Button>
-                <Button variant="outline" className="bg-sky-500 text-white py-6 border-sky-500  hover:bg-sky-600">
-                  Reset
-                </Button>
-              </div>
-          </CardContent>
+  <div className="flex mt-4 gap-2">
+    <Button className="bg-slate-900 hover:bg-slate-800 py-6  md:w-auto">Apply Filters</Button>
+    <Button variant="outline" className="bg-sky-500 text-white py-6 border-sky-500 hover:bg-sky-600  md:w-auto">
+      Reset
+    </Button>
+  </div>
+</CardContent>
+
         </Card>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <Card className=" border-0 border-t-4 border-sky-500 ">
             <CardContent className="p-6">
               <div className="space-y-2 text-center ">
