@@ -1,5 +1,7 @@
+
+"use client";
 import ToggleButton from "@/components/Pricing/ToggleButton";
-import React from "react";
+import React, { useState } from "react";
 import {
   CircleCheck,
   CreditCard,
@@ -12,7 +14,38 @@ import actionbg from "../../../public/actionbg.png";
 import FAQ from "@/components/Pricing/FAQ";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+import { useRouter } from "next/navigation";
 const Pricing = () => {
+
+   const router = useRouter();
+
+   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
+
+ 
+ const getPrices = () => {
+    const prices = {
+      professional: {
+        monthly: 29,
+        yearly: 24,
+      },
+      enterprise: {
+        monthly: 49,
+        yearly: 44,
+      },
+    };
+
+    return {
+      professionalPrice: prices.professional[billingCycle],
+      enterprisePrice: prices.enterprise[billingCycle],
+      note: billingCycle === "yearly" ? "Special yearly price" : "Billed monthly",
+    };
+  };
+
+  const { professionalPrice, enterprisePrice,  } = getPrices();
+  const handlesubscription1 =  () => {
+    router.push('/auth/register')
+  }
   return (
     <div>
       <Navbar />
@@ -28,7 +61,7 @@ const Pricing = () => {
         </p>
 
         <div className="flex justify-center mt-10">
-          <ToggleButton />
+              <ToggleButton selected={billingCycle} onChange={setBillingCycle} />
         </div>
 
         <div
@@ -56,14 +89,14 @@ const Pricing = () => {
 
               <div className="mb-6">
                 <p className="text-3xl font-bold text-[#0A1532] mb-2">
-                  $99/month
+                 ${professionalPrice}/month
                 </p>
-                <p className="text-gray-500 text-sm">
-                  Save 15% annually ($296/year)
+                <p className={`text-gray-500 text-sm ${billingCycle === "monthly" ? "invisible" : ""}`}>
+                  Billed as $288 annually
                 </p>
               </div>
 
-              <button className="bg-[#0A1532] text-white w-full py-3 rounded-lg text-center font-medium transition hover:bg-[#0d1d45]">
+              <button onClick={handlesubscription1} className="bg-[#0A1532] text-white w-full py-3   rounded-lg text-center font-medium transition hover:bg-[#0d1d45]">
                 Get Started
               </button>
 
@@ -109,7 +142,7 @@ const Pricing = () => {
           </div>
           {/* Pro Plan */}
           <div>
-            <div className="relative bg-[#0A1532] p-8 rounded-lg border border-[#0A1532] w-full mx-auto min-h-[520px]">
+            <div className="relative bg-[#0A1532] p-8 rounded-lg border border-[#0A1532] w-full mx-auto min-h-[550px]">
               <div className="flex flex-col items-start mb-6">
                 <h2 className="text-2xl font-bold text-white mb-1">
                   Enterprise Tier
@@ -120,13 +153,13 @@ const Pricing = () => {
               </div>
 
               <div className="mb-6">
-                <p className="text-3xl font-bold text-white mb-2">$99/month</p>
-                <p className="text-white text-sm">
-                  Save 15% annually ($999/year)
+                <p className="text-3xl font-bold text-white mb-2">  ${enterprisePrice}/month</p>
+                <p className={`text-white text-sm ${billingCycle === "monthly" ? "invisible" : ""}`}>
+                 Billed as $528 annually
                 </p>
               </div>
 
-              <button className="bg-white text-[#0A1532] w-full py-3 rounded-lg text-center font-medium transition ">
+              <button onClick={handlesubscription1} className="bg-white text-[#0A1532] w-full py-3 rounded-lg text-center font-medium transition ">
                 Get Started
               </button>
 
