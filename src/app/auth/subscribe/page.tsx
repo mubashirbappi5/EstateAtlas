@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import logo from '../../../../public/logo.png';
+import { useUser } from '@/app/context/UserContext';
 
 export default function RegisterForm() {
   const stripe = useStripe();
@@ -13,6 +14,7 @@ export default function RegisterForm() {
 
   const plan = searchParams.get('plan') || 'premium';
   const isYearly = searchParams.get('isYearly') === 'true';
+  const { setUser} = useUser();
 
   const PRICES: Record<string, { monthly: string; yearly: string }> = {
     low_basic: {
@@ -111,6 +113,8 @@ export default function RegisterForm() {
         setError(data.message || 'Registration failed');
       } else {
         setSuccess('Registration successful! Please check your email or log in.');
+        console.log('Registration successful:', data);
+         setUser(data.user); 
       }
     } catch (err) {
       console.error('Registration error:', err);

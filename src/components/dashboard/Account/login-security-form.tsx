@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -56,35 +55,48 @@ export default function SecurityForm() {
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
-    if (errors.length > 0) {
-      setErrors([])
-    }
-    if (success) {
-      setSuccess(false)
-    }
+    if (errors.length > 0) setErrors([])
+    if (success) setSuccess(false)
   }
 
   const handleSaveChanges = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (!validateForm()) {
-      return
-    }
+    if (!validateForm()) return
 
     setIsLoading(true)
 
-    // Simulate API call
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-      setSuccess(true)
-      setFormData({
-        currentPassword: "",
-        newPassword: "",
-        confirmPassword: "",
+      const token = localStorage.getItem("token")
+      if (!token) {
+        setErrors(["User token not found. Please log in again."])
+        return
+      }
+
+      const response = await fetch("http://204.197.173.249:8014/api/user/change-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          currentPassword: formData.currentPassword,
+          newPassword: formData.newPassword,
+        }),
       })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        const message = data?.message || "Failed to update password. Please try again."
+        setErrors([message])
+      } else {
+        setSuccess(true)
+        setFormData({ currentPassword: "", newPassword: "", confirmPassword: "" })
+      }
     } catch (error) {
-      setErrors(["Failed to update password. Please try again."])
-      console.error("Error updating password:", error)
+      console.error("Error:", error)
+      setErrors(["An unexpected error occurred. Please try again."])
     } finally {
       setIsLoading(false)
     }
@@ -108,10 +120,10 @@ export default function SecurityForm() {
   }
 
   return (
-    <div className=" bg-gray-50 flex items-center justify-center p-4">
+    <div className="bg-gray-50 flex items-center justify-center p-4">
       <Card className="w-full max-w-5xl px-10 bg-white shadow-lg border-0 border-t-4 border-blue-400">
         <CardHeader className="text-center">
-          <CardTitle className="flex  gap-2 text-lg font-medium text-gray-700">
+          <CardTitle className="flex gap-2 text-lg font-medium text-gray-700">
             <Lock className="w-5 h-5" />
             Login & Security
           </CardTitle>
@@ -122,9 +134,7 @@ export default function SecurityForm() {
               <AlertDescription>
                 <ul className="list-disc list-inside space-y-1">
                   {errors.map((error, index) => (
-                    <li key={index} className="text-sm">
-                      {error}
-                    </li>
+                    <li key={index} className="text-sm">{error}</li>
                   ))}
                 </ul>
               </AlertDescription>
@@ -133,11 +143,14 @@ export default function SecurityForm() {
 
           {success && (
             <Alert className="border-green-200 bg-green-50">
-              <AlertDescription className="text-green-800">Password updated successfully!</AlertDescription>
+              <AlertDescription className="text-green-800">
+                Password updated successfully!
+              </AlertDescription>
             </Alert>
           )}
 
           <form onSubmit={handleSaveChanges} className="space-y-4">
+            {/* Current Password */}
             <div className="space-y-2">
               <Label htmlFor="currentPassword" className="text-sm font-medium text-gray-700">
                 Current Password
@@ -161,6 +174,7 @@ export default function SecurityForm() {
               </div>
             </div>
 
+            {/* New Password */}
             <div className="space-y-2">
               <Label htmlFor="newPassword" className="text-sm font-medium text-gray-700">
                 New Password
@@ -184,6 +198,7 @@ export default function SecurityForm() {
               </div>
             </div>
 
+            {/* Confirm Password */}
             <div className="space-y-2">
               <Label htmlFor="confirmPassword" className="text-sm font-medium text-gray-700">
                 Confirm New Password
@@ -207,8 +222,13 @@ export default function SecurityForm() {
               </div>
             </div>
 
+            {/* Buttons */}
             <div className="flex max-w-md gap-3 pt-4">
-              <Button type="submit" disabled={isLoading} className="bg-slate-800 hover:bg-slate-700 text-white px-6 py-2.5 h-auto font-medium">
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="bg-slate-800 hover:bg-slate-700 text-white px-6 py-2.5 h-auto font-medium"
+              >
                 {isLoading ? "Saving..." : "Save Changes"}
               </Button>
               <Button
