@@ -74,11 +74,13 @@ export default function Billing() {
 //billing details state
 
    const [billingDetails, setBillingDetails] = useState<BillingDetails | null>(null)
+  const [loading, setLoading] = useState(true)
 
    useEffect(() => {
     async function fetchBilling() {
       try {
          const token = localStorage.getItem("token")
+         
         const res = await fetch("http://204.197.173.249:8014/api/subscription", {
           method: "GET",
           headers: {
@@ -93,7 +95,7 @@ export default function Billing() {
 
         const data = await res.json()
 
-       
+    
       setBillingDetails({
   planName:data.tier || "N/A Tier",
   price: "00", 
@@ -108,10 +110,10 @@ export default function Billing() {
       } catch (error) {
         console.error(error)
       } finally {
-      
-        // setLoading(false) removed because loading is unused
+        setLoading(false)
       }
     }
+
     fetchBilling()
   }, [])
 
