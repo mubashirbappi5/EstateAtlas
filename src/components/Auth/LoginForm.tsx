@@ -47,10 +47,12 @@ export default function LoginForm() {
           localStorage.setItem('token', data.data.token);
     console.log('Stored token:', localStorage.getItem('token'));
 
-        setUser(data.data.user); 
+       
+        localStorage.setItem("user", JSON.stringify(data.data.user));
+         setUser(data.data.user); 
         console.log('User data:', data.data.user.first_name);
         
-        router.push('/dashboard/globaldata');
+        router.push('/dashboard/Countries');
       }
     } catch (err) {
       setError('Something went wrong. Please try again.');

@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import logo from '../../../../public/logo.png';
 import { useUser } from '@/app/context/UserContext';
@@ -15,6 +15,7 @@ export default function RegisterForm() {
   const plan = searchParams.get('plan') || 'premium';
   const isYearly = searchParams.get('isYearly') === 'true';
   const { setUser} = useUser();
+   const router = useRouter();
 
   const PRICES: Record<string, { monthly: string; yearly: string }> = {
     low_basic: {
@@ -115,6 +116,7 @@ export default function RegisterForm() {
         setSuccess('Registration successful! Please check your email or log in.');
         console.log('Registration successful:', data);
          setUser(data.user); 
+         router.push('/dashboard/Countries');
       }
     } catch (err) {
       console.error('Registration error:', err);
