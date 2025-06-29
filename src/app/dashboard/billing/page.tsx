@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -16,7 +16,20 @@ interface BillingHistoryItem {
   status: "Paid" | "Pending" | "Failed"
 }
 
+interface BillingDetails {
+  planName: string
+  price: string
+  currency: string
+  nextBillingDate: string
+  status: "Active" | "Expired" | "Cancelled"
+  paymentMethodLast4: string
+  paymentMethodExpiry: string
+}
+
+
+
 export default function Billing() {
+  // Billing history state
   const [billingHistory] = useState<BillingHistoryItem[]>([
     {
       id: "1",
@@ -56,6 +69,61 @@ export default function Billing() {
     },
   ])
 
+
+
+//billing details state
+
+   const [billingDetails, setBillingDetails] = useState<BillingDetails | null>(null)
+  const [loading, setLoading] = useState(true)
+
+   useEffect(() => {
+    async function fetchBilling() {
+      try {
+         const token = localStorage.getItem("token")
+        const res = await fetch("http://204.197.173.249:8014/api/subscription", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        })
+
+        if (!res.ok) {
+          throw new Error(`Failed to fetch billing details: ${res.status}`)
+        }
+
+        const data = await res.json()
+
+       
+      setBillingDetails({
+  planName:data.tier || "N/A Tier",
+  price: "00", 
+  currency: "$", // Adjust this as needed
+  nextBillingDate: data.subscription?.current_period_start
+    ? new Date(data.subscription.current_period_start).toLocaleDateString()
+    : "N/A",
+  status: data.subscription?.status === "active" ? "Active" : "Cancelled",
+  paymentMethodLast4: "4242", // Not available in your response, use placeholder
+  paymentMethodExpiry: "12/27", // Not available in your response, use placeholder
+})
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchBilling()
+  }, [])
+
+
+  console.log("Billing Details:", billingDetails)
+
+
+
+
+
+
   const handleGetStarted = (type: "primary" | "secondary") => {
     console.log(`Get started clicked: ${type}`)
     // Add your logic here
@@ -82,17 +150,17 @@ export default function Billing() {
           <div className="bg-gray-50 rounded-lg p-6">
             <div className="flex items-start justify-between mb-4">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">Basic Tier</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">{billingDetails?.planName}</h3>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-2xl font-bold text-gray-900">$19</span>
+                  <span className="text-2xl font-bold text-gray-900">{billingDetails?.price}</span>
                   <span className="text-sm text-gray-600">Per month</span>
                 </div>
               </div>
-              <Badge className="bg-blue-500 hover:bg-blue-600 text-white">Best Plan</Badge>
+              <Badge className="bg-blue-500 hover:bg-blue-600 text-white">{billingDetails?.status}</Badge>
             </div>
 
             <p className="text-sm text-gray-600 mb-6">
-              Next billing date: <span className="font-medium">June 23, 2025</span>
+              Next billing date: <span className="font-medium">{billingDetails?.nextBillingDate}</span>
             </p>
 
             <div className="flex gap-3">
