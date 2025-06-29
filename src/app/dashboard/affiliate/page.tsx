@@ -55,6 +55,7 @@ export default function AffiliatePage() {
       if (res.ok && data.url) {
         setStripeLink(data.url)
         window.location.href = data.url
+        console.log(stripeLink)
       } else {
         alert('Failed to connect Stripe')
       }

@@ -7,7 +7,7 @@ import { Menu } from "lucide-react";
 import { useUser } from "../context/UserContext";
 
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
     const { user } = useUser();
@@ -56,3 +56,4 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     </div>
   );
 }
+export default DashboardLayout;

@@ -1,6 +1,8 @@
+
 import SecurityForm from '@/components/dashboard/Account/login-security-form';
 import Notification from '@/components/dashboard/Account/notification-preferences';
 import ProfileSettings from '@/components/dashboard/Account/ProfileSettings';
+
 import React from 'react';
 
 const accountSettings = () => {
@@ -16,4 +18,4 @@ const accountSettings = () => {
     );
 };
 
-export default accountSettings;
+export default  accountSettings;
