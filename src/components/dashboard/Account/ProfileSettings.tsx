@@ -10,12 +10,12 @@ import { useUser } from "@/app/context/UserContext"
 import Cookies from 'js-cookie';
 
 export default function ProfileSettings() {
-  const {user} = useUser()
+  const {user, setUser} = useUser()
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
-    phoneNumber: "",
+    phone: "",
   })
 
   const [originalData, setOriginalData] = useState(formData)
@@ -24,10 +24,10 @@ export default function ProfileSettings() {
   useEffect(() => {
     if (user) {
       const userData = {
-        firstName: user.first_name || "",
-        lastName: user.last_name || "",
+        first_name: user.first_name || "",
+        last_name: user.last_name || "",
         email: user.email || "",
-        phoneNumber: user.phone || "",
+       phone: user.phone || "",
       }
       setFormData(userData)
       setOriginalData(userData)
@@ -52,10 +52,10 @@ export default function ProfileSettings() {
       
       // Transform form data to match API expectations
       const apiData = {
-        first_name: formData.firstName,
-        last_name: formData.lastName,
+        first_name: formData.first_name,
+        last_name: formData.last_name,
         email: formData.email,
-        phone: formData.phoneNumber
+        phone: formData.phone
       }
 
       console.log('Sending data:', apiData);
@@ -79,16 +79,24 @@ export default function ProfileSettings() {
         const successData = await res.json()
         console.log('Success response:', successData)
         alert("Changes saved successfully!")
+        setUser({
+  id: successData.data.id,
+  first_name: successData.data.first_name,
+  last_name: successData.data.last_name,
+  email: successData.data.email,
+  phone: successData.data.phone,
+});
         
         // Update both form data and original data to reflect the saved state
         const updatedData = {
-          firstName: successData.data.first_name || "",
-          lastName: successData.data.last_name || "",
+         first_name: successData.data.first_name || "",
+          last_name: successData.data.last_name || "",
           email: successData.data.email || "",
-          phoneNumber: successData.data.phone || ""
+         phone: successData.data.phone || ""
         }
         setFormData(updatedData)
         setOriginalData(updatedData)
+        Cookies.set("user", JSON.stringify(updatedData), { expires: 7, path: "/" });
         
         console.log('Updated form state:', updatedData)
       }
@@ -142,7 +150,7 @@ export default function ProfileSettings() {
                 </Label>
                 <Input
                   id="firstName"
-                  value={formData.firstName}
+                  Value={formData.first_name}
                   onChange={(e) => handleInputChange("firstName", e.target.value)}
                   className="h-11 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                 />
@@ -154,7 +162,7 @@ export default function ProfileSettings() {
                 </Label>
                 <Input
                   id="lastName"
-                  value={formData.lastName}
+                 Value={formData.last_name}
                   onChange={(e) => handleInputChange("lastName", e.target.value)}
                   className="h-11 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                 />
@@ -168,7 +176,7 @@ export default function ProfileSettings() {
               <Input
                 id="email"
                 type="email"
-                value={formData.email}
+                Value={formData.email}
                 onChange={(e) => handleInputChange("email", e.target.value)}
                 className="h-11 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
               />
@@ -181,7 +189,7 @@ export default function ProfileSettings() {
               <Input
                 id="phoneNumber"
                 type="tel"
-                value={formData.phoneNumber}
+               Value={formData.phone}
                 onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
                 className="h-11 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
               />

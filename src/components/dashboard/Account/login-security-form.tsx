@@ -80,8 +80,9 @@ export default function SecurityForm() {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          currentPassword: formData.currentPassword,
-          newPassword: formData.newPassword,
+         current_password: formData.currentPassword,
+         new_password: formData.newPassword,
+         new_password_confirmation: formData.confirmPassword,
         }),
       })
 
