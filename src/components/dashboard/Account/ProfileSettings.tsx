@@ -10,16 +10,16 @@ import { useUser } from "@/app/context/UserContext"
 import Cookies from 'js-cookie';
 
 export default function ProfileSettings() {
-  const {user, setUser} = useUser()
+  const { user, setUser } = useUser()
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
     email: "",
     phone: "",
   })
-
   const [originalData, setOriginalData] = useState(formData)
-  
+  const [isSaving, setIsSaving] = useState(false)
+
   // Update form data when user data loads or changes
   useEffect(() => {
     if (user) {
@@ -27,15 +27,12 @@ export default function ProfileSettings() {
         first_name: user.first_name || "",
         last_name: user.last_name || "",
         email: user.email || "",
-       phone: user.phone || "",
+        phone: user.phone || "",
       }
       setFormData(userData)
       setOriginalData(userData)
-      console.log('User data loaded/updated:', userData)
     }
-  }, [user]) // Remove isUserDataLoaded from dependencies and logic
-  
-  const [isSaving, setIsSaving] = useState(false)
+  }, [user])
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({
@@ -46,7 +43,6 @@ export default function ProfileSettings() {
 
   const handleSaveChanges = async () => {
     setIsSaving(true)
-
     try {
       const token = Cookies.get('token');
       
@@ -58,10 +54,8 @@ export default function ProfileSettings() {
         phone: formData.phone
       }
 
-      console.log('Sending data:', apiData);
-      
-      const res = await fetch("http://204.197.173.249:8014/api/user/update", {
-        method: "POST", 
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://204.197.173.249:8014"}/api/user/update`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`
@@ -69,42 +63,33 @@ export default function ProfileSettings() {
         body: JSON.stringify(apiData),
       })
 
-      console.log('Response status:', res.status);
-
       if (!res.ok) {
         const errorData = await res.json()
         console.error("Error response:", errorData)
         alert(`Failed to save changes: ${errorData.message || 'Please try again.'}`)
       } else {
         const successData = await res.json()
-        console.log('Success response:', successData)
-        alert("Changes saved successfully!")
-        setUser({
-  id: successData.data.id,
-  first_name: successData.data.first_name,
-  last_name: successData.data.last_name,
-  email: successData.data.email,
-  phone: successData.data.phone,
-});
         
         // Update both form data and original data to reflect the saved state
         const updatedData = {
-         first_name: successData.data.first_name || "",
+          ...user, // Keep existing user data
+          first_name: successData.data.first_name || "",
           last_name: successData.data.last_name || "",
           email: successData.data.email || "",
-         phone: successData.data.phone || ""
+          phone: successData.data.phone || ""
         }
+
+        setUser(updatedData)
         setFormData(updatedData)
         setOriginalData(updatedData)
-        Cookies.set("user", JSON.stringify(updatedData), { expires: 7, path: "/" });
         
-        console.log('Updated form state:', updatedData)
+        // Update cookie if needed
+        Cookies.set('user', JSON.stringify(updatedData), { expires: 7, path: '/' });
       }
     } catch (error) {
       console.error("Network or server error:", error)
       alert("Something went wrong while saving changes.")
     }
-
     setIsSaving(false)
   }
 
@@ -135,14 +120,12 @@ export default function ProfileSettings() {
             <h1 className="text-2xl font-semibold text-gray-900">Account Settings</h1>
           </div>
         </CardHeader>
-
         <CardContent className="space-y-6">
           <div className="space-y-4">
             <div className="flex items-center gap-2 text-gray-700">
               <User className="h-5 w-5" />
               <span className="font-medium">Profile Information</span>
             </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="firstName" className="text-sm font-medium text-gray-700">
@@ -150,25 +133,23 @@ export default function ProfileSettings() {
                 </Label>
                 <Input
                   id="firstName"
-                  Value={formData.first_name}
-                  onChange={(e) => handleInputChange("firstName", e.target.value)}
+                  value={formData.first_name}
+                  onChange={(e) => handleInputChange("first_name", e.target.value)}
                   className="h-11 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
-
               <div className="space-y-2">
                 <Label htmlFor="lastName" className="text-sm font-medium text-gray-700">
                   Last Name
                 </Label>
                 <Input
                   id="lastName"
-                 Value={formData.last_name}
-                  onChange={(e) => handleInputChange("lastName", e.target.value)}
+                  value={formData.last_name}
+                  onChange={(e) => handleInputChange("last_name", e.target.value)}
                   className="h-11 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
             </div>
-
             <div className="space-y-2">
               <Label htmlFor="email" className="text-sm font-medium text-gray-700">
                 Email Address
@@ -176,26 +157,24 @@ export default function ProfileSettings() {
               <Input
                 id="email"
                 type="email"
-                Value={formData.email}
+                value={formData.email}
                 onChange={(e) => handleInputChange("email", e.target.value)}
                 className="h-11 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
-
             <div className="space-y-2">
-              <Label htmlFor="phoneNumber" className="text-sm font-medium text-gray-700">
+              <Label htmlFor="phone" className="text-sm font-medium text-gray-700">
                 Phone Number
               </Label>
               <Input
-                id="phoneNumber"
+                id="phone"
                 type="tel"
-               Value={formData.phone}
-                onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
+                value={formData.phone}
+                onChange={(e) => handleInputChange("phone", e.target.value)}
                 className="h-11 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
           </div>
-
           <div className="flex gap-3 pt-4">
             <Button
               onClick={handleSaveChanges}
