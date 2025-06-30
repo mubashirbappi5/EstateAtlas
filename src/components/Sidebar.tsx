@@ -1,11 +1,39 @@
 "use client";
-
+import Cookies from 'js-cookie';
 import Link from "next/link";
 import Image from "next/image";
 import { FC } from "react";
 import logo from "../../public/logo.png"
 import { Calculator, ChartBarStacked, ChartNoAxesCombined, ChartPie, CreditCard, FileChartColumn, Globe, Headset, LogOut, Save, UserCog, Users } from 'lucide-react';
 const Sidebar: FC = () => {
+  const router = useRouter();
+const { setUser } = useUser();
+
+
+const handleLogout = async () => {
+  try {
+    const token = Cookies.get('token');
+    const res = await fetch("http://204.197.173.249:8014/api/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!res.ok) {
+      console.error("Logout failed");
+    }
+  } catch (err) {
+    console.error("Logout error:", err);
+  } finally {
+    Cookies.remove("token");
+    Cookies.remove("user");
+    setUser(null);
+    router.push("/auth/login");
+  }
+};
+
   return (
     <aside className="flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto bg-white border-r dark:bg-gray-900 dark:border-gray-700">
       <Link href="/" className="flex items-center space-x-2">
@@ -53,7 +81,7 @@ const Sidebar: FC = () => {
             <NavItem href="accountSettings" label="Account Settings" icon={    <UserCog/>} />
             <NavItem href="billing" label="Billing" icon={    <CreditCard />} />
             <NavItem href="support" label="Support" icon=  {<Headset />} />
-            <NavItem href="#" label="Log Out" icon={    <LogOut />} />
+            <NavItem href ="" label="Log Out" icon={    <LogOut onClick={handleLogout}  />} />
           </div>
         </nav>
       </div>
@@ -62,6 +90,8 @@ const Sidebar: FC = () => {
 };
 
 import { ReactNode } from "react";
+import { useUser } from "@/app/context/UserContext";
+import { useRouter } from "next/navigation";
 
 interface NavItemProps {
   href: string;

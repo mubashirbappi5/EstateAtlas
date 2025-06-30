@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { useUser } from "@/app/context/UserContext"
 import Cookies from 'js-cookie';
+import toast from "react-hot-toast"
 
 interface UserData {
   id: number;
@@ -86,7 +87,7 @@ export default function ProfileSettings() {
       Cookies.set('user', JSON.stringify(updatedData), { expires: 7, path: '/' });
     } catch (error) {
       console.error("Error:", error)
-      alert(error instanceof Error ? error.message : "Something went wrong")
+     toast.error(error instanceof Error ? error.message : "Something went wrong")
     } finally {
       setIsSaving(false)
     }

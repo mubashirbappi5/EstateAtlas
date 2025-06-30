@@ -6,6 +6,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import Script from "next/script";
 import StripeProvider from "./StripeProvider";
+import { Toaster } from 'react-hot-toast';
 
 
 
@@ -41,6 +42,7 @@ export default function RootLayout({
           <main className="min-h-screen">
             {children}
           </main>
+          <Toaster position="top-right" reverseOrder={false} /> 
           </StripeProvider>
         
         </Providers>

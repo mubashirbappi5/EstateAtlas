@@ -77,7 +77,7 @@ const SavedCountries = () => {
 
     return (
         <div>
-           <Card className="w-full mt-10 max-w-6xl mx-auto p-6 bg-white border-0 border-t-4 border-sky-500 rounded-lg shadow-md  ">
+           <Card className="w-full mt-10 max-w-6xl mx-auto  bg-white border-0 border-t-4 border-sky-500 rounded-lg shadow-md  ">
         <CardContent className="p-6">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">

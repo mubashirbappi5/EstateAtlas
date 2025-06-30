@@ -1,7 +1,8 @@
-// app/auth/reset-password/ResetPasswordForm.tsx
+
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter,  } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 export default function ResetPasswordForm() {
   const [password, setPassword] = useState('');
@@ -45,7 +46,7 @@ useEffect(() => {
       if (!res.ok) {
         setError(data.message || 'Reset failed');
       } else {
-        alert('Password reset successful! Please login.');
+       toast.success('Password reset successful! Please login.');
         router.push('login');
       }
     } catch {

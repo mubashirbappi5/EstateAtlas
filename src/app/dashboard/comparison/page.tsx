@@ -22,9 +22,9 @@ export default function Comparison() {
   };
 
   return (
-    <div className="w-full min-h-screen max-w-6xl mx-auto p-5 space-y-10 bg-gray-50">
+    <div className="w-full min-h-screen max-w-6xl mx-auto  space-y-10 bg-gray-50">
       {/* Header */}
-      <h1 className="text-4xl font-semibold">Market Comparison Tool 👑</h1>
+      <h1 className="md:text-4xl text-2xl font-semibold">Market Comparison Tool 👑</h1>
 
       {/* Banner */}
       <div
@@ -36,8 +36,8 @@ export default function Comparison() {
       >
         <div className="max-w-3xl mx-auto space-y-4">
           <h1 className="text-8xl">👑</h1>
-          <h2 className="text-4xl">Premium Feature - Advanced Comparison Tool</h2>
-          <p className="text-xl">
+          <h2 className="md:text-4xl text-2xl">Premium Feature - Advanced Comparison Tool</h2>
+          <p className="md:text-xl text-lg">
             Compare multiple countries and cities side-by-side with detailed metrics,
             investment scores, and AI-powered recommendations.
           </p>

@@ -5,15 +5,15 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import logo from '../../../../public/logo.png';
-import { useUser } from '@/app/context/UserContext';
-import Cookies from 'js-cookie';
+// import { useUser } from '@/app/context/UserContext';
+// import Cookies from 'js-cookie';
 
 export default function RegisterForm() {
   const stripe = useStripe();
   const elements = useElements();
   const [plan, setPlan] = useState('premium');
   const [isYearly, setIsYearly] = useState(false);
-  const { setUser } = useUser();
+  // const { setUser } = useUser();
   const router = useRouter();
 
   // Initialize price IDs
@@ -130,10 +130,10 @@ export default function RegisterForm() {
         setError(data.message || 'Registration failed');
       } else {
         setSuccess('Registration successful! Please check your email or log in.');
-        Cookies.set('token', data.data.token, { expires: 7, path: '/' });
-        Cookies.set('user', JSON.stringify(data.data.user), { expires: 7, path: '/' });
-        setUser(data.data.user);
-        router.push('/dashboard/Countries');
+        // Cookies.set('token', data.data.token, { expires: 7, path: '/' });
+        // Cookies.set('user', JSON.stringify(data.data.user), { expires: 7, path: '/' });
+        // setUser(data.data.user);
+        router.push('login');
       }
     } catch (err) {
       console.error('Registration error:', err);

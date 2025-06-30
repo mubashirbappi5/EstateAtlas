@@ -75,7 +75,7 @@ export default function Investcal() {
   }
 
   return (
-    <div className="  p-4">
+    <div className="  ">
       <div className="max-w-6xl  mx-auto">
         <Card className="shadow-xl bg-white border-0 border-t-4 border-sky-400  backdrop-blur">
           <CardHeader className="border-b border-blue-100">

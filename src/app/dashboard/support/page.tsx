@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -10,6 +9,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Mail, HelpCircle, Heart, Plus, Minus } from "lucide-react"
+import Cookies from 'js-cookie';
+import toast from "react-hot-toast"
 
 export default function Component() {
   const [formData, setFormData] = useState({
@@ -17,14 +18,54 @@ export default function Component() {
     priority: "",
     message: "",
   })
-
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null)
+ 
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsSubmitting(true)
 
-    // Handle form submission here
-    alert("Support request submitted successfully!")
+    try {
+      const token =  Cookies.get('token');
+      
+      const response = await fetch("http://204.197.173.249:8014/api/help-support", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          subject: formData.subject,
+          priority: formData.priority,
+          message: formData.message,
+       
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to submit support request")
+      }
+
+      const data = await response.json()
+      console.log(data)
+      
+     toast.success('Support Request sent')
+
+      // Reset form
+      setFormData({
+        subject: "",
+        priority: "",
+        message: "",
+      })
+
+    } catch (error) {
+      console.log(error)
+     toast.error('someting wrong')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleInputChange = (field: string, value: string) => {
@@ -83,6 +124,7 @@ export default function Component() {
                   value={formData.subject}
                   onChange={(e) => handleInputChange("subject", e.target.value)}
                   className="w-full"
+                  required
                 />
               </div>
 
@@ -90,37 +132,46 @@ export default function Component() {
                 <label htmlFor="priority" className="block text-sm font-medium text-gray-700 mb-2">
                   Priority
                 </label>
-                <Select onValueChange={(value) => handleInputChange("priority", value)}>
+                <Select 
+                  onValueChange={(value) => handleInputChange("priority", value)}
+                  value={formData.priority}
+                  required
+                >
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Select priority">
                       {formData.priority && (
                         <div className="flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
+                          <div className={`w-2 h-2 rounded-full ${
+                            formData.priority.includes("Low") ? "bg-green-400" :
+                            formData.priority.includes("Medium") ? "bg-yellow-400" :
+                            formData.priority.includes("High") ? "bg-red-400" :
+                            "bg-red-600"
+                          }`}></div>
                           {formData.priority}
                         </div>
                       )}
                     </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Low - General Question">
+                    <SelectItem value="Low">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-green-400"></div>
                         Low - General Question
                       </div>
                     </SelectItem>
-                    <SelectItem value="Medium - Account Issue">
+                    <SelectItem value="Medium">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
                         Medium - Account Issue
                       </div>
                     </SelectItem>
-                    <SelectItem value="High - Technical Problem">
+                    <SelectItem value="High">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-red-400"></div>
                         High - Technical Problem
                       </div>
                     </SelectItem>
-                    <SelectItem value="Urgent - Service Down">
+                    <SelectItem value="Urgent">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-red-600"></div>
                         Urgent - Service Down
@@ -140,15 +191,16 @@ export default function Component() {
                   value={formData.message}
                   onChange={(e) => handleInputChange("message", e.target.value)}
                   className="w-full min-h-[120px] resize-none"
+                  required
                 />
               </div>
 
               <Button
                 type="submit"
                 className="bg-gray-800 hover:bg-gray-900 text-white px-6 py-3"
-                disabled={!formData.subject || !formData.priority || !formData.message}
+                disabled={!formData.subject || !formData.priority || !formData.message || isSubmitting}
               >
-                Get started
+                {isSubmitting ? "Submitting..." : "Submit Request"}
               </Button>
             </form>
           </CardContent>
@@ -194,8 +246,8 @@ export default function Component() {
               Our support team is available 24/7 to assist you with any questions or technical issues.
             </p>
             <div className="flex gap-3">
-              <Button className="bg-gray-800 hover:bg-gray-900 text-white px-6 py-2">Get started</Button>
-              <Button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2">Get started</Button>
+              <Button className="bg-gray-800 hover:bg-gray-900 text-white px-6 py-2">Contact Us</Button>
+              <Button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2">Live Chat</Button>
             </div>
           </CardContent>
         </Card>

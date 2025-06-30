@@ -82,10 +82,10 @@ const Pricing = () => {
               </div>
 
               <div className="flex flex-col items-start mb-6">
-                <h2 className="text-2xl font-bold text-[#0A1532] mb-1">
+                <h2 className="text-2xl text-center md:text-left font-bold text-[#0A1532] mb-1">
                   Professional Tier
                 </h2>
-                <h4 className="text-gray-600">For Individual Analysts</h4>
+                <h4 className="text-gray-600 text-center md:text-left">For Individual Analysts</h4>
               </div>
 
               <div className="mb-6">
@@ -144,11 +144,11 @@ const Pricing = () => {
           {/* Pro Plan */}
           <div>
             <div className="relative bg-[#0A1532] p-8 rounded-lg border border-[#0A1532] w-full mx-auto min-h-[550px]">
-              <div className="flex flex-col items-start mb-6">
-                <h2 className="text-2xl font-bold text-white mb-1">
+              <div className="flex flex-col md:items-start mb-6">
+                <h2 className="text-2xl font-bold text-center md:text-left text-white mb-1">
                   Enterprise Tier
                 </h2>
-                <h4 className="text-white">
+                <h4 className="text-white text-center md:text-left">
                   Most Popular – For Teams & Professionals
                 </h4>
               </div>
@@ -229,7 +229,7 @@ const Pricing = () => {
             {/* Main Content */}
             <div className="relative z-10 flex flex-col md:flex-row items-start justify-between gap-10">
               <div className="">
-                <h2 className="text-5xl leading-relaxed md:leading-[4rem] md:text-5xl text-left font-bold mb-4">
+                <h2 className="text-4xl leading-relaxed md:leading-[4rem] md:text-5xl text-left font-bold mb-4">
                   Still Unsure? Try <br /> EstateAtlas Risk-Free
                 </h2>
                 <Link href='/auth/register' className="mt-4 w-44 bg-white text-[#0A1532] font-semibold px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-gray-200 transition">

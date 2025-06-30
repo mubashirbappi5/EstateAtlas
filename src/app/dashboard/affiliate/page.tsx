@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Clipboard } from 'lucide-react'
 import Cookies from 'js-cookie';
+import toast from 'react-hot-toast'
 
 export default function AffiliatePage() {
   const [affiliateCode, setAffiliateCode] = useState<string | null>(null)
@@ -30,13 +31,13 @@ export default function AffiliatePage() {
         setAffiliateCode(data.data.affiliate_code)
       
         
-          alert('Affiliate code fetched successfully!')
+         toast.success('Affiliate code fetched successfully!')
       } else {
-        alert('Failed to fetch affiliate code')
+       toast.error('Failed to fetch affiliate code')
       }
     } catch (err) {
       console.error(err)
-      alert('Error fetching affiliate code')
+    toast.error('Error fetching affiliate code')
     } finally {
       setLoadingAffiliate(false)
     }
@@ -57,11 +58,11 @@ export default function AffiliatePage() {
         window.location.href = data.url
       
       } else {
-        alert('Failed to connect Stripe')
+      toast.error('Failed to connect Stripe')
       }
     } catch (err) {
       console.error(err)
-      alert('Error connecting to Stripe')
+     toast.error('Error connecting to Stripe')
     } finally {
       setLoadingStripe(false)
     }
@@ -90,7 +91,7 @@ export default function AffiliatePage() {
             size="sm"
             onClick={() => {
               navigator.clipboard.writeText(affiliateCode)
-              alert('Copied to clipboard!')
+             toast.success('Copied to clipboard!')
             }}
           >
              <Clipboard />
