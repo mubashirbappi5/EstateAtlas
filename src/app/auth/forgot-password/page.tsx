@@ -18,7 +18,7 @@ export default function ForgotPasswordPage() {
     setSuccess('');
 
     try {
-      const res = await fetch('http://204.197.173.249:8014/api/forgot-password', {
+      const res = await fetch('https://204.197.173.249:8014/api/forgot-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
