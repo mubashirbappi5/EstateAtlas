@@ -18,7 +18,7 @@ interface Blog {
 const Articles = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
-console.log(blogs)
+
    useEffect(() => {
     const fetchBlogs = async () => {
       try {

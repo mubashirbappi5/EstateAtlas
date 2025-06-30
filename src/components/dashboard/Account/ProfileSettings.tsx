@@ -9,9 +9,17 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { useUser } from "@/app/context/UserContext"
 import Cookies from 'js-cookie';
 
+interface UserData {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+}
+
 export default function ProfileSettings() {
   const { user, setUser } = useUser()
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<Omit<UserData, 'id'>>({
     first_name: "",
     last_name: "",
     email: "",
@@ -20,7 +28,6 @@ export default function ProfileSettings() {
   const [originalData, setOriginalData] = useState(formData)
   const [isSaving, setIsSaving] = useState(false)
 
-  // Update form data when user data loads or changes
   useEffect(() => {
     if (user) {
       const userData = {
@@ -34,63 +41,55 @@ export default function ProfileSettings() {
     }
   }, [user])
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({
+  const handleInputChange = (field: keyof typeof formData, value: string) => {
+    setFormData(prev => ({
       ...prev,
       [field]: value,
     }))
   }
 
   const handleSaveChanges = async () => {
+    if (!user) return;
+    
     setIsSaving(true)
     try {
       const token = Cookies.get('token');
       
-      // Transform form data to match API expectations
-      const apiData = {
-        first_name: formData.first_name,
-        last_name: formData.last_name,
-        email: formData.email,
-        phone: formData.phone
-      }
-
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://204.197.173.249:8014"}/api/user/update`, {
+      const res = await fetch(`http://204.197.173.249:8014/api/user/update`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`
         },
-        body: JSON.stringify(apiData),
+        body: JSON.stringify(formData),
       })
 
       if (!res.ok) {
         const errorData = await res.json()
-        console.error("Error response:", errorData)
-        alert(`Failed to save changes: ${errorData.message || 'Please try again.'}`)
-      } else {
-        const successData = await res.json()
-        
-        // Update both form data and original data to reflect the saved state
-        const updatedData = {
-          ...user, // Keep existing user data
-          first_name: successData.data.first_name || "",
-          last_name: successData.data.last_name || "",
-          email: successData.data.email || "",
-          phone: successData.data.phone || ""
-        }
-
-        setUser(updatedData)
-        setFormData(updatedData)
-        setOriginalData(updatedData)
-        
-        // Update cookie if needed
-        Cookies.set('user', JSON.stringify(updatedData), { expires: 7, path: '/' });
+        throw new Error(errorData.message || 'Failed to save changes')
       }
+
+      const successData = await res.json()
+      const updatedData: UserData = {
+        ...user,
+        ...successData.data,
+      }
+
+      setUser(updatedData)
+      setOriginalData({
+        first_name: updatedData.first_name,
+        last_name: updatedData.last_name,
+        email: updatedData.email,
+        phone: updatedData.phone,
+      })
+      
+      Cookies.set('user', JSON.stringify(updatedData), { expires: 7, path: '/' });
     } catch (error) {
-      console.error("Network or server error:", error)
-      alert("Something went wrong while saving changes.")
+      console.error("Error:", error)
+      alert(error instanceof Error ? error.message : "Something went wrong")
+    } finally {
+      setIsSaving(false)
     }
-    setIsSaving(false)
   }
 
   const handleCancel = () => {
@@ -99,7 +98,6 @@ export default function ProfileSettings() {
 
   const hasChanges = JSON.stringify(formData) !== JSON.stringify(originalData)
 
-  // Show loading state while user data is being fetched
   if (!user) {
     return (
       <div className="bg-gray-50 md:p-4 flex items-center justify-center">
@@ -113,6 +111,7 @@ export default function ProfileSettings() {
   }
 
   return (
+  
     <div className="bg-gray-50 md:p-4 flex items-center justify-center">
       <Card className="w-full md:max-w-5xl md:px-10 bg-white shadow-lg border-0 border-t-4 border-blue-400">
         <CardHeader className="pb-4">

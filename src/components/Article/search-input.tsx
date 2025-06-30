@@ -10,7 +10,7 @@ export default function Component() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Searching for:", searchQuery)
+   
     // Add your search logic here
   }
 

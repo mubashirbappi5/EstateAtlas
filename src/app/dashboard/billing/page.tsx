@@ -125,20 +125,17 @@ export default function Billing() {
     fetchBilling();
   }, []);
 
-  console.log("Billing Details:", billingDetails);
+ 
 
   const handleUpdatePayment = () => {
-    console.log("Update payment method clicked");
+ 
     // Add your logic here
   };
 
-  const handleDownloadInvoice = (id: string) => {
-    console.log(`Download invoice for ${id}`);
-    // Add your logic here
-  };
+  
   //handle update subscription
   const handleupdate = () => {
-    console.log("testing");
+
     setShowUpdateOptions(true);
   };
 
@@ -214,7 +211,7 @@ export default function Billing() {
       alert("An error occurred while cancelling subscription.");
     }
   };
-
+if (!loading){
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6">
       {/* Billing & Subscription Section */}
@@ -406,7 +403,7 @@ export default function Billing() {
                     </td>
                     <td className="py-4 px-2">
                       <Button
-                        onClick={() => handleDownloadInvoice(item.id)}
+                        
                         size="sm"
                         className="bg-gray-800 hover:bg-gray-900 text-white"
                       >
@@ -423,4 +420,5 @@ export default function Billing() {
       </Card>
     </div>
   );
+}
 }

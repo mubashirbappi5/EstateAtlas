@@ -42,7 +42,7 @@ export default function LoginForm() {
       if (!res.ok) {
         setError(data.message || "Login failed");
       } else {
-        console.log("Login successful:", data);
+  
 
       
 

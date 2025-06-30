@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import logo from '../../../../public/logo.png';
 import { useUser } from '@/app/context/UserContext';
@@ -11,13 +11,12 @@ import Cookies from 'js-cookie';
 export default function RegisterForm() {
   const stripe = useStripe();
   const elements = useElements();
-  const searchParams = useSearchParams();
+  const [plan, setPlan] = useState('premium');
+  const [isYearly, setIsYearly] = useState(false);
+  const { setUser } = useUser();
+  const router = useRouter();
 
-  const plan = searchParams.get('plan') || 'premium';
-  const isYearly = searchParams.get('isYearly') === 'true';
-  const { setUser} = useUser();
-   const router = useRouter();
-
+  // Initialize price IDs
   const PRICES: Record<string, { monthly: string; yearly: string }> = {
     low_basic: {
       monthly: 'price_1RdSQsDgYV6zJ17v5Qn2763Z',
@@ -33,8 +32,16 @@ export default function RegisterForm() {
     },
   };
 
-  const selectedPriceId =
-    PRICES[plan as keyof typeof PRICES]?.[isYearly ? 'yearly' : 'monthly'] || '';
+  // Get URL params on client side
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      setPlan(params.get('plan') || 'premium');
+      setIsYearly(params.get('isYearly') === 'true');
+    }
+  }, []);
+
+  const selectedPriceId = PRICES[plan]?.[isYearly ? 'yearly' : 'monthly'] || '';
 
   const [formData, setFormData] = useState({
     first_name: '',
@@ -45,6 +52,14 @@ export default function RegisterForm() {
     price_id: selectedPriceId,
     affiliate_code: 'AFF685A30E951679',
   });
+
+  // Update price_id when plan or yearly changes
+  useEffect(() => {
+    setFormData(prev => ({
+      ...prev,
+      price_id: selectedPriceId
+    }));
+  }, [selectedPriceId]);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -115,13 +130,10 @@ export default function RegisterForm() {
         setError(data.message || 'Registration failed');
       } else {
         setSuccess('Registration successful! Please check your email or log in.');
-        console.log(data)
-        console.log(data.data.token)
-  Cookies.set('token', data.data.token, { expires: 7, path: '/' });
-  Cookies.set('user', JSON.stringify(data.data.user), { expires: 7, path: '/' });
-
-    setUser(data.data.user);
-    router.push('/dashboard/Countries');
+        Cookies.set('token', data.data.token, { expires: 7, path: '/' });
+        Cookies.set('user', JSON.stringify(data.data.user), { expires: 7, path: '/' });
+        setUser(data.data.user);
+        router.push('/dashboard/Countries');
       }
     } catch (err) {
       console.error('Registration error:', err);

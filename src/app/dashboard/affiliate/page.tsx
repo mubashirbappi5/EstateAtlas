@@ -9,7 +9,7 @@ import Cookies from 'js-cookie';
 
 export default function AffiliatePage() {
   const [affiliateCode, setAffiliateCode] = useState<string | null>(null)
-  const [stripeLink, setStripeLink] = useState<string | null>(null)
+  
   const [loadingAffiliate, setLoadingAffiliate] = useState(false)
   const [loadingStripe, setLoadingStripe] = useState(false)
 
@@ -25,7 +25,7 @@ export default function AffiliatePage() {
         },
       })
       const data = await res.json()
-      console.log('Affiliate Link Response:', data)
+     
       if (res.ok && data) {
         setAffiliateCode(data.data.affiliate_code)
       
@@ -53,9 +53,9 @@ export default function AffiliatePage() {
       })
       const data = await res.json()
       if (res.ok && data.url) {
-        setStripeLink(data.url)
+       
         window.location.href = data.url
-        console.log(stripeLink)
+      
       } else {
         alert('Failed to connect Stripe')
       }

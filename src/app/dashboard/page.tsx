@@ -4,7 +4,7 @@ import { useUser } from '../context/UserContext';
 
 const Page = () => {
     const { user } = useUser();
-    console.log('User in dashboard:', user);
+
     return (
         <div>
            
