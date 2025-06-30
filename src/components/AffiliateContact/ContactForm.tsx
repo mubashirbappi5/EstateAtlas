@@ -7,10 +7,10 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
 
-
 const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     message: "",
@@ -26,8 +26,7 @@ const ContactForm: React.FC = () => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const target = e.target;
-    const { name, value } = target;
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -40,7 +39,7 @@ const ContactForm: React.FC = () => {
 
   const handleCaptchaChange = (value: string | null) => {
     setCaptchaValue(value);
-    if(value) setError(null);
+    if (value) setError(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -56,13 +55,16 @@ const ContactForm: React.FC = () => {
     setSuccess(null);
 
     try {
-      // Prepare data including captcha token
       const payload = {
-        ...formData,
-        'g-recaptcha-response': captchaValue, // most backends expect this key name
+       first_name: formData.firstName,
+       last_name:formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        'g-recaptcha-response': captchaValue,
       };
 
-      const res = await fetch("http://real-state-business-management-system-api.test/api/contact", {
+      const res = await fetch("http://204.197.173.249:8014/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -77,7 +79,8 @@ const ContactForm: React.FC = () => {
       } else {
         setSuccess("Message sent successfully!");
         setFormData({
-          name: "",
+          firstName: "",
+          lastName: "",
           email: "",
           phone: "",
           message: "",
@@ -96,13 +99,13 @@ const ContactForm: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto p-14 bg-white rounded-xl border border-gray-200 shadow-sm">
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Name */}
+        {/* First Name */}
         <div className="relative mt-4">
           <input
             type="text"
-            name="name"
+            name="firstName"
             id="firstName"
-            value={formData.name}
+            value={formData.firstName}
             onChange={handleChange}
             required
             className="peer w-full px-4 pt-6 pb-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0A1532]"
@@ -112,6 +115,25 @@ const ContactForm: React.FC = () => {
             className="absolute left-3 top-0 -translate-y-1/2 bg-white px-1 text-sm text-gray-500 transition-all peer-focus:text-[#0A1532]"
           >
             First name <span className="text-red-500">*</span>
+          </label>
+        </div>
+
+        {/* Last Name */}
+        <div className="relative mt-4">
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+            required
+            className="peer w-full px-4 pt-6 pb-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0A1532]"
+          />
+          <label
+            htmlFor="lastName"
+            className="absolute left-3 top-0 -translate-y-1/2 bg-white px-1 text-sm text-gray-500 transition-all peer-focus:text-[#0A1532]"
+          >
+            Last name <span className="text-red-500">*</span>
           </label>
         </div>
 
@@ -181,7 +203,6 @@ const ContactForm: React.FC = () => {
           <ReCAPTCHA
             sitekey={SITE_KEY}
             onChange={handleCaptchaChange}
-            
             ref={recaptchaRef}
           />
           {error && (
@@ -196,7 +217,7 @@ const ContactForm: React.FC = () => {
         <button
           type="submit"
           disabled={loading}
-          className="md:w-20 w-full bg-[#0A1532] hover:bg-[#0d1d45] text-white font-semibold py-3 rounded-md transition disabled:opacity-50"
+          className="md:w-40 w-full bg-[#0A1532] hover:bg-[#0d1d45] text-white font-semibold py-3  rounded-md transition disabled:opacity-50"
         >
           {loading ? "Sending..." : "Send"}
         </button>
