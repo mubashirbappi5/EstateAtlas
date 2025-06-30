@@ -100,9 +100,9 @@ const About = () => {
             </h2>
 
           <div className="flex flex-col items-center mt-6">
-              <button className="mt-8 px-6 py-3 flex justify-center items-center gap-2 bg-white text-[#0A1532] font-semibold text-base md:text-lg rounded-xl shadow hover:bg-gray-100 transition duration-300">
+              <Link href={'/auth/register'} className="mt-8 px-6 py-3 flex justify-center items-center gap-2 bg-white text-[#0A1532] font-semibold text-base md:text-lg rounded-xl shadow hover:bg-gray-100 transition duration-300">
               Get Started <Sparkles className="w-5 h-5 text-[#0A1532]" />
-            </button>
+            </Link>
           </div>
           </div>
         </div>

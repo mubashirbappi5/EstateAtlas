@@ -51,7 +51,7 @@ export default function Header() {
   };
 
   return (
-    <header className="border-b bg-white px-4 py-3">
+    <header className="md:border-b md:bg-white px-4 py-3">
       <div className="flex items-center justify-end gap-4">
         {/* 🔔 Notification Button */}
         <div className="relative">

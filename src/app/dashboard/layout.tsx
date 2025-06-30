@@ -40,19 +40,26 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) 
       {/* Main content area */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="md:hidden p-4">
-          <button onClick={() => setSidebarOpen(true)}>
-            <Menu className="w-6 h-6 text-gray-800 dark:text-white" />
-          </button>
-        </div>
+        <div className="flex items-center justify-between p-4 md:p-0">
+  {/* Menu button on mobile only */}
+  <div className="md:hidden">
+    <button onClick={() => setSidebarOpen(true)}>
+      <Menu className="w-6 h-6 text-gray-800 dark:text-white" />
+    </button>
+  </div>
 
-        <Header />
+  {/* Header component */}
+  <div className="w-full">
+    <Header />
+  </div>
+</div>
 
         {/* Main content */}
        
           <main className="flex-1 overflow-y-auto p-6">{children}</main>
       
       </div>
+      
     </div>
   );
 }

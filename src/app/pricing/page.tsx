@@ -16,6 +16,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 const Pricing = () => {
 
    const router = useRouter();
@@ -231,12 +232,12 @@ const Pricing = () => {
                 <h2 className="text-5xl leading-relaxed md:leading-[4rem] md:text-5xl text-left font-bold mb-4">
                   Still Unsure? Try <br /> EstateAtlas Risk-Free
                 </h2>
-                <button className="mt-4 bg-white text-[#0A1532] font-semibold px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-gray-200 transition">
-                  Button Text{" "}
+                <Link href='/auth/register' className="mt-4 w-44 bg-white text-[#0A1532] font-semibold px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-gray-200 transition">
+                 Get Started{" "}
                   <span>
                     <Sparkles className="w-5 h-5 text-[#0A1532]" />
                   </span>
-                </button>
+                </Link>
               </div>
 
               {/* Features */}
