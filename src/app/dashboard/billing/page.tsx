@@ -6,6 +6,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Download, CreditCard } from "lucide-react";
 import Cookies from 'js-cookie';
+
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+
 interface BillingHistoryItem {
   id: string;
   country: string;
@@ -72,6 +75,16 @@ export default function Billing() {
   const [selectedPriceId, setSelectedPriceId] = useState("basic_monthly");
   const [updating, setUpdating] = useState(false);
 
+
+
+  // update card
+
+  const stripe = useStripe();
+const elements = useElements();
+const [cardComplete, setCardComplete] = useState(false);
+const [updatingPayment, setUpdatingPayment] = useState(false);
+
+
   //billing details state
 
   const [billingDetails, setBillingDetails] = useState<BillingDetails | null>(
@@ -135,10 +148,7 @@ export default function Billing() {
 
  
 
-  const handleUpdatePayment = () => {
- 
-    // Add your logic here
-  };
+// Removed duplicate handleUpdatePayment declaration
 
   
   //handle update subscription
@@ -219,6 +229,66 @@ export default function Billing() {
       alert("An error occurred while cancelling subscription.");
     }
   };
+
+
+
+
+// card update
+
+
+
+const handleUpdatePayment = async () => {
+  if (!stripe || !elements) {
+    alert("Payment system is not ready. Please try again later.");
+    return;
+  }
+
+  setUpdatingPayment(true);
+
+  try {
+    const cardElement = elements.getElement(CardElement);
+    if (!cardElement) throw new Error("Card element not found");
+
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: 'card',
+      card: cardElement,
+    });
+
+    if (error) throw error;
+
+    const token = Cookies.get('token');
+    console.log(paymentMethod)
+    const response = await fetch(
+      "http://204.197.173.249:8014/api/stripe/payment-method/update",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          payment_method: paymentMethod.id
+        }),
+      }
+    );
+
+    if (!response.ok) throw new Error("Failed to update payment method");
+
+    alert("Payment method updated successfully!");
+    window.location.reload();
+  } catch (error) {
+    console.error("Payment update error:", error);
+    alert(error instanceof Error ? error.message : "Failed to update payment method");
+  } finally {
+    setUpdatingPayment(false);
+  }
+};
+
+
+
+
+
+
 if (!loading){
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6">
@@ -258,14 +328,14 @@ if (!loading){
             <div className="flex gap-3">
               <Button
                 onClick={() => handleupdate()}
-                className="bg-gray-800 hover:bg-gray-900 text-white cursor-pointer"
+                className="bg-[#3ba1df] hover:bg-[#3ba1df] py-6 px-8 text-white cursor-pointer"
               >
                 Update
               </Button>
               <Button
                 onClick={handleCancel}
                 variant="outline"
-                className="bg-blue-500 hover:bg-blue-600 text-white border-blue-500"
+                className="bg-gray-800 hover:bg-gray-900 py-6 px-8 text-white cursor-pointer"
               >
                 Cancel
               </Button>
@@ -275,7 +345,7 @@ if (!loading){
       </Card>
 
       {showUpdateOptions && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-transparent">
           <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative">
             <h2 className="text-lg font-semibold text-gray-800 mb-4">
               Update Your Subscription
@@ -321,33 +391,50 @@ if (!loading){
         </div>
       )}
 
-      {/* Payment Method Section */}
+     
       <Card>
-        <CardContent className="p-6">
-          <div className="flex items-center gap-3 mb-4">
-            <CreditCard className="h-5 w-5 text-gray-600" />
-            <h3 className="font-semibold text-gray-900">Payment Method</h3>
-          </div>
+  <CardContent className="p-6">
+    <div className="flex items-center gap-3 mb-4">
+      <CreditCard className="h-5 w-5 text-gray-600" />
+      <h3 className="font-semibold text-gray-900">Payment Method</h3>
+    </div>
 
-          <div className="flex items-center justify-between bg-gray-50 rounded-lg p-4">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-8 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded flex items-center justify-center">
-                <div className="w-8 h-6 bg-yellow-500 rounded-sm"></div>
-              </div>
-              <div>
-                <p className="font-medium text-gray-900">•••• •••• •••• 4242</p>
-                <p className="text-sm text-gray-600">Expires 12/27</p>
-              </div>
-            </div>
-            <Button
-              onClick={handleUpdatePayment}
-              className="bg-gray-800 hover:bg-gray-900 text-white"
-            >
-              Update
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+    <div className="space-y-4">
+     
+      <div className="p-4 bg-gray-100 rounded-lg">
+        <label className="text-sm font-medium text-gray-700 mb-2 block">
+          Update Card Information
+        </label>
+        <CardElement 
+          onChange={(e) => setCardComplete(e.complete)}
+          options={{
+            style: {
+              base: {
+                fontSize: '16px',
+                color: '#424770',
+                '::placeholder': {
+                  color: '#aab7c4',
+                },
+              },
+              invalid: {
+                color: '#9e2146',
+              },
+            },
+          }}
+          className="p-3 border rounded bg-white"
+        />
+      </div>
+
+      <Button
+        onClick={handleUpdatePayment}
+        disabled={!cardComplete || updatingPayment}
+        className="w-full bg-gray-800 hover:bg-gray-900 text-white"
+      >
+        {updatingPayment ? "Updating..." : "Update Payment Method"}
+      </Button>
+    </div>
+  </CardContent>
+</Card>
 
       {/* Billing History Section */}
       <Card>
