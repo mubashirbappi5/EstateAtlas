@@ -100,10 +100,18 @@ export default function Billing() {
         }
 
         const data = await res.json();
-
+        
+        
         setBillingDetails({
-          planName: data.tier || "N/A Tier",
-          price: "00",
+          planName: data.tier_name || "N/A Tier",
+          price: data.tier_name === 'Premium (Yearly)' 
+    ? "44" 
+    : data.tier_name === 'Premium (Monthly)' 
+      ? "49" 
+      : data.tier_name === 'Basic (Yearly)'
+        ? "24" 
+        : data.tier_name === 'Basic (Monthly)'
+        ?'29':'', // D,
           currency: "$", // Adjust this as needed
           nextBillingDate: data.subscription?.current_period_start
             ? new Date(
