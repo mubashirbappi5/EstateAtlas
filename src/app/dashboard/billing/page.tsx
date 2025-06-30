@@ -71,6 +71,15 @@ export default function Billing() {
 
 
 
+ // Update options state
+const [showUpdateOptions, setShowUpdateOptions] = useState(false);
+const [selectedPriceId, setSelectedPriceId] = useState("basic_monthly");
+const [updating, setUpdating] = useState(false);
+
+
+
+
+
 //billing details state
 
    const [billingDetails, setBillingDetails] = useState<BillingDetails | null>(null)
@@ -125,10 +134,7 @@ export default function Billing() {
 
 
 
-  const handleGetStarted = (type: "primary" | "secondary") => {
-    console.log(`Get started clicked: ${type}`)
-    // Add your logic here
-  }
+  
 
   const handleUpdatePayment = () => {
     console.log("Update payment method clicked")
@@ -139,6 +145,44 @@ export default function Billing() {
     console.log(`Download invoice for ${id}`)
     // Add your logic here
   }
+//handle update subscription
+  const handleupdate = () => {
+    console.log('testing')
+  setShowUpdateOptions(true); // Show the dropdown/modal
+};
+
+const handleConfirmUpdate = async () => {
+  const token = localStorage.getItem("token");
+  if (!token) return alert("Token missing!");
+
+  try {
+    setUpdating(true);
+    const res = await fetch("http://204.197.173.249:8014/api/subscription/update", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+      body: JSON.stringify({ price_id: selectedPriceId }),
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      alert("Failed to update subscription: " + data?.message);
+    } else {
+      alert("Subscription updated to " + selectedPriceId);
+      setShowUpdateOptions(false);
+      // Optional: refetch billing details or reload
+    }
+  } catch (err) {
+    console.error("Error updating subscription:", err);
+    alert("An error occurred.");
+  } finally {
+    setUpdating(false);
+  }
+};
+
 
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6">
@@ -165,20 +209,67 @@ export default function Billing() {
             </p>
 
             <div className="flex gap-3">
-              <Button onClick={() => handleGetStarted("primary")} className="bg-gray-800 hover:bg-gray-900 text-white">
-                Get started
-              </Button>
-              <Button
-                onClick={() => handleGetStarted("secondary")}
+              <Button onClick={() => handleupdate()} className="bg-gray-800 hover:bg-gray-900 text-white cursor-pointer">
+  Update
+</Button>
+              {/* <Button
+                onClick={() => handleCancel()}
                 variant="outline"
                 className="bg-blue-500 hover:bg-blue-600 text-white border-blue-500"
               >
-                Get started
-              </Button>
+               Cancel
+              </Button> */}
             </div>
           </div>
         </CardContent>
       </Card>
+    
+
+
+{showUpdateOptions && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative">
+      <h2 className="text-lg font-semibold text-gray-800 mb-4">Update Your Subscription</h2>
+      
+      <label className="block text-sm font-medium text-gray-700 mb-2">Select New Plan:</label>
+      <select
+        value={selectedPriceId}
+        onChange={(e) => setSelectedPriceId(e.target.value)}
+        className="w-full p-2 border border-gray-300 rounded mb-4"
+      >
+        <option value="basic_monthly">Basic Monthly</option>
+        <option value="premium_monthly">Premium Monthly</option>
+      </select>
+
+      <div className="flex justify-end gap-3">
+        <Button
+          onClick={handleConfirmUpdate}
+          className="bg-blue-600 hover:bg-blue-700 text-white"
+          disabled={updating}
+        >
+          {updating ? "Updating..." : "Confirm Update"}
+        </Button>
+        <Button
+          variant="outline"
+          onClick={() => setShowUpdateOptions(false)}
+          className="border-gray-300"
+        >
+          Cancel
+        </Button>
+      </div>
+
+      {/* Close Button Top Right */}
+      <button
+        className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+        onClick={() => setShowUpdateOptions(false)}
+      >
+        ✕
+      </button>
+    </div>
+  </div>
+)}
+
+
 
       {/* Payment Method Section */}
       <Card>
@@ -263,6 +354,16 @@ export default function Billing() {
           </div>
         </CardContent>
       </Card>
+
+
+
+
+
+
+
+
+
+
     </div>
   )
 }
