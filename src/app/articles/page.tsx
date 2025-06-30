@@ -11,6 +11,7 @@ interface Blog {
   id: string;
   title: string;
   content: string;
+  created_at: string;
   // Add other fields as per your API response
 }
 
@@ -18,19 +19,19 @@ const Articles = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
 console.log(blogs)
-  useEffect(() => {
+   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetch('http://204.197.173.249:8014/api/blogs');
+        const res = await fetch('/demoBlogs.json');
         const data = await res.json();
-        setBlogs(data?.data || []); // Adjust if the API shape differs
+        setBlogs(data?.slice(0, 6) || []);
       } catch (error) {
-        console.error('Failed to fetch blogs:', error);
+        console.error("Error fetching blog data:", error);
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchBlogs();
   }, []);
 
@@ -77,7 +78,7 @@ console.log(blogs)
             {loading ? (
               <p className="col-span-3 text-center">Loading articles...</p>
             ) : blogs.length > 0 ? (
-              blogs.map((blog: any, index: number) => (
+              blogs.map((blog: Blog, index: number) => (
                 <InsightCard key={index} variant="white" blog={blog} />
               ))
             ) : (

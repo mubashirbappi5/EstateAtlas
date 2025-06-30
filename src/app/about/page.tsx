@@ -5,12 +5,13 @@ import actionbg from "../../../public/actionbg.png";
 import { Sparkles } from 'lucide-react';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 const About = () => {
   return (
     <div className=" mx-auto">
           <Navbar/>
       {/* about hero */}
-      <div className="md:container mx-auto  md:mb-40 mb-7 md:p-8 p-2 text-[#0A1532] text-center">
+      <div className="md:container mx-auto  md:mb-40 mb-7 md:p-8 p-2 text-[#0A1532] text-center space-y-10">
         <h1 className="md:text-6xl text-4xl mt-20 text-center  font-semibold">
           Driven By data, <br /> Guided by Integrity
         </h1>
@@ -19,9 +20,9 @@ const About = () => {
           for <br /> investors, analysts, and professionals worldwide.
         </p>
 
-        <button className="md:px-10 px-6 py-5 mt-12 bg-[#0A1532] text-white md:text-2xl text-xl font-semibold rounded-xl">
+        <Link href={'/dashboard/globaldata'} className="md:px-10 px-6 py-5 mt-12 bg-[#0A1532] text-white md:text-2xl text-xl font-semibold rounded-xl">
           Explore Global Data
-        </button>
+        </Link>
       </div>
 
       {/* drop shadow in hero  */}

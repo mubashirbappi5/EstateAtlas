@@ -3,25 +3,34 @@ import React, { useEffect, useState } from "react";
 import InsightCard from "./InsightCard";
 import Link from "next/link";
 
+
+interface Blog {
+  id: string;
+  title: string;
+  content: string;
+  created_at: string;
+  // Add other fields as per your API response
+}
+
 const MarketInsight = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const res = await fetch('http://204.197.173.249:8014/api/blogs');
-        const data = await res.json();
-        setBlogs(data?.data?.slice(0, 6) || []); // latest 6 blogs
-      } catch (error) {
-        console.error("Error fetching blog data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchBlogs = async () => {
+    try {
+      const res = await fetch('/demoBlogs.json');
+      const data = await res.json();
+      setBlogs(data?.slice(0, 6) || []);
+    } catch (error) {
+      console.error("Error fetching blog data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchBlogs();
-  }, []);
+  fetchBlogs();
+}, []);
 
   return (
     <div className="min-h-screen bg-[#050d2e] relative overflow-hidden mt-10">
@@ -40,15 +49,16 @@ const MarketInsight = () => {
         </h1>
 
         <section className="w-11/12 mx-auto md:grid grid-cols-3 gap-15 my-14 md:space-y-0 space-y-5">
-          {loading ? (
-            <p className="text-white col-span-3 text-center">Loading...</p>
-          ) : blogs.length > 0 ? (
-            blogs.map((blog: any, index: number) => (
-              <InsightCard key={index} variant="black" blog={blog} />
-            ))
-          ) : (
-            <p className="text-white col-span-3 text-center">No articles found.</p>
-          )}
+            {loading ? (
+              <p className="col-span-3 text-center">Loading articles...</p>
+            ) : blogs.length > 0 ? (
+              blogs.map((blog: Blog, index: number) => (
+                <InsightCard key={index} variant="black" blog={blog} />
+              ))
+            ) : (
+              <p className="col-span-3 text-center">No articles found.</p>
+            )}
+   
         </section>
 
         <div className="flex justify-center items-center">

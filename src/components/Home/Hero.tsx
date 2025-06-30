@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import deshbord from '../../../public/image1.png'
+import Link from 'next/link';
 const Hero = () => {
   
   return (
@@ -47,7 +48,7 @@ const Hero = () => {
       ></div>
 
       {/*  Hero Content */}
-      <div className="relative md:container mx-auto z-20 md:p-8 p-2 text-white text-center">
+      <div className="relative md:container mx-auto z-20 md:p-8 p-2 text-white text-center space-y-10">
         <h1 className="md:text-6xl text-4xl mt-20 font-semibold">
           Unlock global real estate opportunities with data-driven insights
         </h1>
@@ -57,9 +58,9 @@ const Hero = () => {
           markets, analyze trends, and invest confidently.
         </p>
 
-        <button className="md:px-10 px-6 py-5 mt-12 bg-white text-[#0A1532] md:text-2xl text-xl font-semibold rounded-xl">
+        <Link href={'/dashboard/globaldata'} className="md:px-10 px-6 py-5 mt-20 bg-white text-[#0A1532] md:text-2xl text-xl font-semibold rounded-xl">
           Explore Global Data
-        </button>
+        </Link>
       </div>
 
 

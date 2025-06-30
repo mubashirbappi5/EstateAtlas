@@ -28,6 +28,8 @@ const textColors: Record<Variant, string> = {
 const InsightCard: React.FC<InsightCardProps> = ({ variant = 'black', blog }) => {
   const { title, created_at, image } = blog;
 
+  const isExternalImage = typeof image === 'string' && image.startsWith('http');
+
   return (
     <div>
       <div
@@ -35,13 +37,23 @@ const InsightCard: React.FC<InsightCardProps> = ({ variant = 'black', blog }) =>
         className="rounded-xl overflow-hidden shadow-lg p-3 border border-[#3BA1DF]"
       >
         <div className="w-full h-48 relative">
-          <Image
-            src={image || card1}
-            alt="blog image"
-            className="rounded-lg object-cover"
-            fill
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
+          {isExternalImage ? (
+            <Image
+              src={image as string}
+              alt="blog image"
+              className="rounded-lg object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+          ) : (
+            <Image
+              src={card1}
+              alt="fallback blog image"
+              className="rounded-lg object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+          )}
         </div>
 
         <div className="p-4">
