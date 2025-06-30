@@ -1,22 +1,22 @@
-'use client';
-import logo from '../../../public/logo.png'
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import { useUser } from '@/app/context/UserContext';
-import Link from 'next/link';
-
+"use client";
+import logo from "../../../public/logo.png";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { useUser } from "@/app/context/UserContext";
+import Link from "next/link";
+import Cookies from "js-cookie";
 export default function LoginForm() {
   const router = useRouter();
   const { setUser } = useUser();
 
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,14 +25,14 @@ export default function LoginForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
+    setError("");
 
     try {
-      const res = await fetch('http://204.197.173.249:8014/api/login', {
-        method: 'POST',
+      const res = await fetch("http://204.197.173.249:8014/api/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -40,23 +40,24 @@ export default function LoginForm() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.message || 'Login failed');
+        setError(data.message || "Login failed");
       } else {
-        console.log('Login successful:', data);
- 
-          localStorage.setItem('token', data.data.token);
-    console.log('Stored token:', localStorage.getItem('token'));
+        console.log("Login successful:", data);
 
-       
-        localStorage.setItem("user", JSON.stringify(data.data.user));
-         setUser(data.data.user); 
-        console.log('User data:', data.data.user.first_name);
-        
-        router.push('/dashboard/Countries');
+      
+
+        Cookies.set("token", data.data.token, { expires: 7, path: "/" });
+        Cookies.set("user", JSON.stringify(data.data.user), {
+          expires: 7,
+          path: "/",
+        });
+
+        setUser(data.data.user);
+        router.push("/dashboard/Countries");
       }
     } catch (err) {
-      setError('Something went wrong. Please try again.');
-      console.error('Login error:', err);
+      setError("Something went wrong. Please try again.");
+      console.error("Login error:", err);
     } finally {
       setLoading(false);
     }
@@ -69,10 +70,16 @@ export default function LoginForm() {
           <Image className="w-auto h-7 sm:h-8" src={logo} alt="Logo" />
         </div>
 
-        <h3 className="mt-3 text-xl font-medium text-center text-gray-600 dark:text-gray-200">Welcome Back</h3>
-        <p className="mt-1 text-center text-gray-500 dark:text-gray-400">Login Here</p>
+        <h3 className="mt-3 text-xl font-medium text-center text-gray-600 dark:text-gray-200">
+          Welcome Back
+        </h3>
+        <p className="mt-1 text-center text-gray-500 dark:text-gray-400">
+          Login Here
+        </p>
 
-        {error && <p className="mt-2 text-sm text-red-500 text-center">{error}</p>}
+        {error && (
+          <p className="mt-2 text-sm text-red-500 text-center">{error}</p>
+        )}
 
         <form onSubmit={handleSubmit}>
           <div className="w-full mt-4">
@@ -100,22 +107,33 @@ export default function LoginForm() {
           </div>
 
           <div className="flex items-center justify-end mt-4">
-            <Link href="forgot-password" className="text-sm text-gray-600 dark:text-gray-200 hover:text-gray-500">Forget Password?</Link>
-            
+            <Link
+              href="forgot-password"
+              className="text-sm text-gray-600 dark:text-gray-200 hover:text-gray-500"
+            >
+              Forget Password?
+            </Link>
           </div>
           <button
-              type="submit"
-              disabled={loading}
-              className="px-6 py-2 w-full mt-4 cursor-pointer text-sm font-medium text-white bg-[#0A1532] rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
-            >
-              {loading ? 'Signing In...' : 'Sign In'}
-            </button>
+            type="submit"
+            disabled={loading}
+            className="px-6 py-2 w-full mt-4 cursor-pointer text-sm font-medium text-white bg-[#0A1532] rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+          >
+            {loading ? "Signing In..." : "Sign In"}
+          </button>
         </form>
       </div>
 
       <div className="flex items-center justify-center py-4 text-center bg-gray-50 dark:bg-gray-700">
-        <span className="text-sm text-gray-600 dark:text-gray-200">Dont have an account?</span>
-        <a href="register" className="mx-2 text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline">Register</a>
+        <span className="text-sm text-gray-600 dark:text-gray-200">
+          Dont have an account?
+        </span>
+        <a
+          href="register"
+          className="mx-2 text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline"
+        >
+          Register
+        </a>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import logo from '../../../../public/logo.png';
 import { useUser } from '@/app/context/UserContext';
+import Cookies from 'js-cookie';
 
 export default function RegisterForm() {
   const stripe = useStripe();
@@ -114,9 +115,13 @@ export default function RegisterForm() {
         setError(data.message || 'Registration failed');
       } else {
         setSuccess('Registration successful! Please check your email or log in.');
-        console.log('Registration successful:', data);
-         setUser(data.user); 
-         router.push('/dashboard/Countries');
+        console.log(data)
+        console.log(data.data.token)
+  Cookies.set('token', data.data.token, { expires: 7, path: '/' });
+  Cookies.set('user', JSON.stringify(data.data.user), { expires: 7, path: '/' });
+
+    setUser(data.data.user);
+    router.push('/dashboard/Countries');
       }
     } catch (err) {
       console.error('Registration error:', err);

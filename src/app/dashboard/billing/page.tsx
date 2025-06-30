@@ -1,32 +1,30 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Download, CreditCard } from "lucide-react"
-
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Download, CreditCard } from "lucide-react";
+import Cookies from 'js-cookie';
 interface BillingHistoryItem {
-  id: string
-  country: string
-  flag: string
-  plan: string
-  growth: string
-  amount: string
-  status: "Paid" | "Pending" | "Failed"
+  id: string;
+  country: string;
+  flag: string;
+  plan: string;
+  growth: string;
+  amount: string;
+  status: "Paid" | "Pending" | "Failed";
 }
 
 interface BillingDetails {
-  planName: string
-  price: string
-  currency: string
-  nextBillingDate: string
-  status: "Active" | "Expired" | "Cancelled"
-  paymentMethodLast4: string
-  paymentMethodExpiry: string
+  planName: string;
+  price: string;
+  currency: string;
+  nextBillingDate: string;
+  status: "Active" | "Expired" | "Cancelled";
+  paymentMethodLast4: string;
+  paymentMethodExpiry: string;
 }
-
-
 
 export default function Billing() {
   // Billing history state
@@ -67,209 +65,256 @@ export default function Billing() {
       amount: "C$520,000",
       status: "Paid",
     },
-  ])
+  ]);
 
+  // Update options state
+  const [showUpdateOptions, setShowUpdateOptions] = useState(false);
+  const [selectedPriceId, setSelectedPriceId] = useState("basic_monthly");
+  const [updating, setUpdating] = useState(false);
 
+  //billing details state
 
- // Update options state
-const [showUpdateOptions, setShowUpdateOptions] = useState(false);
-const [selectedPriceId, setSelectedPriceId] = useState("basic_monthly");
-const [updating, setUpdating] = useState(false);
+  const [billingDetails, setBillingDetails] = useState<BillingDetails | null>(
+    null
+  );
+  const [loading, setLoading] = useState(true);
 
-
-
-
-
-//billing details state
-
-   const [billingDetails, setBillingDetails] = useState<BillingDetails | null>(null)
-  const [loading, setLoading] = useState(true)
-
-   useEffect(() => {
+  useEffect(() => {
     async function fetchBilling() {
       try {
-         const token = localStorage.getItem("token")
-         
-        const res = await fetch("http://204.197.173.249:8014/api/subscription", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        })
+       const token = Cookies.get('token');
+
+        const res = await fetch(
+          "http://204.197.173.249:8014/api/subscription",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (!res.ok) {
-          throw new Error(`Failed to fetch billing details: ${res.status}`)
+          throw new Error(`Failed to fetch billing details: ${res.status}`);
         }
 
-        const data = await res.json()
+        const data = await res.json();
 
-    
-      setBillingDetails({
-  planName:data.tier || "N/A Tier",
-  price: "00", 
-  currency: "$", // Adjust this as needed
-  nextBillingDate: data.subscription?.current_period_start
-    ? new Date(data.subscription.current_period_start).toLocaleDateString()
-    : "N/A",
-  status: data.subscription?.status === "active" ? "Active" : "Cancelled",
-  paymentMethodLast4: "4242", // Not available in your response, use placeholder
-  paymentMethodExpiry: "12/27", // Not available in your response, use placeholder
-})
+        setBillingDetails({
+          planName: data.tier || "N/A Tier",
+          price: "00",
+          currency: "$", // Adjust this as needed
+          nextBillingDate: data.subscription?.current_period_start
+            ? new Date(
+                data.subscription.current_period_start
+              ).toLocaleDateString()
+            : "N/A",
+          status:
+            data.subscription?.status === "active" ? "Active" : "Cancelled",
+          paymentMethodLast4: "4242", // Not available in your response, use placeholder
+          paymentMethodExpiry: "12/27", // Not available in your response, use placeholder
+        });
       } catch (error) {
-        console.error(error)
+        console.error(error);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     }
 
-    fetchBilling()
-  }, [])
+    fetchBilling();
+  }, []);
 
-
-  console.log("Billing Details:", billingDetails)
-
-
-
-
-
-
-  
+  console.log("Billing Details:", billingDetails);
 
   const handleUpdatePayment = () => {
-    console.log("Update payment method clicked")
+    console.log("Update payment method clicked");
     // Add your logic here
-  }
+  };
 
   const handleDownloadInvoice = (id: string) => {
-    console.log(`Download invoice for ${id}`)
+    console.log(`Download invoice for ${id}`);
     // Add your logic here
-  }
-//handle update subscription
+  };
+  //handle update subscription
   const handleupdate = () => {
-    console.log('testing')
-  setShowUpdateOptions(true); // Show the dropdown/modal
-};
+    console.log("testing");
+    setShowUpdateOptions(true);
+  };
 
-const handleConfirmUpdate = async () => {
-  const token = localStorage.getItem("token");
-  if (!token) return alert("Token missing!");
+  const handleConfirmUpdate = async () => {
+    const token = Cookies.get('token');
+    if (!token) return alert("Token missing!");
 
-  try {
-    setUpdating(true);
-    const res = await fetch("http://204.197.173.249:8014/api/subscription/update", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": `Bearer ${token}`,
-      },
-      body: JSON.stringify({ price_id: selectedPriceId }),
-    });
+    try {
+      setUpdating(true);
+      const res = await fetch(
+        "http://204.197.173.249:8014/api/subscription/update",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ price_id: selectedPriceId }),
+        }
+      );
 
-    const data = await res.json();
-    if (!res.ok) {
-      alert("Failed to update subscription: " + data?.message);
-    } else {
-      alert("Subscription updated to " + selectedPriceId);
-      setShowUpdateOptions(false);
-      // Optional: refetch billing details or reload
+      const data = await res.json();
+      if (!res.ok) {
+        alert("Failed to update subscription: " + data?.message);
+      } else {
+        alert("Subscription updated to " + selectedPriceId);
+        setShowUpdateOptions(false);
+      }
+    } catch (err) {
+      console.error("Error updating subscription:", err);
+      alert("An error occurred.");
+    } finally {
+      setUpdating(false);
     }
-  } catch (err) {
-    console.error("Error updating subscription:", err);
-    alert("An error occurred.");
-  } finally {
-    setUpdating(false);
-  }
-};
+  };
 
+  // cancel
+  const handleCancel = async () => {
+   const token = Cookies.get('token');
+    if (!token) return alert("Token missing!");
+
+    const confirm = window.confirm(
+      "Are you sure you want to cancel your subscription?"
+    );
+    if (!confirm) return;
+
+    try {
+      const response = await fetch(
+        "http://204.197.173.249:8014/api/subscription/cancel",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error("Cancel failed:", data);
+        alert("Cancellation failed: " + (data.message || "Unknown error"));
+      } else {
+        alert("✅ Subscription cancelled successfully!");
+
+        window.location.reload();
+        setBillingDetails(null);
+      }
+    } catch (error) {
+      console.error("Error cancelling subscription:", error);
+      alert("An error occurred while cancelling subscription.");
+    }
+  };
 
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6">
       {/* Billing & Subscription Section */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-xl font-semibold text-gray-900">Billing & Subscription</CardTitle>
+          <CardTitle className="text-xl font-semibold text-gray-900">
+            Billing & Subscription
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="bg-gray-50 rounded-lg p-6">
             <div className="flex items-start justify-between mb-4">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">{billingDetails?.planName}</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                  {billingDetails?.planName}
+                </h3>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-2xl font-bold text-gray-900">{billingDetails?.price}</span>
+                  <span className="text-2xl font-bold text-gray-900">
+                    {billingDetails?.price}
+                  </span>
                   <span className="text-sm text-gray-600">Per month</span>
                 </div>
               </div>
-              <Badge className="bg-blue-500 hover:bg-blue-600 text-white">{billingDetails?.status}</Badge>
+              <Badge className="bg-blue-500 hover:bg-blue-600 text-white">
+                {billingDetails?.status}
+              </Badge>
             </div>
 
             <p className="text-sm text-gray-600 mb-6">
-              Next billing date: <span className="font-medium">{billingDetails?.nextBillingDate}</span>
+              Next billing date:{" "}
+              <span className="font-medium">
+                {billingDetails?.nextBillingDate}
+              </span>
             </p>
 
             <div className="flex gap-3">
-              <Button onClick={() => handleupdate()} className="bg-gray-800 hover:bg-gray-900 text-white cursor-pointer">
-  Update
-</Button>
-              {/* <Button
-                onClick={() => handleCancel()}
+              <Button
+                onClick={() => handleupdate()}
+                className="bg-gray-800 hover:bg-gray-900 text-white cursor-pointer"
+              >
+                Update
+              </Button>
+              <Button
+                onClick={handleCancel}
                 variant="outline"
                 className="bg-blue-500 hover:bg-blue-600 text-white border-blue-500"
               >
-               Cancel
-              </Button> */}
+                Cancel
+              </Button>
             </div>
           </div>
         </CardContent>
       </Card>
-    
 
+      {showUpdateOptions && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative">
+            <h2 className="text-lg font-semibold text-gray-800 mb-4">
+              Update Your Subscription
+            </h2>
 
-{showUpdateOptions && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative">
-      <h2 className="text-lg font-semibold text-gray-800 mb-4">Update Your Subscription</h2>
-      
-      <label className="block text-sm font-medium text-gray-700 mb-2">Select New Plan:</label>
-      <select
-        value={selectedPriceId}
-        onChange={(e) => setSelectedPriceId(e.target.value)}
-        className="w-full p-2 border border-gray-300 rounded mb-4"
-      >
-        <option value="basic_monthly">Basic Monthly</option>
-        <option value="premium_monthly">Premium Monthly</option>
-      </select>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Select New Plan:
+            </label>
+            <select
+              value={selectedPriceId}
+              onChange={(e) => setSelectedPriceId(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded mb-4"
+            >
+              <option value="basic_monthly">Basic Monthly</option>
+              <option value="premium_monthly">Premium Monthly</option>
+            </select>
 
-      <div className="flex justify-end gap-3">
-        <Button
-          onClick={handleConfirmUpdate}
-          className="bg-blue-600 hover:bg-blue-700 text-white"
-          disabled={updating}
-        >
-          {updating ? "Updating..." : "Confirm Update"}
-        </Button>
-        <Button
-          variant="outline"
-          onClick={() => setShowUpdateOptions(false)}
-          className="border-gray-300"
-        >
-          Cancel
-        </Button>
-      </div>
+            <div className="flex justify-end gap-3">
+              <Button
+                onClick={handleConfirmUpdate}
+                className="bg-blue-600 hover:bg-blue-700 text-white"
+                disabled={updating}
+              >
+                {updating ? "Updating..." : "Confirm Update"}
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => setShowUpdateOptions(false)}
+                className="border-gray-300"
+              >
+                Cancel
+              </Button>
+            </div>
 
-      {/* Close Button Top Right */}
-      <button
-        className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-        onClick={() => setShowUpdateOptions(false)}
-      >
-        ✕
-      </button>
-    </div>
-  </div>
-)}
-
-
+            {/* Close Button Top Right */}
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+              onClick={() => setShowUpdateOptions(false)}
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Payment Method Section */}
       <Card>
@@ -289,7 +334,10 @@ const handleConfirmUpdate = async () => {
                 <p className="text-sm text-gray-600">Expires 12/27</p>
               </div>
             </div>
-            <Button onClick={handleUpdatePayment} className="bg-gray-800 hover:bg-gray-900 text-white">
+            <Button
+              onClick={handleUpdatePayment}
+              className="bg-gray-800 hover:bg-gray-900 text-white"
+            >
               Update
             </Button>
           </div>
@@ -310,11 +358,21 @@ const handleConfirmUpdate = async () => {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-200">
-                  <th className="text-left py-3 px-2 font-medium text-gray-700 text-sm">DATE</th>
-                  <th className="text-left py-3 px-2 font-medium text-gray-700 text-sm">PLAN</th>
-                  <th className="text-left py-3 px-2 font-medium text-gray-700 text-sm">AMOUNT</th>
-                  <th className="text-left py-3 px-2 font-medium text-gray-700 text-sm">STATUS</th>
-                  <th className="text-left py-3 px-2 font-medium text-gray-700 text-sm">INVOICE</th>
+                  <th className="text-left py-3 px-2 font-medium text-gray-700 text-sm">
+                    DATE
+                  </th>
+                  <th className="text-left py-3 px-2 font-medium text-gray-700 text-sm">
+                    PLAN
+                  </th>
+                  <th className="text-left py-3 px-2 font-medium text-gray-700 text-sm">
+                    AMOUNT
+                  </th>
+                  <th className="text-left py-3 px-2 font-medium text-gray-700 text-sm">
+                    STATUS
+                  </th>
+                  <th className="text-left py-3 px-2 font-medium text-gray-700 text-sm">
+                    INVOICE
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -323,17 +381,26 @@ const handleConfirmUpdate = async () => {
                     <td className="py-4 px-2">
                       <div className="flex items-center gap-2">
                         <span className="text-lg">{item.flag}</span>
-                        <span className="text-sm text-gray-900">{item.country}</span>
+                        <span className="text-sm text-gray-900">
+                          {item.country}
+                        </span>
                       </div>
                     </td>
                     <td className="py-4 px-2">
-                      <span className="text-sm font-medium text-green-600">{item.growth}</span>
+                      <span className="text-sm font-medium text-green-600">
+                        {item.growth}
+                      </span>
                     </td>
                     <td className="py-4 px-2">
-                      <span className="text-sm font-medium text-gray-900">{item.amount}</span>
+                      <span className="text-sm font-medium text-gray-900">
+                        {item.amount}
+                      </span>
                     </td>
                     <td className="py-4 px-2">
-                      <Badge variant="secondary" className="bg-green-100 text-green-800 hover:bg-green-100">
+                      <Badge
+                        variant="secondary"
+                        className="bg-green-100 text-green-800 hover:bg-green-100"
+                      >
                         {item.status}
                       </Badge>
                     </td>
@@ -354,16 +421,6 @@ const handleConfirmUpdate = async () => {
           </div>
         </CardContent>
       </Card>
-
-
-
-
-
-
-
-
-
-
     </div>
-  )
+  );
 }

@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Lock, Eye, EyeOff } from "lucide-react"
-
+import Cookies from 'js-cookie';
 export default function SecurityForm() {
   const [formData, setFormData] = useState({
     currentPassword: "",
@@ -67,7 +67,7 @@ export default function SecurityForm() {
     setIsLoading(true)
 
     try {
-      const token = localStorage.getItem("token")
+     const token = Cookies.get('token');
       if (!token) {
         setErrors(["User token not found. Please log in again."])
         return

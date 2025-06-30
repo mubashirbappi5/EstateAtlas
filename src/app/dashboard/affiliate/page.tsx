@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Clipboard } from 'lucide-react'
-
+import Cookies from 'js-cookie';
 
 export default function AffiliatePage() {
   const [affiliateCode, setAffiliateCode] = useState<string | null>(null)
@@ -13,7 +13,7 @@ export default function AffiliatePage() {
   const [loadingAffiliate, setLoadingAffiliate] = useState(false)
   const [loadingStripe, setLoadingStripe] = useState(false)
 
-  const token = localStorage.getItem('token') // Replace with actual auth token source
+  const token = Cookies.get('token'); 
 
   const handleGetAffiliateLink = async () => {
     setLoadingAffiliate(true)
@@ -97,10 +97,7 @@ export default function AffiliatePage() {
           </Button>
         </div>
 
-        {/* Static referral count (optional) */}
-        {/* <p className="text-sm text-green-600">
-          Total referrals: <strong>5</strong>
-        </p> */}
+       
       </div>
     )}
   </CardContent>

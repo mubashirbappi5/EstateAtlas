@@ -16,7 +16,7 @@ import {
 import { Badge } from "../ui/badge";
 import man from "../../../public/19e045a1319fe4a16c9e6fb45244dd8f31af19d3.png";
 import { useUser } from "@/app/context/UserContext";
-
+import Cookies from 'js-cookie';
 export default function Header() {
   const [notificationCount] = useState(6);
   const { user, loading, setUser } = useUser();
@@ -24,7 +24,7 @@ export default function Header() {
 
   const handleLogout = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = Cookies.get('token');
       const res = await fetch("http://204.197.173.249:8014/api/logout", {
         method: "POST",
         headers: {
@@ -41,8 +41,8 @@ export default function Header() {
       console.error("Logout error:", err);
     } finally {
       // Clear user data and token
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+     Cookies.remove("token");
+    Cookies.remove("user");
       setUser(null);
 
       // Redirect to login page
