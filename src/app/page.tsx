@@ -8,13 +8,15 @@ import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
-    <div>
+    <div className="bg-black">
      <Navbar/>
     
        <Hero/>
      
       
-        <WhyChoose/>
+       <div className="bg-white mb-10">
+         <WhyChoose/>
+       </div>
 
         <Testimonial/>
         <MarketInsight/>

@@ -7,7 +7,7 @@ import Insight from '../../../public/KeyHome.png'
 import Analytics from '../../../public/Analaytic.png'
 const WhyChoose = () => {
     return (
-        <div className='py-10 container mx-auto'>
+        <div className='py-10 container mx-auto '>
             <div>
                 <h1 className='text-5xl font-semibold text-center text-[#0A1532]'>Why Choose <span className='text-[#3BA1DF]'>Estate Atlas</span>?</h1>
             </div>

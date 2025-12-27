@@ -106,7 +106,7 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 relative z-10">
-        <div className="text-lg text-gray-400 text-center md:text-left">
+        <div className="text-sm text-gray-400 text-center md:text-left">
           © {new Date().getFullYear()} ESTATEATLAS. All Rights Reserved
         </div>
 
