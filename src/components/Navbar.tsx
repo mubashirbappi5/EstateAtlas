@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import logo from "../../public/logo.png";
+import logo from "../../public/logo2.png";
 import man from "../../public/man1.png";
 import Link from "next/link";
 import {
@@ -15,33 +15,25 @@ import {
 import { Button } from "./ui/button";
 import { ChevronDown } from "lucide-react";
 import { useUser } from "@/app/context/UserContext";
+
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user } = useUser();
 
   return (
-    <nav className="bg-white shadow  py-7 px-4">
-      <div className=" container mx-auto flex items-center justify-between">
-        {/* Left: Logo */}
+    <nav className="bg-black/90 backdrop-blur-md border-b border-cyan-400/10 py-6 px-4 sticky top-0 z-50">
+      <div className="container mx-auto flex items-center justify-between">
 
-        
-
-        <div className="flex items-center">
-          <Link href={"/"}>
-            <Image
-              src={logo}
-              width={195}
-              height={32}
-              alt="EstateAtlas Logo"
-            ></Image>
-          </Link>
-        </div>
+        {/* Logo */}
+        <Link href="/">
+          <Image src={logo} width={180} height={32} alt="EstateAtlas Logo" />
+        </Link>
 
         {/* Mobile menu button */}
         <div className="lg:hidden">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="text-gray-700 focus:outline-none"
+            className="text-cyan-400"
             aria-label="Toggle menu"
           >
             <svg
@@ -68,81 +60,65 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
-        {/* Middle: Nav Links */}
+
+        {/* Desktop Nav Links */}
         <div className="hidden lg:flex space-x-12">
-          <Link
-            href="/"
-            className="block text-[#000929] hover:text-[#3BA1DF] font-semibold "
-          >
-            Home
-          </Link>
-          <Link
-            href="/about"
-            className="block text-[#000929] hover:text-[#3BA1DF] font-semibold"
-          >
-            About
-          </Link>
-          <Link
-            href="/pricing"
-            className="block text-[#000929] hover:text-[#3BA1DF] font-semibold"
-          >
-            Pricing
-          </Link>
-          <Link
-            href="/articles"
-            className="block text-[#000929] hover:text-[#3BA1DF] font-semibold"
-          >
-            Articles
-          </Link>
-          <Link
-            href="/Contact"
-            className="block text-[#000929]  hover:text-[#3BA1DF] font-semibold"
-          >
-            Contact
-          </Link>
+          {["Home", "About", "Pricing", "Articles", "Contact"].map((item) => (
+            <Link
+              key={item}
+              href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+              className="text-gray-300 font-semibold hover:text-cyan-400 transition"
+            >
+              {item}
+            </Link>
+          ))}
         </div>
 
-        {/* Right: Buttons */}
+        {/* Right side */}
         {user ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="flex items-center gap-2 px-2 py-1 h-auto"
+                className="flex items-center gap-2 px-2 py-1 h-auto hover:bg-white/5"
               >
-                <div className="flex items-center gap-2">
-                  <div className="relative h-10 w-10 rounded-full overflow-hidden">
-                    <Image
-                      src={man}
-                      alt="User Avatar"
-                      width={50}
-                      height={50}
-                      className="object-cover"
-                    />
-                  </div>
+                <div className="relative h-10 w-10 rounded-full overflow-hidden border border-cyan-400/30">
+                  <Image
+                    src={man}
+                    alt="User Avatar"
+                    width={50}
+                    height={50}
+                    className="object-cover"
+                  />
                 </div>
-                <ChevronDown className="h-4 w-4 text-gray-500" />
+                <ChevronDown className="h-4 w-4 text-cyan-400" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
-              <DropdownMenuLabel>{user?.first_name}</DropdownMenuLabel>
+
+            <DropdownMenuContent
+              align="end"
+              className="w-56 bg-black border border-cyan-400/20 text-white"
+            >
+              <DropdownMenuLabel className="text-cyan-400">
+                {user?.first_name}
+              </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
+              <DropdownMenuItem asChild className="cursor-pointer hover:bg-cyan-400/10">
                 <Link href="/dashboard/Countries">Dashboard</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         ) : (
-          <div className="space-x-4 md:flex hidden ">
+          <div className="space-x-4 hidden md:flex">
             <Link
-              href={"/auth/login"}
-              className="px-6 py-4 rounded-lg border-2 border-[#E0DEF7] text-[#0A1532] font-semibold"
+              href="/auth/login"
+              className="px-6 py-3 rounded-lg border border-cyan-400/40 text-cyan-400 font-semibold hover:bg-cyan-400/10 transition"
             >
               Login
             </Link>
             <Link
-              href={"/auth/register"}
-              className="px-6 py-4 rounded-lg bg-[#0A1532] text-white"
+              href="/auth/register"
+              className="px-6 py-3 rounded-lg bg-cyan-400 text-black font-semibold shadow-[0_0_25px_rgba(0,255,255,0.8)] hover:shadow-[0_0_40px_rgba(0,255,255,1)] transition"
             >
               Sign Up
             </Link>
@@ -152,50 +128,28 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="lg:hidden mt-4 space-y-2 ">
-          <Link
-            href="/"
-            className="block text-[#000929] hover:text-[#3BA1DF] font-semibold "
-          >
-            Home
-          </Link>
-          <Link
-            href="/about"
-            className="block text-[#000929] hover:text-[#3BA1DF] font-semibold"
-          >
-            About
-          </Link>
-          <Link
-            href="/pricing"
-            className="block text-[#000929] hover:text-[#3BA1DF] font-semibold"
-          >
-            Pricing
-          </Link>
-          <Link
-            href="/articles"
-            className="block text-[#000929] hover:text-[#3BA1DF] font-semibold"
-          >
-            Articles
-          </Link>
-          <Link
-            href="/Contact"
-            className="block text-[#000929]  hover:text-[#3BA1DF] font-semibold"
-          >
-            Contact
-          </Link>
-          {user ? (
-            ""
-          ) : (
-            <div className="flex space-x-2 mt-2">
+        <div className="lg:hidden mt-6 space-y-3 text-center">
+          {["Home", "About", "Pricing", "Articles", "Contact"].map((item) => (
+            <Link
+              key={item}
+              href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+              className="block text-gray-300 hover:text-cyan-400 font-semibold"
+            >
+              {item}
+            </Link>
+          ))}
+
+          {!user && (
+            <div className="flex gap-3 mt-4">
               <Link
-                href={"/auth/login"}
-                className="flex-1 px-4 py-2 rounded-lg border-2 border-blue-[#0A1532] border-[#E0DEF7] text-blue-[#0A1532] font-semibold cursor-pointer"
+                href="/auth/login"
+                className="flex-1 px-4 py-2 rounded-lg border border-cyan-400/40 text-cyan-400"
               >
                 Login
               </Link>
               <Link
-                href={"/auth/register"}
-                className="flex-1  px-4 py-3 rounded-lg bg-[#0A1532] text-white cursor-pointer "
+                href="/auth/register"
+                className="flex-1 px-4 py-2 rounded-lg bg-cyan-400 text-black font-semibold"
               >
                 Sign Up
               </Link>
