@@ -1,68 +1,99 @@
 "use client";
 import React from "react";
 import { ChevronUp, Facebook, Instagram, Twitter } from "lucide-react";
-import logo from "../../public/logo.png";
+import logo from "../../public/logo2.png";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 const Footer = () => {
   return (
-    <footer className=" pt-10 pb-10  border-t border-gray-200 bg-white">
-      <div className="max-w-7xl px-4 mx-auto grid grid-cols-1 items-start md:grid-cols-2 gap-8">
+    <footer className="pt-14 pb-10 border-t border-cyan-400/10 bg-black text-white relative overflow-hidden">
+
+      {/* Subtle neon glow */}
+      <div
+        className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full opacity-30"
+        style={{
+          background: "radial-gradient(circle, rgba(0,255,255,0.5), transparent 70%)",
+          filter: "blur(200px)",
+        }}
+      />
+
+      <div className="relative max-w-7xl px-4 mx-auto grid grid-cols-1 items-start md:grid-cols-2 gap-10 z-10">
+        
         {/* Left: Logo and Tagline */}
         <div>
-          <Image src={logo} alt="EstateAtlas Logo" width={199} height={52} className="mb-4" />
-          <p className="text-[#4D5461] text-[19px] font-semibold mt-2">
+          <Image
+            src={logo}
+            alt="EstateAtlas Logo"
+            width={190}
+            height={52}
+            className="mb-4"
+          />
+          <p className="text-gray-300 text-[18px] font-medium mt-2">
             Empower your investment <br /> decisions using our tools.
           </p>
         </div>
 
-        {/* Right: Grid of Company, Legal, ScrollToTop */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-20">
-          {/* Company Links */}
+        {/* Right: Links + Scroll */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-16">
+          
+          {/* Company */}
           <div>
-            <h4 className="text-2xl font-semibold mb-4">Company</h4>
+            <h4 className="text-2xl font-semibold mb-4 text-cyan-400">
+              Company
+            </h4>
             <ul className="space-y-4">
-              <li>
-                <a href="/about" className="text-gray-600 hover:text-blue-600 text-lg transition">About Us</a>
-              </li>
-              <li>
-                <a href="/properties" className="text-gray-600 hover:text-blue-600 text-lg transition">Pricing</a>
-              </li>
-              <li>
-                <a href="/contact" className="text-gray-600 hover:text-blue-600 text-lg transition">Articles</a>
-              </li>
-              <li>
-                <a href="/contact" className="text-gray-600 hover:text-blue-600 text-lg transition">Contact us</a>
-              </li>
+              {["About Us", "Pricing", "Articles", "Contact us"].map((item) => (
+                <li key={item}>
+                  <a
+                    href="/"
+                    className="text-gray-400 hover:text-cyan-400 text-lg transition"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Legal Links */}
+          {/* Legal */}
           <div>
-            <h4 className="text-2xl font-semibold mb-4">Legal</h4>
+            <h4 className="text-2xl font-semibold mb-4 text-cyan-400">
+              Legal
+            </h4>
             <ul className="space-y-4">
-              <li>
-                <a href="/legal" className="text-gray-600 hover:text-blue-600 text-lg transition">Terms of Service</a>
-              </li>
-              <li>
-                <a href="/legal" className="text-gray-600 hover:text-blue-600 text-lg transition">Privacy Policy</a>
-              </li>
-              <li>
-                <a href="/legal" className="text-gray-600 hover:text-blue-600 text-lg transition">Cookies Policy</a>
-              </li>
-              <li>
-                <a href="/legal" className="text-gray-600 hover:text-blue-600 text-lg transition">Data Disclaimer</a>
-              </li>
+              {[
+                "Terms of Service",
+                "Privacy Policy",
+                "Cookies Policy",
+                "Data Disclaimer",
+              ].map((item) => (
+                <li key={item}>
+                  <a
+                    href="/legal"
+                    className="text-gray-400 hover:text-cyan-400 text-lg transition"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Scroll to Top Button */}
+          {/* Scroll to top */}
           <div className="relative flex items-start md:items-end justify-start md:justify-end">
             <Button
               size="icon"
-              className="absolute top-4 right-4 bg-gray-900 hover:bg-gray-800 p-8 text-white rounded-lg"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="
+                absolute top-4 right-4
+                bg-cyan-400 text-black p-8 rounded-xl
+                shadow-[0_0_35px_rgba(0,255,255,0.9)]
+                hover:shadow-[0_0_55px_rgba(0,255,255,1)]
+                transition
+              "
+              onClick={() =>
+                window.scrollTo({ top: 0, behavior: "smooth" })
+              }
             >
               <ChevronUp className="h-10 w-10" />
             </Button>
@@ -71,23 +102,26 @@ const Footer = () => {
       </div>
 
       {/* Divider */}
-      <hr className="my-8 mx-auto border-[#3BA1DF] container" />
+      <hr className="my-10 mx-auto border-cyan-400/30 container" />
 
       {/* Bottom Bar */}
-      <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-        <div className="text-lg text-center text-[#0A1532] md:text-left">
-          Copyright &copy; {new Date().getFullYear()} ESTATEATLAS. All Rights Reserved
+      <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 relative z-10">
+        <div className="text-lg text-gray-400 text-center md:text-left">
+          © {new Date().getFullYear()} ESTATEATLAS. All Rights Reserved
         </div>
-        <div className="flex space-x-4">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
-            <Facebook />
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
-            <Twitter />
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
-            <Instagram />
-          </a>
+
+        <div className="flex space-x-5">
+          {[Facebook, Twitter, Instagram].map((Icon, idx) => (
+            <a
+              key={idx}
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-cyan-400 transition"
+            >
+              <Icon />
+            </a>
+          ))}
         </div>
       </div>
     </footer>
