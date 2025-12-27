@@ -38,12 +38,12 @@ export default function RootLayout({
         />
       
         <Providers>
-           <StripeProvider>
+           {/* <StripeProvider> */}
           <main className="min-h-screen">
             {children}
           </main>
           <Toaster position="top-right" reverseOrder={false} /> 
-          </StripeProvider>
+          {/* </StripeProvider> */}
         
         </Providers>
       </body>
